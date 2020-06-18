@@ -145,7 +145,7 @@
     }
 
     .logo-text {
-      color: $grey-900;
+      color: $default-grey;
     }
   }
 
@@ -189,7 +189,7 @@
 
   .sidebar-link {
     &.actived::before {
-      background: $md-blue-500;
+      background: $blue;
       border-radius: 50%;
       content: '';
       display: block;
