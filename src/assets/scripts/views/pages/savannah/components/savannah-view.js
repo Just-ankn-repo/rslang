@@ -142,9 +142,11 @@ export default class SavannahView {
     }, {once: true});
     
     questionWord.style.transition = `transform ${QUESTION_SPEED[level]}s linear 0s`;
-    setTimeout(() => {
-      questionWord.classList.add('pending');
-    }, 0);
+
+    const forcedReflow = () => questionWord.offsetHeight;
+    forcedReflow();
+
+    questionWord.classList.add('pending');
   }
 
   addQuestionListener() {
