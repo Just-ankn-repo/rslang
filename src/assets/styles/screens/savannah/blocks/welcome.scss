@@ -1,0 +1,30 @@
+.game-title {
+  margin-top: 23vh;
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 5px;
+}
+
+.game-descr {
+  max-width: 50%;
+  margin: 10px auto 30px;
+  text-align: center;
+}
+
+.start-game-btn {
+  @include btn-reset;
+  display: block;
+  margin: 0 auto;
+  padding: 20px 55px;
+  border-radius: 3px;
+  border: 2px solid $color-dark;
+  background-color: transparent;
+  color: $color-dark;
+  transition: .3s;
+}
+
+.start-game-btn:hover {
+  color: $color-white;;
+  background-color: $color-dark;
+  border-color: $color-dark;
+}

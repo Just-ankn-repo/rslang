@@ -1,0 +1,19 @@
+.start-timer {
+  position: fixed;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timer-spinner {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../static/images/savannah/icon-loader.svg');
+}
+
+.timer {
+  text-align: center;
+  font-size: 115px;
+}

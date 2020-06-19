@@ -1,0 +1,143 @@
+.question-wrap {
+  margin: 50vh auto 0;
+  width: 70%;
+  // overflow: hidden;
+  padding-bottom: 150px;
+  position: relative;
+}
+
+.options {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.option {
+  padding: 18px 30px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover {
+  transform: translateY(5px);
+}
+
+.option.disabled {
+  pointer-events: none;
+}
+
+.answer-option {
+  opacity: 0.4;
+}
+
+.answer-correct {
+  opacity: 1;
+  background-color: rgb(0, 216, 151);
+  box-shadow: 2px 2px 6px rgba(0, 216, 151, 0.3);
+}
+
+.answer-error {
+  opacity: 1;
+  background-color: rgb(228, 19, 81);
+  box-shadow: 2px 2px 6px rgba(228, 19, 81, 0.3);
+}
+
+.question-word {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -100vh);
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+.pending {
+  transform: translate(-50%,-125px);
+}
+
+.correct-answer {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  height: 50%;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-name: tada;
+  transform-origin: center;
+  width: 100px;
+  height: 100px;
+}
+
+@keyframes tada {
+  0% {
+    transform: translate(-50%, -50%) scaleX(1);
+  }
+
+  10%,
+  20% {
+    transform: translate(-50%, -50%) scale3d(.9, .9, .9) rotate(-3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1.1) rotate(3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: translate(-50%, -50%) scale3d(1.1, 1.1, 1.1) rotate(-3deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scaleX(1);
+  }
+}
+
+.time-end {
+  // letter-spacing: 100px;
+  // font-size: 100px;
+  // opacity: 0;
+  // transform: translate(-50%, -100vh);
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-name: shakeX;
+  transform-origin: center;
+}
+
+@keyframes shakeX {
+  0%,
+  to {
+    transform: translate(-50%, -75px);
+  }
+
+  10%,
+  30%,
+  50%{
+    transform: translate3d(calc(-50% -10px), -75px, 0);
+  }
+
+  20%,
+  40%{
+    transform: translate3d(calc(-50% + 10px), -75px, 0);
+  }
+
+  70% {
+    letter-spacing: 0;
+    font-size: 12px;
+    opacity: 1;
+    transform: translate3d(calc(-50% -10px), -75px, 0);
+  }
+
+  100% {
+    letter-spacing: 100px;
+    font-size: 100px;
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+}
