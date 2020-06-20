@@ -6,16 +6,19 @@
 }
 
 .game-descr {
-  max-width: 50%;
+  max-width: 80%;
   margin: 10px auto 30px;
   text-align: center;
+    @media (min-width: $breakpoint-sm) {
+      max-width: 50%;
+    }
 }
 
 .start-game-btn {
   @include btn-reset;
   display: block;
   margin: 0 auto;
-  padding: 20px 55px;
+  padding: 15px 63px;
   border-radius: 3px;
   border: 2px solid $color-dark;
   background-color: transparent;

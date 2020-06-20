@@ -1,12 +1,4 @@
-const QUESTIONS_AMOUNT = 2;
-const LIVES_AMOUNT = 5;
-const ANSWERS_OPTIONS_AMOUNT = 4;
-const LEVELS = ['slow', 'moderate', 'fast'];
-const POINTS = {
-  'slow': 100,
-  'moderate': 200,
-  'fast': 300,
-};
+import {constants} from './constants';
 
 export default class SavannahModel {
   constructor(exampleData) {
@@ -22,9 +14,9 @@ export default class SavannahModel {
   static getDefaultState() {
     const state = {
       // lives: LIVES_AMOUNT,
-      lives: 3,
+      lives: 1,
       currentQuestion: 0,
-      level: LEVELS[0],
+      level: constants.LEVELS[0],
       points: 0,
     };
 
@@ -51,7 +43,7 @@ export default class SavannahModel {
     this.state.lives -= 1;
 
     if (!this.state.lives) {
-      this.endGame()
+      this.endGame(false)
     }
   }
 
@@ -60,35 +52,41 @@ export default class SavannahModel {
   }
 
   updateLevel() {
-    if (this.state.currentQuestion < QUESTIONS_AMOUNT) {
+    if (this.state.currentQuestion < constants.QUESTIONS_AMOUNT) {
       return false;
     }
-    if (this.state.level === LEVELS[LEVELS.length - 1]) {
-      this.endGame();
+    if (this.state.level === constants.LEVELS[constants.LEVELS.length - 1]) {
+      this.endGame(true);
       return false;
     }
-    const levelIndex = LEVELS.findIndex((level) => level === this.state.level);
-    this.state.level = LEVELS[levelIndex + 1];
+    const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
+    this.state.level = constants.LEVELS[levelIndex + 1];
     this.state.currentQuestion = 0;
     return true;
   }
 
   updateScore() {
-    this.state.points += POINTS[this.state.level];
+    this.state.points += constants.POINTS[this.state.level];
   }
 
-  endGame() {
-    return;
+  endGame(isWin) {
+    this.isGameEnded = {
+      isWin,
+    };
   }
 
   getQuestionsList(data) {
     const words = [];
 
-    for (let i = 0; i < QUESTIONS_AMOUNT; i += 1) {
+    for (let i = 0; i < constants.QUESTIONS_AMOUNT; i += 1) {
       const word = {
         word: data[i].word,
         answer: data[i].wordTranslate,
         options: this.getAnswerOptions(data[i]),
+        image: data[i].image,
+        audio: data[i].audio,
+        group: data[i].group,
+        transcr: data[i].transcription,
       };
 
       words.push(word);
@@ -119,7 +117,7 @@ export default class SavannahModel {
   }
 
   getQuestionOptions(optionsList) {
-    const randomOptions = new Array(ANSWERS_OPTIONS_AMOUNT - 1).fill('')
+    const randomOptions = new Array(constants.ANSWERS_OPTIONS_AMOUNT - 1).fill('')
       .map(() => {
         const randomOptionsIndex = this.constructor.getRandomNumber(0, optionsList.length - 1);
         return optionsList[randomOptionsIndex];
@@ -129,7 +127,7 @@ export default class SavannahModel {
   }
 
   addAnswerToOptions(options, correctAnswer) {
-    const randomPosition = this.constructor.getRandomNumber(0, ANSWERS_OPTIONS_AMOUNT - 1);
+    const randomPosition = this.constructor.getRandomNumber(0, constants.ANSWERS_OPTIONS_AMOUNT - 1);
 
     options.splice(randomPosition, 0, correctAnswer.wordTranslate);
     return options;

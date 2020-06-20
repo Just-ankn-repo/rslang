@@ -1,11 +1,4 @@
-const START_TIME = 1;
-const SECOND = 1000;
-const LIVES_LIMIT = 5;
-const QUESTION_SPEED = {
-  slow: 14,
-  moderate: 10,
-  fast: 7,
-}
+import {constants} from './constants';
 
 export default class SavannahView {
   constructor(questionsList, state) {
@@ -42,7 +35,7 @@ export default class SavannahView {
         restTime -= 1;
         time.innerText = restTime;
         setTimerTimeout();
-      }, SECOND);
+      }, constants.SECOND);
     };
 
     setTimerTimeout();
@@ -52,8 +45,8 @@ export default class SavannahView {
     const timerElem = document.createElement('div');
     timerElem.classList.add('start-timer');
     timerElem.innerHTML = `
-      <div class='timer'>${START_TIME}</div>
-      <div class='timer-spinner'></div>`;
+      <div class='timer'>${constants.START_TIME}</div>
+      <div class='timer-spinner'></div>`
     return timerElem;
   }
 
@@ -78,10 +71,19 @@ export default class SavannahView {
 
     scoreElem.classList.add('score');
     scoreElem.innerHTML = `
-      <div class='points'><span>Score </span><span class='points'>${points}</span></div>
-      <div class='level'>${level}</div>
+      <div class='points-wrap'>
+        <span>Score </span>
+        <span class='points'>
+          +${points}
+        </span>
+      </div>
+      <div class='level-title-wrap ${level}'>
+        <i class="fa fa-circle ${level} level-title level-tag">
+          ${level}
+        </i>
+      </div>
       <div class='lives'>
-        ${new Array(LIVES_LIMIT - lives).fill()
+        ${new Array(constants.LIVES_AMOUNT - lives).fill()
           .map(() => `<div class='live live-empty'></div>`)
           .join('')}
         ${new Array(lives).fill()
@@ -141,7 +143,7 @@ export default class SavannahView {
         this.animateOnWrongAnswer();
     }, {once: true});
     
-    questionWord.style.transition = `transform ${QUESTION_SPEED[level]}s linear 0s`;
+    questionWord.style.transition = `transform ${constants.QUESTION_SPEED[level]}s linear 0s`;
 
     const forcedReflow = () => questionWord.offsetHeight;
     forcedReflow();
@@ -154,7 +156,7 @@ export default class SavannahView {
     const questionWord = document.querySelector('.question-word');
     let isCorrect = false;
     questionWord.addEventListener('animationend', () => {
-      this.onUserAnswer(isCorrect);
+      this.onUserAnswer(isCorrect, this.currentQuestion);
     }, { once: true });
 
     optionsList.addEventListener('click', (evt) => {

@@ -1,24 +1,34 @@
 .question-wrap {
-  margin: 50vh auto 0;
-  width: 70%;
-  // overflow: hidden;
+  margin: 0 auto 0;
+  padding-top: 40vh;
+  width: 90%;
   padding-bottom: 150px;
   position: relative;
+  @media (min-width: $breakpoint-sm) {
+    width: 75%;
+  }
 }
 
 .options {
-    margin: 0;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(auto-fill, minmax(40%,1fr));
+    }
 }
 
 .option {
-  padding: 18px 30px;
+  padding: 15px 30px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .option:hover {
@@ -34,12 +44,14 @@
 }
 
 .answer-correct {
+  color: #fff;
   opacity: 1;
   background-color: rgb(0, 216, 151);
   box-shadow: 2px 2px 6px rgba(0, 216, 151, 0.3);
 }
 
 .answer-error {
+  color: #fff;
   opacity: 1;
   background-color: rgb(228, 19, 81);
   box-shadow: 2px 2px 6px rgba(228, 19, 81, 0.3);
@@ -59,9 +71,9 @@
 }
 
 .correct-answer {
-  position: fixed;
+  position: absolute;
   transform: translate(-50%, -50%);
-  top: 30%;
+  top: 20%;
   height: 50%;
   animation-duration: 1.5s;
   animation-fill-mode: both;

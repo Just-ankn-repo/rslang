@@ -1,8 +1,8 @@
 .start-timer {
-  position: fixed;
-  top: 30vh;
+  position: absolute;
+  top: 35%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .timer-spinner {
