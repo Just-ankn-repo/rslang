@@ -1,4 +1,4 @@
-import {constants} from './constants';
+import constants from './constants';
 
 export default class SavannahView {
   constructor(questionsList, state) {
@@ -66,7 +66,7 @@ export default class SavannahView {
   }
 
   renderScore() {
-    const { lives, currentQuestion: quesionIndex, level, points} = this.state;
+    const { lives, currentQuestion: quesionIndex, level, points, round, langLevel} = this.state;
     const scoreElem = document.createElement('section');
 
     scoreElem.classList.add('score');
@@ -77,6 +77,8 @@ export default class SavannahView {
           +${points}
         </span>
       </div>
+      <div>Your level: ${constants.LANG_LEVEL[langLevel]}</div>
+      <div>Round: ${round}</div>
       <div class='level-title-wrap ${level}'>
         <i class="fa fa-circle ${level} level-title level-tag">
           ${level}

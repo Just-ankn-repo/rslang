@@ -1,4 +1,4 @@
-import { constants, getLevelFromGroup } from './constants';
+import constants from './constants';
 
 class Statistic {
   constructor() {
@@ -10,6 +10,7 @@ class Statistic {
 
   render(gameResult, state) {
     this.root = document.querySelector('.container');
+    const maxPoints = this.constructor.getMaxPoints();
     const { points, lives } = state;
     const getStatisticTemplate = () => `
       <section class='statistic ${gameResult ? 'success' : 'fail'}'>
@@ -21,7 +22,7 @@ class Statistic {
             <span>Score: </span>
             <b>${points}</b>
             <div class="bar-wrap ${gameResult ? 'success' : 'fail'}">
-              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(points, constants.MAX_POINTS)}%;">
+              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(points, maxPoints)}%;">
               </span>
             </div>
           </li>
@@ -29,7 +30,7 @@ class Statistic {
             <span>Wrong answers: </span>
             <b>${this.userWords.wrongAnswered.length}</b>
             <div class="bar-wrap fail">
-              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(this.userWords.wrongAnswered.length, constants.ANSWERS_AMOUNT)}%;">
+              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(this.userWords.wrongAnswered.length, constants.QUESTIONS_AMOUNT)}%;">
               </span>
             </div>
           </li>
@@ -37,56 +38,61 @@ class Statistic {
             <span>Correct answers: </span>
             <b>${this.userWords.correctAnswered.length}</b>
             <div class="bar-wrap success">
-              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(this.userWords.correctAnswered.length, constants.ANSWERS_AMOUNT)}%;">
+              <span class="bar-fill" style="width: ${this.constructor.getBarWidth(this.userWords.correctAnswered.length, constants.QUESTIONS_AMOUNT)}%;">
               </span>
             </div>
           </li>
         </ul>
-        <div class='words-result'>
-          <h3 class='stat-word-title'>
-            ${this.userWords.wrongAnswered.length
-              ? 'Words to learn'
-              : ''}
-          </h3>
-          <ul class='words-list-result words-to-learn'>
-            ${this.userWords.wrongAnswered
-              .map((word) => `
-                <li class='word-info'>
-                  <img class='word-img' src="${constants.DATA_URL}${word.image}" />
-                  <div class="statistic-translate">
-                    <div class="word-name">
-                      <span>${word.word}</span>
-                      <span class='stat-transcr'>${word.transcr}</span>
+        <div class='stat-results-wrap'>
+          <div class='words-result'>
+            <h3 class='stat-word-title'>
+              ${this.userWords.wrongAnswered.length
+                ? 'Words to learn'
+                : ''}
+            </h3>
+            <ul class='words-list-result words-to-learn'>
+              ${this.userWords.wrongAnswered
+                .map((word) => `
+                  <li class='word-info'>
+                    <img class='word-img' src="${constants.DATA_URL}${word.image}" />
+                    <div class="statistic-translate">
+                      <div class="word-name">
+                        <span>${word.word}</span>
+                        <span class='stat-transcr'>${word.transcr}</span>
+                      </div>
+                      <div class="stat-level">
+                        <i class="fa fa-circle ${word.levelSpeed} level-tag"> ${word.answer}</i>
+                      </div>
                     </div>
-                    <div class="stat-level">
-                      <i class="fa fa-circle ${getLevelFromGroup(word.group)} level-tag"> ${word.answer}</i>
+                  </li>`)
+                .join('')}
+            </ul>
+            <h3 class='stat-word-title'>
+              ${this.userWords.correctAnswered.length
+                ? 'Words you have learned'
+                : ''}
+            </h3>
+            <ul class='words-list-result words-learned'>
+              ${this.userWords.correctAnswered
+                .map((word) => `
+                  <li class='word-info'>
+                    <img class='word-img' src="${constants.DATA_URL}${word.image}" />
+                    <div class="statistic-translate">
+                      <div class="word-name">
+                        <span>${word.word}</span>
+                        <span class='stat-transcr'>${word.transcr}</span>
+                      </div>
+                      <div class="stat-level">
+                        <i class="fa fa-circle ${word.levelSpeed} level-tag"> ${word.answer}</i>
+                      </div>
                     </div>
-                  </div>
-                </li>`)
-              .join('')}
-          </ul>
-          <h3 class='stat-word-title'>
-            ${this.userWords.correctAnswered.length
-              ? 'Words you have learned'
-              : ''}
-          </h3>
-          <ul class='words-list-result words-learned'>
-            ${this.userWords.correctAnswered
-              .map((word) => `
-                <li class='word-info'>
-                  <img class='word-img' src="${constants.DATA_URL}${word.image}" />
-                  <div class="statistic-translate">
-                    <div class="word-name">
-                      <span>${word.word}</span>
-                      <span class='stat-transcr'>${word.transcr}</span>
-                    </div>
-                    <div class="stat-level">
-                      <i class="fa fa-circle ${getLevelFromGroup(word.group)} level-tag"> ${word.answer}</i>
-                    </div>
-                  </div>
-                </li>`)
-              .join('')}
-          </ul>
+                  </li>`)
+                .join('')}
+            </ul>
+          </div>
+          <button class='next-round-btn btn'>
+            Next round <i class='fa fa-long-arrow-right'></i>
+          </button>
         </div>
       </section>`;
 
@@ -95,6 +101,17 @@ class Statistic {
 
   static getBarWidth(value, max) {
     return Math.round((value / max) * 100);
+  }
+
+  static getMaxPoints() {
+    return Object.values(constants.POINTS)
+      .reduce((acc, item, index) => {
+        const wordsPerLevel = Math.ceil(constants.QUESTIONS_AMOUNT / constants.LEVELS.length);
+        const rate = index >= constants.LEVELS.length - 1
+          ? constants.QUESTIONS_AMOUNT % (wordsPerLevel * (index))
+          : wordsPerLevel;
+        return acc + (item * rate);
+      }, 0);
   }
 
   saveQuestion(isCorrect, questionWord) {

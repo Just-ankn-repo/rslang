@@ -1,22 +1,23 @@
-import {constants} from './constants';
+import constants from './constants';
 
 export default class SavannahModel {
-  constructor(exampleData) {
-    this.data = this.constructor.shuffleWords(exampleData);
+  constructor(roundWords) {
+    this.roundWordsList = this.constructor.shuffleWords(roundWords);
     this.state = this.constructor.getDefaultState();
-    this.questions = this.getQuestionsList(this.data);
+    this.roundQuestions = this.getQuestionsList(this.roundWordsList);
   }
 
   static shuffleWords(exampleData) {
     return exampleData.sort(() => Math.random() - 0.5);
   }
 
-  static getDefaultState() {
+  static getDefaultState(langLevel = 0) {
     const state = {
-      // lives: LIVES_AMOUNT,
-      lives: 1,
+      lives: constants.LIVES_AMOUNT,
       currentQuestion: 0,
       level: constants.LEVELS[0],
+      round: 0,
+      langLevel,
       points: 0,
     };
 
@@ -25,7 +26,7 @@ export default class SavannahModel {
 
   updateQuestionsList(wordsList) {
     const shuffledWords = this.constructor.shuffleWords(wordsList);
-    this.questions = this.getQuestionsList(shuffledWords); 
+    this.roundQuestions = this.getQuestionsList(shuffledWords); 
   }
 
   updateState(isCorrect) {
@@ -35,8 +36,8 @@ export default class SavannahModel {
       this.updateScore();
     }
     this.updateQuestionIndex();
-    const isLevelChanged = this.updateLevel();
-    return isLevelChanged;
+    this.updateSpeedLevel();
+    this.endIfLastQuestion();
   }
 
   updateLives() {
@@ -51,19 +52,45 @@ export default class SavannahModel {
     this.state.currentQuestion += 1;
   }
 
-  updateLevel() {
-    if (this.state.currentQuestion < constants.QUESTIONS_AMOUNT) {
-      return false;
-    }
-    if (this.state.level === constants.LEVELS[constants.LEVELS.length - 1]) {
+  endIfLastQuestion() {
+    // if (this.state.currentQuestion < constants.QUESTIONS_AMOUNT) {
+    //   return;
+    // }
+    // if (this.state.level === constants.LEVELS[constants.LEVELS.length - 1]) {
+    if (this.state.currentQuestion >= constants.QUESTIONS_AMOUNT) {
       this.endGame(true);
-      return false;
     }
-    const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
-    this.state.level = constants.LEVELS[levelIndex + 1];
-    this.state.currentQuestion = 0;
-    return true;
+    // const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
+    // const roundIndex = this.state.round += 1;
+    // this.state.level = constants.LEVELS[levelIndex + 1];
+    // this.state.currentQuestion = 0;
+    // return true;
   }
+
+  updateSpeedLevel() {
+    // if (this.constructor.isTimeToUpdateLevel(this.state.currentQuestion)) {
+    //   const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
+
+    //   this.state.level = constants.LEVELS[levelIndex + 1];
+    // }
+    if (this.state.currentQuestion >= this.roundQuestions.length) {
+      return;
+    }
+
+    this.state.level = this.roundQuestions[this.state.currentQuestion].levelSpeed;
+  }
+
+  // static isTimeToUpdateLevel(currentQuestion) {
+  //   const levelsEndPoints = this.levelRanges;
+  //   let isLastQuestion;
+  //   Object.entries(levelsEndPoints).forEach(([, values]) => {
+  //     if (currentQuestion === values[0]) {
+  //       isLastQuestion = true;
+  //     }
+  //   });
+
+  //   return isLastQuestion;
+  // }
 
   updateScore() {
     this.state.points += constants.POINTS[this.state.level];
@@ -87,6 +114,7 @@ export default class SavannahModel {
         audio: data[i].audio,
         group: data[i].group,
         transcr: data[i].transcription,
+        levelSpeed: this.getLevelSpeed(i),
       };
 
       words.push(word);
@@ -95,8 +123,48 @@ export default class SavannahModel {
     return words;
   }
 
+  getLevelSpeed(indexOnPage) {
+    const levelRanges = this.constructor.divideIntoLevels(constants.QUESTIONS_AMOUNT);
+    let level;
+    const isInRange = (min, max, key) => {
+      return key >= min && key <= max;
+    }
+
+    Object.entries(levelRanges)
+      .forEach(([levelName, minmax]) => {
+        if (isInRange(...minmax, indexOnPage)) {
+          level = levelName;
+        }
+      });
+
+    return level;
+  }
+
+  static divideIntoLevels(wordsAmount) {
+    const levelsAmount = constants.LEVELS.length;
+    const levelsRange = {};
+    // {
+    //   slow: [0, 6],
+    //   moderate: [7, 13],
+    //   fast: [14, 19],
+    // }
+    const levelWordsAmount = Math.ceil(wordsAmount / levelsAmount);
+    const getRangeMin = (index) => {
+      return index * levelWordsAmount;
+    }
+    const getRangeMax = (index) => {
+      const result = ((index + 1) * levelWordsAmount) - 1;
+      return result > wordsAmount ? wordsAmount - 1 : result;
+    }
+    constants.LEVELS.forEach((levelName, index) => {
+      levelsRange[levelName] = [getRangeMin(index), getRangeMax(index)];
+    });
+
+    return levelsRange;
+  }
+
   getAnswerOptions(correctAnswer) {
-    let wrongAnswersList = this.constructor.getWrongAnswersList(this.data, correctAnswer);
+    let wrongAnswersList = this.constructor.getWrongAnswersList(this.roundWordsList, correctAnswer);
 
     wrongAnswersList = this.getQuestionOptions(wrongAnswersList);
     const optionsList = this.addAnswerToOptions(wrongAnswersList, correctAnswer);

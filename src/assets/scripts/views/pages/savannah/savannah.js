@@ -16,7 +16,7 @@ const savannah = {
     return view
   },
   after_render: () => {
-    Service.getQuestionsList()
+    Service.getQuestionsList(5)
       .then((exampleData) => new SavannahController(exampleData));
   }
 }

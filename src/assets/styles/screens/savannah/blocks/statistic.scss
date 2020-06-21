@@ -147,6 +147,34 @@
   vertical-align: middle;
 }
 
+.words-result {
+  margin-right: 10px;
+}
+
 .words-list-result {
   margin-bottom: 45px;
+}
+
+.stat-results-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.next-round-btn::before {
+  margin-left: 3px;
+}
+
+.next-round-btn {
+  @include btn-reset;
+  margin-top: 15px;
+  padding: 15px 30px;
+  box-shadow: 2px 2px 6px 0px #00000045;
+  color: $color-dark;
+  transition: .2s;
+}
+
+.next-round-btn:hover {
+  transform: translateY(3px);
 }
