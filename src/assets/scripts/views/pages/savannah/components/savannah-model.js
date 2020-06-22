@@ -11,14 +11,15 @@ export default class SavannahModel {
     return exampleData.sort(() => Math.random() - 0.5);
   }
 
-  static getDefaultState(langLevel = 0) {
+  static getDefaultState(langLevel = constants.DEFAULT_LEVEL, round = constants.DEFAULT_ROUND) {
     const state = {
       lives: constants.LIVES_AMOUNT,
       currentQuestion: 0,
       level: constants.LEVELS[0],
-      round: 0,
-      langLevel,
       points: 0,
+      langLevel,
+      round,
+      isGameEnded: false,
     };
 
     return state;
@@ -27,6 +28,45 @@ export default class SavannahModel {
   updateQuestionsList(wordsList) {
     const shuffledWords = this.constructor.shuffleWords(wordsList);
     this.roundQuestions = this.getQuestionsList(shuffledWords); 
+  }
+
+  updateRound(newRound) {
+    if (newRound) {
+      this.state.round = newRound;
+      this.resetRoundState();
+
+      return;
+    }
+    if (this.state.round >= constants.ROUNDS_AMOUNT - 1) {
+      this.updateLangLevel();
+    } else {
+      this.state.round += 1;
+    }
+
+    this.resetRoundState();
+  }
+
+  resetRoundState() {
+    const newRoundState = {
+      ...this.constructor.getDefaultState(),
+      round: this.state.round,
+      langLevel: this.state.langLevel,
+    };
+    this.state = newRoundState;
+  }
+
+  updateLangLevel(newLevel) {
+    if (newLevel) {
+      this.state.langLevel = newLevel;
+      this.state.round = 0;
+      return;
+    }
+
+    if (this.state.langLevel < constants.LANG_LEVEL.length - 1) {
+      this.state.langLevel += 1;
+    }
+
+    this.state.round = 0;
   }
 
   updateState(isCorrect) {
@@ -97,7 +137,7 @@ export default class SavannahModel {
   }
 
   endGame(isWin) {
-    this.isGameEnded = {
+    this.state.isGameEnded = {
       isWin,
     };
   }

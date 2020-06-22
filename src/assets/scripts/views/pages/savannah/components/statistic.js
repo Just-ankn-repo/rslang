@@ -6,6 +6,26 @@ class Statistic {
       correctAnswered: [],
       wrongAnswered: [],
     }
+    // this.toNextRound = this.toNextRound.bind(this);
+  }
+
+  init(gameResult, state) {
+    this.render(gameResult, state);
+    this.addListeners();
+  }
+
+  resetRoundStat() {
+    this.userWords.correctAnswered = [];
+    this.userWords.wrongAnswered = [];
+  }
+
+  addListeners() {
+    const nextRoundBtn = document.querySelector('.next-round-btn');
+    nextRoundBtn.addEventListener('click', this.toNextRound.bind(this));
+  }
+
+  toNextRound() {
+    throw new Error('method should be overriden', this);
   }
 
   render(gameResult, state) {

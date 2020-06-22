@@ -77,8 +77,11 @@ export default class SavannahView {
           +${points}
         </span>
       </div>
-      <div>Your level: ${constants.LANG_LEVEL[langLevel]}</div>
-      <div>Round: ${round}</div>
+      <div class='lang-level' title='${constants.LANG_LEVEL[langLevel]}'>
+        Level: <span class='lang-level-value'>${constants.LANG_LEVELS_SHORTHANDS[langLevel]}</span>
+      </div>
+      <div class='round-wrap'>Round:<span class='round-number'>${round + 1}</span> / ${constants.ROUNDS_AMOUNT}</div>
+      <button class='btn level-settings-btn'>Settings <i class="fa fa-external-link" aria-hidden="true"></i></button>
       <div class='level-title-wrap ${level}'>
         <i class="fa fa-circle ${level} level-title level-tag">
           ${level}
@@ -134,7 +137,7 @@ export default class SavannahView {
     // questionWord.addEventListener('animationend', () => {
     //   this.onUserAnswer(false);
     // }, { once: true });
-    questionWord.addEventListener('transitionend', () => {
+    questionWord.addEventListener('animationend', () => {
       if (
         questionWord.classList.contains('time-end')
         || questionWord.classList.contains('correct-answer')

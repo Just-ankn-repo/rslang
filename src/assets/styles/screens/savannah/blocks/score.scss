@@ -1,5 +1,6 @@
 .score {
   display: flex;
+  font-size: 17px;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
@@ -33,6 +34,7 @@
   margin-left: auto;
   margin-right: 35px;
   padding-right: 10px;
+  font-size: 22px;
 }
 
 .level-tag.level-title {
@@ -41,7 +43,7 @@
 }
 
 .points-wrap {
-  padding-bottom: 10px;
+  margin-right: 20px;
 }
 
 .points {
@@ -50,4 +52,47 @@
   border-radius: 50%;
   box-shadow: 4px 4px 4px 0px rgba(204, 204, 204, 0.6);
   margin-right: 10px;
+}
+
+.round-number {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 4px 0 hsla(0,0%,80%,.6);
+}
+
+.round-wrap {
+  margin-right: 20px;
+}
+
+.lang-level {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.lang-level-value {
+  box-shadow: 4px 4px 4px 0 hsla(0,0%,80%,.6);
+  display: inline-block;
+  padding: 9px 11px;
+  border-radius: 50%;
+  font-size: 16px;
+  background-color: $color-dark;
+  color: $color-white;
+}
+
+.level-settings-btn {
+  @include btn-reset;
+  padding: 15px 30px;
+  box-shadow: 2px 2px 6px 0px #00000045;
+  color: $color-dark;
+  transition: .2s;
+  font-size: 18px;
+}
+
+.level-settings-btn:hover {
+  transform: translateY(3px);
+}
+
+.fa-external-link {
+  vertical-align: middle;
 }

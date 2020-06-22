@@ -15,9 +15,10 @@ export default class SavannaController {
       statistic.saveQuestion(isCorrect, questionWord);
       this.model.updateState(isCorrect);
       // const {isRoundEnded} = this.model;
-      if (this.model.isGameEnded) {
-        const gameResult = this.model.isGameEnded.isWin;
-        statistic.render(gameResult, this.model.state);
+      if (this.model.state.isGameEnded) {
+        const gameResult = this.model.state.isGameEnded.isWin;
+        statistic.init(gameResult, this.model.state);
+        statistic.resetRoundStat();
         return;
       }
       // if (isRoundChanged) {
@@ -29,6 +30,14 @@ export default class SavannaController {
       // } else {
         this.view.changeQuestion(this.model.state);
       // }
+    };
+    statistic.toNextRound = () => {
+      this.model.updateRound();
+      Service.getQuestionsList(this.model.state.langLevel, this.model.state.round)
+        .then((wordsList) => {
+          this.model.updateQuestionsList(wordsList);
+          this.view.changeQuestion(this.model.state, this.model.roundQuestions);
+        });
     }
   }
 }

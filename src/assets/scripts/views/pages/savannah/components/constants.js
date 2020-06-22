@@ -1,6 +1,6 @@
 const constants = {
   QUESTIONS_AMOUNT: 5,
-  LIVES_AMOUNT: 5,
+  LIVES_AMOUNT: 2,
   ANSWERS_OPTIONS_AMOUNT: 4,
   LEVELS: ['slow', 'moderate', 'fast'],
   POINTS: {
@@ -27,10 +27,13 @@ const constants = {
   //   }
   // },
   LANG_LEVEL: ['beginner', 'elementary', 'pre-intermediate', 'intermediate', 'upper-intermediate', 'advanced'],
+  LANG_LEVELS_SHORTHANDS: ['A0', 'A1', 'A2', 'B1', 'B2', 'C1'], 
   ROUNDS_AMOUNT: 30,
   MAX_POINTS: 1800,
   // ANSWERS_AMOUNT: 6,
   DATA_URL: 'https://raw.githubusercontent.com/irinateln0va/rslang-data/master/',
+  DEFAULT_LEVEL: 5,
+  DEFAULT_ROUND: 27,
 }
 
 // const isInRange = (min, max, key) => {

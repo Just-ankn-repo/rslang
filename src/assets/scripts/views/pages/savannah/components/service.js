@@ -17,7 +17,7 @@ import constants from './constants';
 const WORDS_LIST_URL = 'https://afternoon-falls-25894.herokuapp.com/words';
 
 export default class Service {
-  static getQuestionsList(langLevel = 0, round = 0) {
+  static getQuestionsList(langLevel = constants.DEFAULT_LEVEL, round = constants.DEFAULT_ROUND) {
     // const page = getRandomNumber(constants.PAGES_RANGE.min, constants.PAGES_RANGE.max);
     // const group = getWordsGroup(level);
 
