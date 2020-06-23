@@ -61,9 +61,10 @@
   position: absolute;
   left: 50%;
   top: 100%;
-  transform: translate(-50%, -80vh);
+  transform: translate(-50%, calc(-125px -70vh));
   letter-spacing: 0;
   opacity: 1;
+  z-index: 1;
 }
 
 .pending {
@@ -72,9 +73,33 @@
   animation-timing-function: linear;
 }
 
+.question-pulse-animated {
+  padding: 15px 25px;
+}
+
+.question-pulse-animated::before {
+  @include pseudo;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  box-shadow: 0 0 0 0 hsla(0,0%,82%,.5), 0 0 0 0 hsla(0,0%,82%,.75);
+  animation: pulse 1.5s cubic-bezier(.66,.33,0,1) infinite;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 12px transparent, 0 0 0 24px rgba(90, 153, 212, 0);
+  }
+}
+
 @keyframes wordDown {
   0% {
-    transform: translate(-50%, -80vh);
+    transform: translate(-50%, calc(-125px -70vh));
   }
 
   to {

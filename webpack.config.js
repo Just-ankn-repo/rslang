@@ -129,7 +129,7 @@ const config = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: 'fonts'
+            outputPath: 'fonts',
           }
         }]
       }
@@ -147,6 +147,7 @@ const config = {
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
       // {from: './src/img', to: './img/'},
+      {from: './src/assets/static/audio', to: './audio/'},
     ]),
   ],
 

@@ -146,7 +146,7 @@ export default class SavannahView {
     const questionWrap = document.createElement('div');
     questionWrap.classList.add('question-wrap');
     questionWrap.innerHTML = `
-      <div class='question-word'>${this.currentQuestion.word}</div>
+      <div class='question-word question-pulse-animated'>${this.currentQuestion.word}</div>
       <ul class='options'>
         ${this.currentQuestion.options.map((option) => {
           return option === this.currentQuestion.answer
@@ -154,24 +154,7 @@ export default class SavannahView {
             : `<li class='option'>${option}</li>`;
         }).join('')}
       </ul>
-      <div class='deadlock-wrap'>
-        <div class="cssload-bell">
-          <div class="cssload-circle">
-            <div class="cssload-inner"></div>
-          </div>
-          <div class="cssload-circle">
-            <div class="cssload-inner"></div>
-          </div>
-          <div class="cssload-circle">
-            <div class="cssload-inner"></div>
-          </div>
-          <div class="cssload-circle">
-            <div class="cssload-inner"></div>
-          </div>
-          <div class="cssload-circle">
-            <div class="cssload-inner"></div>
-          </div>
-        </div>
+      <div class='question-timeout'>
       </div>
       <audio class='player' src='${constants.DATA_URL}${this.currentQuestion.audio}'>
       </audio>`;
@@ -269,9 +252,13 @@ export default class SavannahView {
   }
 
   animateOnWrongAnswer(answerElem) {
+    this.player.src ='./audio/wrong.mp3';
+    this.player.play();
+
     const questionWord = document.querySelector('.question-word');
     const questionWrap = document.querySelector('.question-wrap');
 
+    questionWord.classList.remove('question-pulse-animated');
     const errorWarning = document.createElement('div');
     errorWarning.classList.add('error-warning');
     errorWarning.innerHTML = `
@@ -295,7 +282,10 @@ export default class SavannahView {
   }
 
   animateOnCorrectAnswer(answer) {
+    this.player.src = './audio/correct.mp3';
+    this.player.play();
     const questionWord = document.querySelector('.question-word');
+    questionWord.classList.remove('question-pulse-animated');
     questionWord.classList.add('correct-answer');
     this.hughlightOptions(answer);
     questionWord.innerHTML = `
