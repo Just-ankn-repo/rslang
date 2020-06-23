@@ -15,7 +15,7 @@ const savannah = {
           </div>`;
     return view
   },
-  after_render: () => {
+  after_render: async () => {
     Service.getQuestionsList()
       .then((exampleData) => new SavannahController(exampleData));
   }

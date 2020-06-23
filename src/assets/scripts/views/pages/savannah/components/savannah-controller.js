@@ -14,30 +14,30 @@ export default class SavannaController {
     this.view.onUserAnswer = (isCorrect, questionWord) => {
       statistic.saveQuestion(isCorrect, questionWord);
       this.model.updateState(isCorrect);
-      // const {isRoundEnded} = this.model;
       if (this.model.state.isGameEnded) {
         const gameResult = this.model.state.isGameEnded.isWin;
         statistic.init(gameResult, this.model.state);
         statistic.resetRoundStat();
         return;
       }
-      // if (isRoundChanged) {
-      //   Service.getQuestionsList(this.model.state.langLevel, this.model.state.round)
-      //     .then((wordsList) => {
-      //       this.model.updateQuestionsList(wordsList);
-      //       this.view.changeQuestion(this.model.state, this.model.roundQuestions);
-      //     });
-      // } else {
-        this.view.changeQuestion(this.model.state);
-      // }
-    };
+
+      this.view.changeQuestion(this.model.state);
+    }
     statistic.toNextRound = () => {
       this.model.updateRound();
-      Service.getQuestionsList(this.model.state.langLevel, this.model.state.round)
-        .then((wordsList) => {
-          this.model.updateQuestionsList(wordsList);
-          this.view.changeQuestion(this.model.state, this.model.roundQuestions);
-        });
+      this.updateOnDataChange();
     }
+    this.view.onSettingsChange = (newLevel, newRound) => {
+      this.model.updateLevelSettings(newLevel, newRound);
+      this.updateOnDataChange();
+    }
+  }
+
+  updateOnDataChange() {
+    Service.getQuestionsList(this.model.state.langLevel, this.model.state.round)
+      .then((wordsList) => {
+        this.model.updateQuestionsList(wordsList);
+        this.view.changeQuestion(this.model.state, this.model.roundQuestions);
+      });
   }
 }

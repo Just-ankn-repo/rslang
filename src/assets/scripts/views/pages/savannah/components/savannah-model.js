@@ -30,13 +30,13 @@ export default class SavannahModel {
     this.roundQuestions = this.getQuestionsList(shuffledWords); 
   }
 
-  updateRound(newRound) {
-    if (newRound) {
-      this.state.round = newRound;
-      this.resetRoundState();
+  updateRound() {
+    // if (newRound) {
+    //   this.state.round = newRound;
+    //   this.resetRoundState();
 
-      return;
-    }
+    //   return;
+    // }
     if (this.state.round >= constants.ROUNDS_AMOUNT - 1) {
       this.updateLangLevel();
     } else {
@@ -55,18 +55,23 @@ export default class SavannahModel {
     this.state = newRoundState;
   }
 
-  updateLangLevel(newLevel) {
-    if (newLevel) {
-      this.state.langLevel = newLevel;
-      this.state.round = 0;
-      return;
-    }
+  updateLangLevel() {
+    // if (newLevel) {
+    //   this.state.langLevel = newLevel;
+    //   return;
+    // }
 
     if (this.state.langLevel < constants.LANG_LEVEL.length - 1) {
       this.state.langLevel += 1;
     }
 
     this.state.round = 0;
+  }
+
+  updateLevelSettings(newLevel, newRound) {
+    this.state.langLevel = newLevel;
+    this.state.round = newRound;
+    this.resetRoundState();
   }
 
   updateState(isCorrect) {

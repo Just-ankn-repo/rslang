@@ -5,6 +5,8 @@ export default class SavannahView {
     this.questionsList = questionsList;
     this.state = state;
     this.root = document.querySelector('.container');
+    this.prevLevel = '';
+    // this.hideSettings = this.hideSettings.bind(this);
     this.init();
   }
 
@@ -31,6 +33,7 @@ export default class SavannahView {
         let restTime = +timerElem.innerText;
         if (restTime === 0) {
           this.startQuestion();
+          return;
         }
         restTime -= 1;
         time.innerText = restTime;
@@ -54,6 +57,7 @@ export default class SavannahView {
     if (questionsList) {
       this.questionsList = questionsList;
     }
+
     this.state = state;
     this.startQuestion();
   }
@@ -61,8 +65,11 @@ export default class SavannahView {
   startQuestion() {
     this.root.innerHTML = '';
     this.renderScore();
+    this.prevLevel = this.state.level;
     this.renderQuestion();
-    this.addQuestionListener();
+    this.player = document.querySelector('.player');
+    this.player.play();
+    this.addQuestionListener(constants);
   }
 
   renderScore() {
@@ -81,8 +88,42 @@ export default class SavannahView {
         Level: <span class='lang-level-value'>${constants.LANG_LEVELS_SHORTHANDS[langLevel]}</span>
       </div>
       <div class='round-wrap'>Round:<span class='round-number'>${round + 1}</span> / ${constants.ROUNDS_AMOUNT}</div>
-      <button class='btn level-settings-btn'>Settings <i class="fa fa-external-link" aria-hidden="true"></i></button>
-      <div class='level-title-wrap ${level}'>
+      <div class='settings-btn-wrap'>
+        <button class='btn level-settings-btn'>Settings <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+        <div class='settings-popup'>
+          <form class='settings-form' action='#' method='get'>
+            <h5 class='settings-title'>
+              Choose level
+            </h5>
+            <ul class='lang-level-radio-list'>
+              ${constants.LANG_LEVEL
+                .map((levelName, index) => {
+                  return `
+                    <li class='settings-lang-level-item'>
+                      <input type="radio" id='level-${constants.LANG_LEVEL[index]}' class="radio-lang-level" name="langLevel" value='${index}'${langLevel === index ? ' checked' : ''}/>
+                      <label class='level-label-wrap' for="level-${constants.LANG_LEVEL[index]}">
+                        <span class='lang-level-label'></span>
+                        <span class='lang-level-shorthand'>
+                          ${constants.LANG_LEVELS_SHORTHANDS[index]}
+                        </span>
+                        <span class='lang-level-name'>${levelName}</span>
+                      </label>
+                    </li>`;
+                }).join('')}
+            </ul>
+            <h5 class='settings-title'>
+              Choose round
+            </h5>
+            <span class='settings-tip'>Enter the number between 1 and ${constants.ROUNDS_AMOUNT}</span>
+            <input class='round-input' type='number' min='1' max='30' name='round' required placeholder='1...${constants.ROUNDS_AMOUNT}'>
+            <div class='settings-btn-wrap'>
+              <button type='button' class='btn cancel-settings-btn'>Cancel</button>
+              <button type='submit' class='btn save-settings-btn'>Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class='${this.prevLevel !== this.state.level ? 'animate__flip' : ''} level-title-wrap ${level}'>
         <i class="fa fa-circle ${level} level-title level-tag">
           ${level}
         </i>
@@ -131,7 +172,10 @@ export default class SavannahView {
             <div class="cssload-inner"></div>
           </div>
         </div>
-      </div>`;
+      </div>
+      <audio class='player' src='${constants.DATA_URL}${this.currentQuestion.audio}'>
+      </audio>`;
+
     this.root.append(questionWrap);
     const questionWord = document.querySelector('.question-word');
     // questionWord.addEventListener('animationend', () => {
@@ -144,11 +188,13 @@ export default class SavannahView {
         ) {
           return;
         }
-        
+
+        questionWord.style.animationDuration = '';
         this.animateOnWrongAnswer();
     }, {once: true});
     
-    questionWord.style.transition = `transform ${constants.QUESTION_SPEED[level]}s linear 0s`;
+    questionWord.style.animationDuration = `${constants.QUESTION_SPEED[level]}s`;
+    // questionWord.style.transition = `transform ${constants.QUESTION_SPEED[level]}s linear 0s`;
 
     const forcedReflow = () => questionWord.offsetHeight;
     forcedReflow();
@@ -159,15 +205,45 @@ export default class SavannahView {
   addQuestionListener() {
     const optionsList = document.querySelector('.options');
     const questionWord = document.querySelector('.question-word');
+    const levelSettingsBtn = document.querySelector('.level-settings-btn');
+    const settingsForm = document.querySelector('.settings-form');
+
+    levelSettingsBtn.addEventListener('click', () => {
+      questionWord.style.animationPlayState = 'paused';
+      this.showSettings();
+    });
+
+    settingsForm.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      const formData = Object.fromEntries([...new FormData(settingsForm)]);
+      const newLevel = Number(formData.langLevel);
+      const newRound = Number(formData.round);
+      if (
+        newLevel === this.state.langLevel 
+        && newRound === this.state.round + 1
+      ) {
+        this.constructor.hideSettings();
+      } else {
+        document.body.removeEventListener('mouseup', this.constructor.hideSettings);
+        this.onSettingsChange(newLevel, newRound - 1);
+      }
+    });
+
     let isCorrect = false;
-    questionWord.addEventListener('animationend', () => {
+    questionWord.addEventListener('animationend', (evt) => {
+      if (evt.animationName === 'wordDown') {
+        return;
+      }
       this.onUserAnswer(isCorrect, this.currentQuestion);
-    }, { once: true });
+    });
 
     optionsList.addEventListener('click', (evt) => {
       if (!evt.target.classList.contains('option')) {
         return;
       }
+
+      questionWord.style.animationDuration = '';
+
       isCorrect = this.constructor.isAnswerCorrect(evt.target);
 
       if (isCorrect) {
@@ -184,17 +260,38 @@ export default class SavannahView {
     throw new Error('method should be overriden', this);
   }
 
+  onSettingsChange() {
+    throw new Error('method should be overriden', this);
+  }
+
   static isAnswerCorrect(answer) {
     return answer.dataset.isAnswer;
   }
 
   animateOnWrongAnswer(answerElem) {
     const questionWord = document.querySelector('.question-word');
+    const questionWrap = document.querySelector('.question-wrap');
+
+    const errorWarning = document.createElement('div');
+    errorWarning.classList.add('error-warning');
+    errorWarning.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="error">
+        <circle class="solid" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32" r="30"/>
+        <circle class="animation" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32" r="30"/>
+        <line class="left" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" x1="19.271" y1="19.521" x2="44.729" y2="44.979"/>
+        <line class="right" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" x1="44.729" y1="19.521" x2="19.271" y2="44.979"/>
+      </svg>`;
+    setTimeout(() => {
+      errorWarning.querySelector('.error').classList.add('toggle');
+    }, 0);
+
+    questionWrap.prepend(errorWarning);
     questionWord.classList.add('time-end');
     this.hughlightOptions(answerElem);
     if (answerElem) {
       answerElem.classList.add('answer-error', 'disabled');
     }
+    // const errorWarning = 
   }
 
   animateOnCorrectAnswer(answer) {
@@ -203,13 +300,10 @@ export default class SavannahView {
     this.hughlightOptions(answer);
     questionWord.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="success">
-          <circle class="solid" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32"
-              r="30"></circle>
-          <circle class="animation" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32"
-              r="30"></circle>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" fill="none" stroke="#000"
-              d="M47.91 23.39L26.7 44.61 16.09 34"></path>
-      </svg>`;
+        <circle class="solid" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32" r="30"/>
+        <circle class="animation" fill="none" stroke-linecap="round" stroke-width="4" stroke-miterlimit="10" cx="32" cy="32" r="30"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" fill="none" stroke="#000" d="M47.91 23.39L26.7 44.61 16.09 34"/>
+      </svg>`
     setTimeout(() => {
       questionWord.querySelector('.success').classList.add('toggle');
     }, 0);
@@ -224,5 +318,52 @@ export default class SavannahView {
         option.classList.add('answer-option', 'disabled');
       }
     });
+  }
+
+  showSettings() {
+    // const levelSettingsBtn = document.querySelector('.level-settings-btn');
+    const settingsPopup = document.querySelector('.settings-popup');
+
+    if (settingsPopup.classList.contains('active')) {
+      settingsPopup.classList.remove('active');
+      document.querySelector('.question-word').style.animationPlayState = '';
+      document.body.removeEventListener('mouseup', this.constructor.hideSettings);
+      return;
+    }
+
+    settingsPopup.classList.add('active');
+    document.body.addEventListener('mouseup', this.constructor.hideSettings);
+      // const {target} = evt;
+      // if (
+      //   target.closest('.settings-popup')
+      //   && !target.classList.contains('cancel-settings-btn')
+      //   || target.closest('.level-settings-btn')
+      // ) {
+      //   return;
+      // }
+
+      // settingsPopup.classList.remove('active');
+      // document.body.removeEventListener('mouseup', hideSettings);
+      // document.querySelector('.question-word').style.animationPlayState = '';
+    // });
+  }
+
+  static hideSettings(evt) {
+    let target;
+    if (evt) {
+      target = evt.target;
+    }
+    if (
+      (target && target.closest('.settings-popup')
+      && !target.classList.contains('cancel-settings-btn'))
+      || target && target.closest('.level-settings-btn')
+    ) {
+      return;
+    }
+    const settingsPopup = document.querySelector('.settings-popup');
+
+    settingsPopup.classList.remove('active');
+    document.querySelector('.question-word').style.animationPlayState = '';
+    document.body.removeEventListener('mouseup', this.constructor.hideSettings);
   }
 }
