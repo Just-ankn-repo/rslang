@@ -13,6 +13,7 @@ const savannah = {
               Start
             </button>
           </div>`;
+
     return view
   },
   after_render: async () => {

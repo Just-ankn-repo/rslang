@@ -6,7 +6,6 @@ class Statistic {
       correctAnswered: [],
       wrongAnswered: [],
     }
-    // this.toNextRound = this.toNextRound.bind(this);
   }
 
   init(gameResult, state) {
@@ -21,6 +20,7 @@ class Statistic {
 
   addListeners() {
     const nextRoundBtn = document.querySelector('.next-round-btn');
+
     nextRoundBtn.addEventListener('click', this.toNextRound.bind(this));
   }
 
@@ -31,7 +31,7 @@ class Statistic {
   render(gameResult, state) {
     this.root = document.querySelector('.container');
     const maxPoints = this.constructor.getMaxPoints();
-    const { points, lives } = state;
+    const { points } = state;
     const getStatisticTemplate = () => `
       <section class='statistic ${gameResult ? 'success' : 'fail'}'>
         <h2 class='statistic-title'>
@@ -130,6 +130,7 @@ class Statistic {
         const rate = index >= constants.LEVELS.length - 1
           ? constants.QUESTIONS_AMOUNT % (wordsPerLevel * (index))
           : wordsPerLevel;
+
         return acc + (item * rate);
       }, 0);
   }
@@ -144,4 +145,5 @@ class Statistic {
 }
 
 const statistic = new Statistic();
+
 export default statistic;

@@ -17,12 +17,14 @@ export default class SavannahView {
 
   addListeners() {
     const startGameBtn = document.querySelector('.start-game-btn');
+
     startGameBtn.addEventListener('click', this.startGame.bind(this));
   }
 
   startGame() {
     this.root.innerHTML = '';
     const timerElem = this.constructor.getTimerTemplate();
+
     this.root.append(timerElem);
     this.startTimer(timerElem);
   }
@@ -32,10 +34,12 @@ export default class SavannahView {
     const setTimerTimeout = () => {
       setTimeout(() => {
         let restTime = +time.innerText;
+
         if (restTime === 0) {
           this.startQuestion();
           return;
         }
+
         restTime -= 1;
         time.innerText = restTime;
         setTimerTimeout();
@@ -47,6 +51,7 @@ export default class SavannahView {
 
   static getTimerTemplate() {
     const timerElem = document.createElement('div');
+
     timerElem.classList.add('start-timer');
     timerElem.innerHTML = `
       <div class='timer'>${constants.START_TIME}</div>
@@ -73,9 +78,11 @@ export default class SavannahView {
     this.prevLevel = this.state.level;
     this.renderQuestion();
     this.player = document.querySelector('.player');
+
     if (!this.isMuted) {
       this.player.play();
     }
+
     this.addQuestionListener();
   }
 
@@ -150,8 +157,10 @@ export default class SavannahView {
 
   renderQuestion() {
     const { currentQuestion: quesionIndex, level } = this.state;
+
     this.currentQuestion = this.questionsList[quesionIndex];
     const questionWrap = document.createElement('div');
+
     questionWrap.classList.add('question-wrap');
     questionWrap.innerHTML = `
       <div class='question-word question-pulse-animated'>${this.currentQuestion.word}</div>
@@ -169,10 +178,8 @@ export default class SavannahView {
 
     this.root.append(questionWrap);
     const questionWord = document.querySelector('.question-word');
+
     questionWord.style.transform = `translate(-50%, -${questionWrap.offsetHeight + questionWord.offsetHeight}px`;
-    // questionWord.addEventListener('animationend', () => {
-    //   this.onUserAnswer(false);
-    // }, { once: true });
     questionWord.addEventListener('animationend', () => {
       if (
         questionWord.classList.contains('time-end')
@@ -186,9 +193,8 @@ export default class SavannahView {
     }, {once: true});
     
     questionWord.style.animationDuration = `${constants.QUESTION_SPEED[level]}s`;
-    // questionWord.style.transition = `transform ${constants.QUESTION_SPEED[level]}s linear 0s`;
-
     const forcedReflow = () => questionWord.offsetHeight;
+
     forcedReflow();
 
     questionWord.classList.add('pending');
@@ -218,6 +224,7 @@ export default class SavannahView {
       const formData = Object.fromEntries([...new FormData(settingsForm)]);
       const newLevel = Number(formData.langLevel);
       const newRound = Number(formData.round);
+
       if (
         newLevel === this.state.langLevel 
         && newRound === this.state.round + 1
@@ -231,10 +238,12 @@ export default class SavannahView {
     });
 
     let isCorrect = false;
+
     questionWord.addEventListener('animationend', (evt) => {
       if (evt.animationName === 'wordDown') {
         return;
       }
+
       this.onUserAnswer(isCorrect, this.currentQuestion);
     });
 
@@ -246,14 +255,6 @@ export default class SavannahView {
       isCorrect = this.constructor.isAnswerCorrect(evt.target);
 
       this.userAnswerHandler(evt.target, isCorrect);
-      // questionWord.style.animationDuration = '';
-
-
-      // if (isCorrect) {
-      //   this.animateOnCorrectAnswer(evt.target);
-      // } else {
-      //   this.animateOnWrongAnswer(evt.target);
-      // }
     });
   }
 
@@ -283,6 +284,7 @@ export default class SavannahView {
 
   animateOnWrongAnswer(answerElem) {
     this.player.src ='./audio/wrong.mp3';
+
     if (!this.isMuted) {
       this.player.play();
     }
@@ -292,6 +294,7 @@ export default class SavannahView {
 
     questionWord.classList.remove('question-pulse-animated');
     const errorWarning = document.createElement('div');
+
     errorWarning.classList.add('error-warning');
     errorWarning.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="error">
@@ -307,6 +310,7 @@ export default class SavannahView {
     questionWrap.prepend(errorWarning);
     questionWord.classList.add('time-end');
     this.hughlightOptions(answerElem);
+
     if (answerElem) {
       answerElem.classList.add('answer-error', 'disabled');
     }
@@ -314,10 +318,13 @@ export default class SavannahView {
 
   animateOnCorrectAnswer(answer) {
     this.player.src = './audio/correct.mp3';
+
     if (!this.isMuted) {
       this.player.play();
     }
+
     const questionWord = document.querySelector('.question-word');
+
     questionWord.classList.remove('question-pulse-animated');
     questionWord.classList.add('correct-answer');
     this.hughlightOptions(answer);
@@ -338,19 +345,25 @@ export default class SavannahView {
 
   onKeyAnswer(evt) {
     const answerIndex = +evt.key;
+
     if (!constants.KEY_ANSWERS.includes(answerIndex)) {
       return;
     }
+
     const targetOption = [...document.querySelectorAll('.option')][answerIndex - 1];
+
     if (!targetOption) {
       return;
     }
+
     const isCorrect = this.constructor.isAnswerCorrect(targetOption);
+
     this.userAnswerHandler(targetOption, isCorrect);
   }
 
   hughlightOptions() {
     const optionsList = document.querySelectorAll('.option');
+
     [...optionsList].forEach((option) => {
       if (this.constructor.isAnswerCorrect(option)) {
         option.classList.add('answer-correct', 'disabled');
@@ -361,7 +374,6 @@ export default class SavannahView {
   }
 
   showSettings() {
-    // const levelSettingsBtn = document.querySelector('.level-settings-btn');
     const settingsPopup = document.querySelector('.settings-popup');
 
     if (settingsPopup.classList.contains('active')) {
@@ -373,26 +385,15 @@ export default class SavannahView {
 
     settingsPopup.classList.add('active');
     document.body.addEventListener('mouseup', this.constructor.hideSettings);
-      // const {target} = evt;
-      // if (
-      //   target.closest('.settings-popup')
-      //   && !target.classList.contains('cancel-settings-btn')
-      //   || target.closest('.level-settings-btn')
-      // ) {
-      //   return;
-      // }
-
-      // settingsPopup.classList.remove('active');
-      // document.body.removeEventListener('mouseup', hideSettings);
-      // document.querySelector('.question-word').style.animationPlayState = '';
-    // });
   }
 
   static hideSettings(evt) {
     let target;
+
     if (evt) {
       target = evt.target;
     }
+
     if (
       (target && target.closest('.settings-popup')
       && !target.classList.contains('cancel-settings-btn'))
@@ -400,7 +401,12 @@ export default class SavannahView {
     ) {
       return;
     }
+
     const settingsPopup = document.querySelector('.settings-popup');
+
+    if (!settingsPopup) {
+      return;
+    }
 
     settingsPopup.classList.remove('active');
     document.querySelector('.question-word').style.animationPlayState = '';

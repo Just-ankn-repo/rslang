@@ -53,6 +53,7 @@ export default class SavannahModel {
       round: this.state.round,
       langLevel: this.state.langLevel,
     };
+
     this.state = newRoundState;
   }
 
@@ -81,6 +82,7 @@ export default class SavannahModel {
     } else {
       this.updateScore();
     }
+
     this.updateQuestionIndex();
     this.updateSpeedLevel();
     this.endIfLastQuestion();
@@ -99,44 +101,18 @@ export default class SavannahModel {
   }
 
   endIfLastQuestion() {
-    // if (this.state.currentQuestion < constants.QUESTIONS_AMOUNT) {
-    //   return;
-    // }
-    // if (this.state.level === constants.LEVELS[constants.LEVELS.length - 1]) {
     if (this.state.currentQuestion >= constants.QUESTIONS_AMOUNT) {
       this.endGame(true);
     }
-    // const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
-    // const roundIndex = this.state.round += 1;
-    // this.state.level = constants.LEVELS[levelIndex + 1];
-    // this.state.currentQuestion = 0;
-    // return true;
   }
 
   updateSpeedLevel() {
-    // if (this.constructor.isTimeToUpdateLevel(this.state.currentQuestion)) {
-    //   const levelIndex = constants.LEVELS.findIndex((level) => level === this.state.level);
-
-    //   this.state.level = constants.LEVELS[levelIndex + 1];
-    // }
     if (this.state.currentQuestion >= this.roundQuestions.length) {
       return;
     }
 
     this.state.level = this.roundQuestions[this.state.currentQuestion].levelSpeed;
   }
-
-  // static isTimeToUpdateLevel(currentQuestion) {
-  //   const levelsEndPoints = this.levelRanges;
-  //   let isLastQuestion;
-  //   Object.entries(levelsEndPoints).forEach(([, values]) => {
-  //     if (currentQuestion === values[0]) {
-  //       isLastQuestion = true;
-  //     }
-  //   });
-
-  //   return isLastQuestion;
-  // }
 
   updateScore() {
     this.state.points += constants.POINTS[this.state.level];
@@ -189,19 +165,16 @@ export default class SavannahModel {
   static divideIntoLevels(wordsAmount) {
     const levelsAmount = constants.LEVELS.length;
     const levelsRange = {};
-    // {
-    //   slow: [0, 6],
-    //   moderate: [7, 13],
-    //   fast: [14, 19],
-    // }
     const levelWordsAmount = Math.ceil(wordsAmount / levelsAmount);
     const getRangeMin = (index) => {
       return index * levelWordsAmount;
     }
     const getRangeMax = (index) => {
       const result = ((index + 1) * levelWordsAmount) - 1;
+
       return result > wordsAmount ? wordsAmount - 1 : result;
     }
+
     constants.LEVELS.forEach((levelName, index) => {
       levelsRange[levelName] = [getRangeMin(index), getRangeMax(index)];
     });
@@ -212,36 +185,33 @@ export default class SavannahModel {
   getAnswerOptions(correctAnswer) {
     let wrongAnswersList = this.constructor.getWrongAnswersList(this.roundWordsList, correctAnswer);
 
-    wrongAnswersList = this.getQuestionOptions(wrongAnswersList);
-    const optionsList = this.addAnswerToOptions(wrongAnswersList, correctAnswer);
+    wrongAnswersList = this.constructor.getQuestionOptions(wrongAnswersList);
+    const optionsList = this.constructor.addAnswerToOptions(wrongAnswersList, correctAnswer);
 
     return optionsList;
   }
 
-  // static getRandomNumber(min, max) {
-  //   const rand = min + Math.random() * (max + 1 - min);
-  //   return Math.floor(rand);
-  // }
-
   static getWrongAnswersList(data, correctAnswer) {
     const answerIndex = data.findIndex((item) => item.id === correctAnswer.id);
     const words = data.map((wordDataItem) => wordDataItem.wordTranslate);
+
     words.splice(answerIndex, 1);
     return words;
   }
 
-  getQuestionOptions(optionsList) {
+  static getQuestionOptions(optionsList) {
     const optionsListCopy = Array.from(new Set(optionsList));
     const randomOptions = new Array(constants.ANSWERS_OPTIONS_AMOUNT - 1).fill('')
       .map(() => {
         const randomOptionsIndex = getRandomNumber(0, optionsListCopy.length - 1);
+
         return optionsListCopy.splice(randomOptionsIndex, 1)[0];
       });
 
     return randomOptions;
   }
 
-  addAnswerToOptions(options, correctAnswer) {
+  static addAnswerToOptions(options, correctAnswer) {
     const randomPosition = getRandomNumber(0, constants.ANSWERS_OPTIONS_AMOUNT - 1);
 
     options.splice(randomPosition, 0, correctAnswer.wordTranslate);

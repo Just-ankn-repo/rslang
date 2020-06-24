@@ -14,8 +14,10 @@ export default class SavannaController {
     this.view.onUserAnswer = (isCorrect, questionWord) => {
       statistic.saveQuestion(isCorrect, questionWord);
       this.model.updateState(isCorrect);
+
       if (this.model.state.isGameEnded) {
         const gameResult = this.model.state.isGameEnded.isWin;
+
         statistic.init(gameResult, this.model.state);
         statistic.resetRoundStat();
         return;
