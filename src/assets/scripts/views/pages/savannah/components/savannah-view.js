@@ -6,6 +6,7 @@ export default class SavannahView {
     this.state = state;
     this.root = document.querySelector('.container');
     this.prevLevel = '';
+    this.isMuted = false;
     this.init();
   }
 
@@ -68,7 +69,9 @@ export default class SavannahView {
     this.prevLevel = this.state.level;
     this.renderQuestion();
     this.player = document.querySelector('.player');
-    this.player.play();
+    if (!this.isMuted) {
+      this.player.play();
+    }
     this.addQuestionListener(constants);
   }
 
@@ -128,6 +131,7 @@ export default class SavannahView {
           ${level}
         </i>
       </div>
+      <button class='btn mute-mode-btn${this.isMuted ? ' sound-off' : ''}'></button>
       <div class='lives'>
         ${new Array(constants.LIVES_AMOUNT - lives).fill()
           .map(() => `<div class='live live-empty'></div>`)
@@ -191,6 +195,12 @@ export default class SavannahView {
     const questionWord = document.querySelector('.question-word');
     const levelSettingsBtn = document.querySelector('.level-settings-btn');
     const settingsForm = document.querySelector('.settings-form');
+    const muteBtn = document.querySelector('.mute-mode-btn');
+
+    muteBtn.addEventListener('click', () => {
+      muteBtn.classList.toggle('sound-off');
+      this.isMuted = !this.isMuted;
+    });
 
     levelSettingsBtn.addEventListener('click', () => {
       questionWord.style.animationPlayState = 'paused';
@@ -255,7 +265,9 @@ export default class SavannahView {
 
   animateOnWrongAnswer(answerElem) {
     this.player.src ='./audio/wrong.mp3';
-    this.player.play();
+    if (!this.isMuted) {
+      this.player.play();
+    }
 
     const questionWord = document.querySelector('.question-word');
     const questionWrap = document.querySelector('.question-wrap');
@@ -284,7 +296,9 @@ export default class SavannahView {
 
   animateOnCorrectAnswer(answer) {
     this.player.src = './audio/correct.mp3';
-    this.player.play();
+    if (!this.isMuted) {
+      this.player.play();
+    }
     const questionWord = document.querySelector('.question-word');
     questionWord.classList.remove('question-pulse-animated');
     questionWord.classList.add('correct-answer');

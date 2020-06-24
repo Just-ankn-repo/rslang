@@ -136,6 +136,30 @@
   vertical-align: middle;
 }
 
+.mute-mode-btn {
+  @include btn-reset;
+  padding: 13px 15px;
+  margin-right: 5px;
+  opacity: 0.8;
+  box-shadow: none;
+  color: $color-dark;
+  transition: .2s;
+  font-size: 0px;
+  background-image: url('../static/images/savannah/icon-sound-on.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 70%;
+}
+
+.mute-mode-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.mute-mode-btn.sound-off {
+  background-image: url('../static/images/savannah/icon-sound-off.svg');
+}
+
 @keyframes flip {
   0% {
     -webkit-transform: perspective(400px) scaleX(1) translateZ(0) rotateY(-1turn);
