@@ -6,7 +6,6 @@ export default class SavannahView {
     this.state = state;
     this.root = document.querySelector('.container');
     this.prevLevel = '';
-    // this.hideSettings = this.hideSettings.bind(this);
     this.init();
   }
 
@@ -65,6 +64,7 @@ export default class SavannahView {
   startQuestion() {
     this.root.innerHTML = '';
     this.renderScore();
+    this.settingsChanged = false;
     this.prevLevel = this.state.level;
     this.renderQuestion();
     this.player = document.querySelector('.player');
@@ -84,10 +84,6 @@ export default class SavannahView {
           +${points}
         </span>
       </div>
-      <div class='lang-level' title='${constants.LANG_LEVEL[langLevel]}'>
-        Level: <span class='lang-level-value'>${constants.LANG_LEVELS_SHORTHANDS[langLevel]}</span>
-      </div>
-      <div class='round-wrap'>Round:<span class='round-number'>${round + 1}</span> / ${constants.ROUNDS_AMOUNT}</div>
       <div class='settings-btn-wrap'>
         <button class='btn level-settings-btn'>Settings <i class="fa fa-caret-down" aria-hidden="true"></i></button>
         <div class='settings-popup'>
@@ -97,8 +93,8 @@ export default class SavannahView {
             </h5>
             <ul class='lang-level-radio-list'>
               ${constants.LANG_LEVEL
-                .map((levelName, index) => {
-                  return `
+        .map((levelName, index) => {
+          return `
                     <li class='settings-lang-level-item'>
                       <input type="radio" id='level-${constants.LANG_LEVEL[index]}' class="radio-lang-level" name="langLevel" value='${index}'${langLevel === index ? ' checked' : ''}/>
                       <label class='level-label-wrap' for="level-${constants.LANG_LEVEL[index]}">
@@ -109,19 +105,23 @@ export default class SavannahView {
                         <span class='lang-level-name'>${levelName}</span>
                       </label>
                     </li>`;
-                }).join('')}
+        }).join('')}
             </ul>
             <h5 class='settings-title'>
               Choose round
             </h5>
             <span class='settings-tip'>Enter the number between 1 and ${constants.ROUNDS_AMOUNT}</span>
             <input class='round-input' type='number' min='1' max='30' name='round' required placeholder='1...${constants.ROUNDS_AMOUNT}'>
-            <div class='settings-btn-wrap'>
-              <button type='button' class='btn cancel-settings-btn'>Cancel</button>
+            <div class='settings-popup-btn-wrap'>
               <button type='submit' class='btn save-settings-btn'>Save</button>
+              <button type='button' class='btn cancel-settings-btn'>Cancel</button>
             </div>
           </form>
         </div>
+      </div>
+      <div class='round-wrap${this.settingsChanged ? ' animate__flipInX' : ''}'>Round:<span class='round-number'>${round + 1}</span> / ${constants.ROUNDS_AMOUNT}</div>
+      <div class='lang-level${this.settingsChanged ? ' animate__flipInX' : ''}' title='${constants.LANG_LEVEL[langLevel]}'>
+        Level: <span class='lang-level-value'>${constants.LANG_LEVELS_SHORTHANDS[langLevel]}</span>
       </div>
       <div class='${this.prevLevel !== this.state.level ? 'animate__flip' : ''} level-title-wrap ${level}'>
         <i class="fa fa-circle ${level} level-title level-tag">
@@ -161,6 +161,7 @@ export default class SavannahView {
 
     this.root.append(questionWrap);
     const questionWord = document.querySelector('.question-word');
+    questionWord.style.transform = `translate(-50%, -${questionWrap.offsetHeight + questionWord.offsetHeight}px`;
     // questionWord.addEventListener('animationend', () => {
     //   this.onUserAnswer(false);
     // }, { once: true });
@@ -209,6 +210,7 @@ export default class SavannahView {
       } else {
         document.body.removeEventListener('mouseup', this.constructor.hideSettings);
         this.onSettingsChange(newLevel, newRound - 1);
+        this.settingsChanged = true;
       }
     });
 
@@ -278,7 +280,6 @@ export default class SavannahView {
     if (answerElem) {
       answerElem.classList.add('answer-error', 'disabled');
     }
-    // const errorWarning = 
   }
 
   animateOnCorrectAnswer(answer) {

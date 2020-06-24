@@ -26,8 +26,8 @@ export default class SavannahModel {
   }
 
   updateQuestionsList(wordsList) {
-    const shuffledWords = this.constructor.shuffleWords(wordsList);
-    this.roundQuestions = this.getQuestionsList(shuffledWords); 
+    this.roundWordsList = this.constructor.shuffleWords(wordsList);
+    this.roundQuestions = this.getQuestionsList(this.roundWordsList); 
   }
 
   updateRound() {
@@ -230,10 +230,11 @@ export default class SavannahModel {
   }
 
   getQuestionOptions(optionsList) {
+    const optionsListCopy = Array.from(new Set(optionsList));
     const randomOptions = new Array(constants.ANSWERS_OPTIONS_AMOUNT - 1).fill('')
       .map(() => {
-        const randomOptionsIndex = this.constructor.getRandomNumber(0, optionsList.length - 1);
-        return optionsList[randomOptionsIndex];
+        const randomOptionsIndex = this.constructor.getRandomNumber(0, optionsListCopy.length - 1);
+        return optionsListCopy.splice(randomOptionsIndex, 1)[0];
       });
 
     return randomOptions;

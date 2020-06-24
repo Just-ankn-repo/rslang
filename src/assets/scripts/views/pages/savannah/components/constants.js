@@ -1,6 +1,6 @@
 const constants = {
-  QUESTIONS_AMOUNT: 5,
-  LIVES_AMOUNT: 2,
+  QUESTIONS_AMOUNT: 20,
+  LIVES_AMOUNT: 5,
   ANSWERS_OPTIONS_AMOUNT: 4,
   LEVELS: ['slow', 'moderate', 'fast'],
   POINTS: {

@@ -4,7 +4,7 @@ import Service from './components/service';
 const savannah = {
   render: async () => {
     const view =  /* html */`
-          <div class='container'>
+          <div class='container savannah-container'>
             <h1 class='game-title'>SAVANNAH</h1>
             <p class='game-descr'>
               Coaching Savannah develops vocabulary. You will receive experience points.

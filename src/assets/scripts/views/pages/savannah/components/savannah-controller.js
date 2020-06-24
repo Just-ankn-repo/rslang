@@ -28,6 +28,7 @@ export default class SavannaController {
       this.updateOnDataChange();
     }
     this.view.onSettingsChange = (newLevel, newRound) => {
+      statistic.resetRoundStat();
       this.model.updateLevelSettings(newLevel, newRound);
       this.updateOnDataChange();
     }

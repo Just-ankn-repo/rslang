@@ -152,6 +152,10 @@
 
 .words-list-result {
   margin-bottom: 45px;
+  padding-left: 15px;
+    @media (min-width: $breakpoint-sm) {
+      padding-left: 35px;
+    }
 }
 
 .stat-results-wrap {

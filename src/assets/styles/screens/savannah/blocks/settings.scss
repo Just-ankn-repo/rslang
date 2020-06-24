@@ -3,9 +3,9 @@
   pointer-events: none;
   opacity: 0;
   top: calc(100% + 15px);
-  left: 50%;
   z-index: -1;
-  transform: translateX(-50%);
+  left: 50%;
+  transform: translateX(-41%);
   min-width: 300px;
   max-width: 95%;
   margin: 0;
@@ -15,26 +15,36 @@
   border-radius: 4px;
   transition: all 0.3s;
   box-shadow: 2px 3px 9px 0px #0000003b;
+    @media (min-width: $breakpoint-sm) {
+      transform: translateX(-50%);
+      left: 50%;
+    }
 }
 
 .settings-popup:before {
   content: "";
   position: absolute;
   bottom: 100%;
-  left: 50%;
+  left: 123px;
   width: 0;
   height: 0;
   margin-left: -10px;
   border: 10px solid transparent;
   border-bottom-color: #e5e5e5;
+    @media (min-width: $breakpoint-sm) {
+      left: 50%;
+    }
 }
 
 .settings-popup.active {
   pointer-events: auto;
-  top: calc(100% + 15px);
+  top: calc(100% + 7px);
   z-index: 2;
   opacity: 1;
   transition: all 0.5s;
+    @media (min-width: $breakpoint-sm) {
+      top: calc(100% + 15px);
+    }
 }
 
 .lang-level-shorthand {
@@ -145,5 +155,52 @@
 }
 
 .settings-btn-wrap {
+  position: relative;
   display: flex;
+  transition: .2s;
+  margin-right: 7px;
+    @media (min-width: $breakpoint-sm) {
+      margin-right: 30px;
+    }
+}
+
+.level-settings-btn:hover {
+  opacity: 0.8;
+    @media (min-width: $breakpoint-sm) {
+      opacity: 1;
+    }
+}
+
+.level-settings-btn:focus {
+  box-shadow: 2px 2px 6px 0px #00000045;
+}
+
+.settings-popup-btn-wrap {
+  display: flex;
+  margin: 20px 0;
+}
+
+.save-settings-btn {
+  background-color: #262626;
+  margin-right: 15px;
+  color: #fff;
+  border: 1px solid #767676;
+  min-width: 90px;
+  transition: .2s;
+  min-width: 90px;
+}
+
+.cancel-settings-btn {
+  background-color: $color-white;
+  border: 1px solid $color-white;
+  box-shadow: 1px 1px 3px 1px #00000021;
+  color: $color-dark;
+  min-width: 90px;
+}
+
+.save-settings-btn:hover,
+.cancel-settings-btn:hover {
+  border: 1px solid $color-dark;
+  background-color: transparent;
+  box-shadow: none;
 }
