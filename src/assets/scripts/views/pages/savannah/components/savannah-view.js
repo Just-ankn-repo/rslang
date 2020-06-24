@@ -7,6 +7,7 @@ export default class SavannahView {
     this.root = document.querySelector('.container');
     this.prevLevel = '';
     this.isMuted = false;
+    this.onKeyAnswer = this.onKeyAnswer.bind(this);
     this.init();
   }
 
@@ -30,7 +31,7 @@ export default class SavannahView {
     const time = timerElem.querySelector('.timer');
     const setTimerTimeout = () => {
       setTimeout(() => {
-        let restTime = +timerElem.innerText;
+        let restTime = +time.innerText;
         if (restTime === 0) {
           this.startQuestion();
           return;
@@ -49,7 +50,10 @@ export default class SavannahView {
     timerElem.classList.add('start-timer');
     timerElem.innerHTML = `
       <div class='timer'>${constants.START_TIME}</div>
-      <div class='timer-spinner'></div>`
+      <div class='timer-spinner'></div>
+      <p class='keys-tip'>
+        Use 1, 2, 3, 4 keys to give quick answers
+      </p>`
     return timerElem;
   }
 
@@ -72,7 +76,7 @@ export default class SavannahView {
     if (!this.isMuted) {
       this.player.play();
     }
-    this.addQuestionListener(constants);
+    this.addQuestionListener();
   }
 
   renderScore() {
@@ -207,6 +211,8 @@ export default class SavannahView {
       this.showSettings();
     });
 
+    this.addKeyListeners();
+
     settingsForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const formData = Object.fromEntries([...new FormData(settingsForm)]);
@@ -237,18 +243,30 @@ export default class SavannahView {
         return;
       }
 
-      questionWord.style.animationDuration = '';
-
       isCorrect = this.constructor.isAnswerCorrect(evt.target);
 
-      if (isCorrect) {
-        this.animateOnCorrectAnswer(evt.target);
-      } else {
-        this.animateOnWrongAnswer(evt.target);
-      }
+      this.userAnswerHandler(evt.target, isCorrect);
+      // questionWord.style.animationDuration = '';
 
-      // this.onUserAnswer(isCorrect);
+
+      // if (isCorrect) {
+      //   this.animateOnCorrectAnswer(evt.target);
+      // } else {
+      //   this.animateOnWrongAnswer(evt.target);
+      // }
     });
+  }
+
+  userAnswerHandler(answerElement, isCorrect) {
+    const questionWord = document.querySelector('.question-word');
+
+    questionWord.style.animationDuration = '';
+
+    if (isCorrect) {
+      this.animateOnCorrectAnswer(answerElement);
+    } else {
+      this.animateOnWrongAnswer(answerElement);
+    }
   }
 
   onUserAnswer() {
@@ -312,6 +330,23 @@ export default class SavannahView {
     setTimeout(() => {
       questionWord.querySelector('.success').classList.add('toggle');
     }, 0);
+  }
+
+  addKeyListeners() {
+    document.body.addEventListener('keydown', this.onKeyAnswer, {once: true});
+  }
+
+  onKeyAnswer(evt) {
+    const answerIndex = +evt.key;
+    if (!constants.KEY_ANSWERS.includes(answerIndex)) {
+      return;
+    }
+    const targetOption = [...document.querySelectorAll('.option')][answerIndex - 1];
+    if (!targetOption) {
+      return;
+    }
+    const isCorrect = this.constructor.isAnswerCorrect(targetOption);
+    this.userAnswerHandler(targetOption, isCorrect);
   }
 
   hughlightOptions() {
