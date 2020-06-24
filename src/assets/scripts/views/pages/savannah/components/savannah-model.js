@@ -1,15 +1,16 @@
 import constants from './constants';
+import { getRandomNumber, shuffleWords } from '../../../../utils/utils';
 
 export default class SavannahModel {
   constructor(roundWords) {
-    this.roundWordsList = this.constructor.shuffleWords(roundWords);
+    this.roundWordsList = shuffleWords(roundWords);
     this.state = this.constructor.getDefaultState();
     this.roundQuestions = this.getQuestionsList(this.roundWordsList);
   }
 
-  static shuffleWords(exampleData) {
-    return exampleData.sort(() => Math.random() - 0.5);
-  }
+  // static shuffleWords(words) {
+  //   return words.sort(() => Math.random() - 0.5);
+  // }
 
   static getDefaultState(langLevel = constants.DEFAULT_LEVEL, round = constants.DEFAULT_ROUND) {
     const state = {
@@ -26,7 +27,7 @@ export default class SavannahModel {
   }
 
   updateQuestionsList(wordsList) {
-    this.roundWordsList = this.constructor.shuffleWords(wordsList);
+    this.roundWordsList = shuffleWords(wordsList);
     this.roundQuestions = this.getQuestionsList(this.roundWordsList); 
   }
 
@@ -217,10 +218,10 @@ export default class SavannahModel {
     return optionsList;
   }
 
-  static getRandomNumber(min, max) {
-    const rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-  }
+  // static getRandomNumber(min, max) {
+  //   const rand = min + Math.random() * (max + 1 - min);
+  //   return Math.floor(rand);
+  // }
 
   static getWrongAnswersList(data, correctAnswer) {
     const answerIndex = data.findIndex((item) => item.id === correctAnswer.id);
@@ -233,7 +234,7 @@ export default class SavannahModel {
     const optionsListCopy = Array.from(new Set(optionsList));
     const randomOptions = new Array(constants.ANSWERS_OPTIONS_AMOUNT - 1).fill('')
       .map(() => {
-        const randomOptionsIndex = this.constructor.getRandomNumber(0, optionsListCopy.length - 1);
+        const randomOptionsIndex = getRandomNumber(0, optionsListCopy.length - 1);
         return optionsListCopy.splice(randomOptionsIndex, 1)[0];
       });
 
@@ -241,7 +242,7 @@ export default class SavannahModel {
   }
 
   addAnswerToOptions(options, correctAnswer) {
-    const randomPosition = this.constructor.getRandomNumber(0, constants.ANSWERS_OPTIONS_AMOUNT - 1);
+    const randomPosition = getRandomNumber(0, constants.ANSWERS_OPTIONS_AMOUNT - 1);
 
     options.splice(randomPosition, 0, correctAnswer.wordTranslate);
     return options;
