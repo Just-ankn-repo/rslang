@@ -344,6 +344,7 @@ export default class SavannahView {
   }
 
   onKeyAnswer(evt) {
+    const popup = document.querySelector('.settings-popup');
     const answerIndex = +evt.key;
 
     if (!constants.KEY_ANSWERS.includes(answerIndex)) {
@@ -352,7 +353,7 @@ export default class SavannahView {
 
     const targetOption = [...document.querySelectorAll('.option')][answerIndex - 1];
 
-    if (!targetOption) {
+    if (!targetOption || popup.classList.contains('active')) {
       return;
     }
 
