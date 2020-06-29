@@ -1,0 +1,52 @@
+.words-main-page {
+  width: 70%;
+  width: 680px;
+  margin: 38px auto;
+  display: flex;
+  justify-content: flex-end;
+  background-image: url('../static/images/learn-words/words-main-bg.svg');
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 30%;
+}
+
+.words-main-content {
+  background-color: #F4F6FA;
+  width: 70%;
+  padding: 40px 40px;
+}
+
+.words-main-title {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-right: 0;
+}
+
+.words-main-descr {
+  font-size: 20px;
+  margin: 0 auto;
+  color: rgba(89,89,89,.62);
+}
+
+.words-main-btn {
+  @include btn-reset;
+  margin-top: 38px;
+  padding: 15px 20px;
+  width: 180px;
+  border-radius: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 1px;
+  transition: .2s;
+  box-shadow: none;
+  background-color: $color-dark;
+  color: $color-white;
+}
+
+.words-main-btn:hover {
+  box-shadow: 2px 2px 0 0 #5e606a;
+  background-color: #fff;
+  color: $color-dark;
+}

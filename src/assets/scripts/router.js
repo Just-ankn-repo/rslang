@@ -5,7 +5,8 @@ import utils from './utils/router.utils'
 const routes = {
     '/'    : pages.dashboard,
     '/about'        : pages.about,
-    '/signup'       : pages.signup
+    '/signup'       : pages.signup,
+    '/learn-words'  : pages.learnWords,
 };
 
 
