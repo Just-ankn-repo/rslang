@@ -3,17 +3,24 @@ import error from '../utils/error.utils';
 
 const userMethods = {
   registerUser: async (email, password) => {
-    const rawResponse = await fetch(`${env.backendUrl}/users`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ "email": email, "password": password })
-    });
-    const content = await rawResponse.json();
+    let rawResponse;
+    let result;
 
-    return content
+    try {
+      rawResponse = await fetch(`${env.backendUrl}/users`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "email": email, "password": password })
+      });
+
+      result = await rawResponse.json();
+      return result;
+    } catch(e) {
+      throw error(rawResponse);
+    }
   },
 
   updateUser: async (userId, authToken, data) => {

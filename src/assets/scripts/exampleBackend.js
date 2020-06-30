@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import backend from './backend';
 
-(async function(){
+const testBackendMethods = async() => {
 // ---
   // const updateUser = await backend.updateUser({ email: '', password: ''})
   // console.log(updateUser)
@@ -122,5 +122,6 @@ import backend from './backend';
 // ---
   const deleteUsersWordsById = await backend.deleteUsersWordsById('5e9f5ee35eb9e72bc21af7a5');
   console.log(deleteUsersWordsById)
+  }
 
-})()
+  // testBackendMethods();

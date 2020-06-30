@@ -34,8 +34,13 @@ export default class Backend {
       console.log(this.userId, this.authToken)
   }
 
-  static async registerUser(email, password) {
-    users.registerUser(email, password)
+  async registerUser(email, password) {
+    try {
+      const result = users.registerUser(email, password)
+      return result;
+    } catch(e) {
+      return e;
+    }
   }
 
   async updateUser(data) {
