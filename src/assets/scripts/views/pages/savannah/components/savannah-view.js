@@ -165,10 +165,16 @@ export default class SavannahView {
     questionWrap.innerHTML = `
       <div class='question-word question-pulse-animated'>${this.currentQuestion.word}</div>
       <ul class='options'>
-        ${this.currentQuestion.options.map((option) => {
+        ${this.currentQuestion.options.map((option, index) => {
           return option === this.currentQuestion.answer
-            ? `<li class='option' data-is-answer='true'>${option}</li>`
-            : `<li class='option'>${option}</li>`;
+            ? `<li class='option' data-is-answer='true'>
+                  <span class='option-number'>${index + 1}</span>
+                  ${option}
+                </li>`
+            : `<li class='option'>
+                  <span class='option-number'>${index + 1}</span>
+                  ${option}
+                </li>`;
         }).join('')}
       </ul>
       <div class='question-timeout'>
@@ -237,14 +243,14 @@ export default class SavannahView {
       }
     });
 
-    let isCorrect = false;
+    this.isCorrect = false;
 
     questionWord.addEventListener('animationend', (evt) => {
       if (evt.animationName === 'wordDown') {
         return;
       }
 
-      this.onUserAnswer(isCorrect, this.currentQuestion);
+      this.onUserAnswer(this.isCorrect, this.currentQuestion);
     });
 
     optionsList.addEventListener('click', (evt) => {
@@ -252,9 +258,9 @@ export default class SavannahView {
         return;
       }
 
-      isCorrect = this.constructor.isAnswerCorrect(evt.target);
+      this.isCorrect = this.constructor.isAnswerCorrect(evt.target);
 
-      this.userAnswerHandler(evt.target, isCorrect);
+      this.userAnswerHandler(evt.target, this.isCorrect);
     });
   }
 
@@ -357,9 +363,9 @@ export default class SavannahView {
       return;
     }
 
-    const isCorrect = this.constructor.isAnswerCorrect(targetOption);
+    this.isCorrect = this.constructor.isAnswerCorrect(targetOption);
 
-    this.userAnswerHandler(targetOption, isCorrect);
+    this.userAnswerHandler(targetOption, this.isCorrect);
   }
 
   hughlightOptions() {

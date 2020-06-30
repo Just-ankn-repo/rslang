@@ -107,11 +107,11 @@
   margin-right: 20px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0px 4px #e4135145;
+  box-shadow: 0 0 0px 4px rgba(228, 19, 81, 0.7);
 }
 
 .words-learned .word-img {
-  box-shadow: 0 0 0px 4px rgba(0, 216, 151, 0.45);
+  box-shadow: 0 0 0px 4px rgba(0, 216, 151, 0.6);
 }
 
 .stat-level {
@@ -120,18 +120,34 @@
 
 .level-tag {
   color: $color-grey;
+  position: relative;
+  padding-left: 35px;
+}
+
+.level-tag::before {
+  @include pseudo;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-image: url('../static/images/savannah/icon-speed-low.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
 }
 
 .level-tag.slow::before {
-  color: $teal;
+  background-image: url('../static/images/savannah/icon-speed-low.svg');
 }
 
 .level-tag.moderate::before {
-  color: $yellow;
+  background-image: url('../static/images/savannah/icon-speed-moder.svg');
 }
 
 .level-tag.fast::before {
-  color: $pink;
+  background-image: url('../static/images/savannah/icon-speed-fast.svg');
 }
 
 .stat-word-title {

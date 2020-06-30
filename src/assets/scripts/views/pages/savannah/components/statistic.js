@@ -81,7 +81,7 @@ class Statistic {
                         <span class='stat-transcr'>${word.transcr}</span>
                       </div>
                       <div class="stat-level">
-                        <i class="fa fa-circle ${word.levelSpeed} level-tag"> ${word.answer}</i>
+                        <span class="${word.levelSpeed} level-tag"> ${word.answer}</i>
                       </div>
                     </div>
                   </li>`)

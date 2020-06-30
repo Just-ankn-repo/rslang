@@ -22,7 +22,9 @@
 }
 
 .option {
+  position: relative;
   padding: 8px 10px;
+  padding-left: 35px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: .2s;
@@ -34,6 +36,7 @@
   line-height: 24px;
     @media (min-width: $breakpoint-sm) {
       padding: 15px 30px;
+      padding-left: 50px;
       font-size: inherit;
       line-height: inherit;
     }
@@ -207,4 +210,28 @@
 
 .player {
   @include hide-text;
+}
+
+.option-number {
+  width: 22px;
+  height: 22px;
+  line-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  border-radius: 50%;
+  box-shadow: 1px 2px 4px #4b4b4b5e;
+  transform: translateY(-50%);
+  background-color: $color-white;
+  color: $color-dark;
+  font-size: 16px;
+    @media (min-width: $breakpoint-sm) {
+      width: 35px;
+      height: 35px;
+      font-size: inherit;
+      left: 10px;
+    }
 }
