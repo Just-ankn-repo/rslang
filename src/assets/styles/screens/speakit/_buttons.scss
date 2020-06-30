@@ -1,0 +1,44 @@
+.buttons-control {
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-around;
+  @media (max-width: 414px) {
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+.restart-button, .speak-button, .finish-button {
+  border: 0.5px solid black;
+  background: linear-gradient(#00EFD1, #00ACEA);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+  @media (max-width: 414px) {
+      font-size: 1em;
+      margin: 5px 0;
+  }
+}
+
+.recording {
+  background: linear-gradient(#00EFD1, #03b438);
+}
+
+.restart-button, .finish-button {
+  width: 200px;
+  height: 50px;
+  @media (max-width: 414px) {
+      width: 150px;
+      height: 40px;
+  }
+}
+
+.speak-button {
+  width: 400px;
+  height: 50px;
+  @media (max-width: 414px) {
+      width: 150px;
+      height: 40px;
+  }
+}

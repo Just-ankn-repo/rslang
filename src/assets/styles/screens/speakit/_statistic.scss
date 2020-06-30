@@ -1,0 +1,79 @@
+.statistics {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url('../static/images/speakit/bg1.png');
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+}
+
+.statistics-container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 80%;
+  height: 80%;
+  overflow: auto;
+}
+
+.errors {
+  color: rgb(189, 63, 63);
+  font-size: 20px;
+}
+
+.correctly {
+  color: rgb(66, 172, 89);
+  font-size: 20px;
+}
+
+.statistic-item {
+  padding: 10px;
+  border-radius: 10px; 
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  min-height: 50px;
+  border: 0;
+  margin: 0;
+  color: black;
+  &:hover {
+    box-shadow: 0 0 5px 1px rgba(2, 2, 2, 0.418);
+  }
+}
+
+.statistic-word, .statistic-transcription, .statistic-translate {
+  margin-bottom: 0;
+}
+
+.statistic-transcription {
+  margin: 0 10px;
+}
+
+.close-button {
+  position: absolute; 
+  top: 5%;
+  right: 5%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 5px 1px rgb(2, 2, 2);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.new-game-button {
+  margin: 20px 0 0 0;
+  background-color: white;
+  border: none;
+  box-shadow: 0 0 5px 1px rgba(2, 2, 2, 0.459);
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+}
