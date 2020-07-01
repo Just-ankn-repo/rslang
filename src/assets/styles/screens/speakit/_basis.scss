@@ -24,6 +24,10 @@
   border: 2px solid #01c55acc;
 }
 
+.disable {
+  pointer-events: none;
+}
+
 .none {
   display: none !important;
 }

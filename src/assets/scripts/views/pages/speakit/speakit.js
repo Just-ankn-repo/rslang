@@ -54,12 +54,15 @@ const SpeakIt = {
 			</main>
 
 			<div class="statistics none">
-						<button class="button close-button">X</button>
+						
 						<div class="statistics-container">
 								<div class="guessed-container"></div>
 								<div class="errors-container"></div>
 						</div>
+						<div class="buttons-control">
+						<button class="button close-button">CONTINUE</button>
 						<button class="button new-game-button">NEW GAME</button>
+						</div>
     	</div>
 			`;
 		return view;
@@ -98,6 +101,8 @@ const SpeakIt = {
       document.querySelector('.speak-it').classList.remove('none');
 		});
 		document.querySelector('.speak-button').addEventListener('click', () => {
+			game.removePointEvent()
+			recognition.addEventListener('end', recognition.start);
 			recognition.start();
 			game.startGame()
     });
@@ -116,6 +121,7 @@ const SpeakIt = {
 			game.newGame()
 		})
 		document.querySelector('.new-game-button').addEventListener('click', () => {
+			getWords(page, group)
 			game.newGame()
 		})
 
@@ -127,12 +133,16 @@ const SpeakIt = {
 			page = select.options[select.selectedIndex].value - 1;
 			game.clearStatistic()
 			getWords(page, group)
+			recognition.removeEventListener('end', recognition.start);
+			recognition.stop();
   	})
 		document.querySelector('.selected-level').addEventListener('change', () => {
 			const select = document.getElementById('level-id')
 			group = select.options[select.selectedIndex].value - 1;
 			game.clearStatistic()
 			getWords(page, group)
+			recognition.removeEventListener('end', recognition.start);
+			recognition.stop();
 		})
   },
 };

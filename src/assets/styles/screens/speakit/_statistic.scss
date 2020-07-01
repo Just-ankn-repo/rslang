@@ -15,6 +15,7 @@
 }
 
 .statistics-container {
+  margin-top: 60px;
   padding: 20px;
   border-radius: 10px;
   background-color: #ffffff;
@@ -57,15 +58,13 @@
 }
 
 .close-button {
-  position: absolute; 
-  top: 5%;
-  right: 5%;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 5px 1px rgb(2, 2, 2);
+  margin: 20px 0 0 0;
+  background-color: white;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  box-shadow: 0 0 5px 1px rgba(2, 2, 2, 0.459);
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
 }
 
 .new-game-button {
@@ -76,4 +75,8 @@
   border-radius: 10px;
   width: 200px;
   height: 50px;
+}
+
+.close-button, .new-game-button {
+  margin: 10px;
 }

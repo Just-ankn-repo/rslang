@@ -65,4 +65,11 @@ export default class Game {
     this.guessed.innerHTML = '';
 		this.error.innerHTML = '';
   }
+
+  removePointEvent() {
+    this.gameStarted = true;
+    document.querySelectorAll('.item').forEach((item) => {
+      item.classList.add('disable');
+    })
+  }
 }
