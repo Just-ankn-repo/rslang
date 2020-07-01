@@ -12,7 +12,7 @@ class Card {
     let template = '';
     const div = document.createElement('div');
     div.className = 'item';
-    div.id = `${this.word}`;
+    div.id = `${this.word.toLowerCase()}`;
     template += '<object class="audio-icon">';
     template += '</object>';
     template += '<div class="transcript">';

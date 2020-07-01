@@ -124,4 +124,4 @@ const testBackendMethods = async() => {
   console.log(deleteUsersWordsById)
   }
 
-  testBackendMethods();
+  // testBackendMethods();

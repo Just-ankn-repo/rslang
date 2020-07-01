@@ -21,7 +21,7 @@ export default class Game {
   checkWord(transcript) {
     this.transcript = transcript;
 			words.forEach((item) => {
-				if (item.word.includes(transcript)) {
+				if (item.word.toLowerCase().includes(transcript)) {
 				const guessedWord = words.findIndex(elem => elem.word === transcript)
 				success.push(item);
         words.splice(guessedWord, 1)

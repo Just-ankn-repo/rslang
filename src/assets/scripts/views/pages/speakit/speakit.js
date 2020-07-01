@@ -84,8 +84,8 @@ const SpeakIt = {
       const transcript = Array.from(el.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
-				.join('');
-			
+				.join('').toLowerCase();
+			console.log(transcript)
 			document.querySelector('.translation').innerHTML = transcript;
 			game.checkWord(transcript)
 			return words;
