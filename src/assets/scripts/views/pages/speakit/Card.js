@@ -44,6 +44,12 @@ class Card {
     template += `<p class="statistic-translate">${this.wordTranslate}</p>`;
 
     div.innerHTML = template;
+
+    const speechPlay = () => {
+      this.speech.play();
+    }
+    div.addEventListener('click', speechPlay);
+
     return div;
   }
 
