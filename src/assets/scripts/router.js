@@ -1,10 +1,9 @@
 import pages from './views/pages/index'
-
-import Utils from './utils/router.utils'
+import utils from './utils/router.utils'
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
-    '/dashboard'    : pages.dashboard,
+    '/'    : pages.dashboard,
     '/about'        : pages.about,
     '/signup'       : pages.signup,
     '/speak-it'      : pages.speakit,
@@ -16,7 +15,7 @@ const router = async () => {
     const content = null || document.getElementById('app_container');
 
     // Get the parsed URl from the addressbar
-    const request = Utils.parseRequestURL()
+    const request = utils.parseRequestURL()
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     const parsedURL = (request.resource ? `/${  request.resource}` : '/') + (request.id ? '/:id' : '') + (request.verb ? `/${  request.verb}` : '')
@@ -25,7 +24,7 @@ const router = async () => {
     // If the parsed URL is not in our list of supported routes, select the 404 page instead
     const page = routes[parsedURL] ? routes[parsedURL] : pages.error404
     content.innerHTML = await page.render();
-    await page.after_render();  
+    await page.after_render();
 }
 
 // Listen on hash change:

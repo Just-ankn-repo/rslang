@@ -1,3 +1,5 @@
+import backend from '../../../backend';
+
 const Register = {
 
     render: async () => {
@@ -44,7 +46,7 @@ const Register = {
     // All the code related to DOM interactions and controls go in here.
     // This is a separate call as these can be registered only after the DOM has been painted
     , after_render: async () => {
-        document.getElementById("register_submit_btn").addEventListener ("click",  () => {
+        document.getElementById("register_submit_btn").addEventListener ("click",  async() => {
             const email       = document.getElementById("email_input");
             const pass        = document.getElementById("pass_input");
             const repeatPass  = document.getElementById("repeat_pass_input");
@@ -54,7 +56,12 @@ const Register = {
                 alert (`The fields cannot be empty`)
             } 
             else {
-                alert(`User with email ${email.value} was successfully submitted!`)
+                try {
+                    await backend.registerUser(email.value, pass.value);
+                    alert(`User with email ${email.value} was successfully submitted!`)
+                } catch(e) {
+                    alert(JSON.stringify(e))
+                }
             }    
         })
     }

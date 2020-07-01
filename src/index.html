@@ -6,27 +6,30 @@
         <title>RSLang</title>
         <link rel="shortcut icon" type="image/png" href="">
     </head>
-    <body>
+    <body class="app">
         <header>
             <div id='loader'>
                 <div class="spinner"></div>
               </div>
-          
-              <script>
-                window.addEventListener('load', function load() {
-                  const loader = document.getElementById('loader');
-                  setTimeout(function() {
-                    loader.classList.add('fadeOut');
-                  }, 300);
-                });
-              </script>
+                <dialog id="favDialog">
+                  <form method="dialog">
+                    <section>
+                      <p><label for="favAnimal">Please Authorize:</label>
+                        <input type="text" placeholder="Email" class="input-large" id="signin-email" required="">
+                        <input type="password" placeholder="Password" id="signin-password" class="input-large" required="">
+                    </section>
+                    <menu>
+                      <button type="submit">Login</button>
+                    </menu>
+                  </form>
+                </dialog>
               <div>
                 <div class="sidebar">
                   <div class="sidebar-inner">
                     <div class="sidebar-logo">
                       <div class="peers ai-c fxw-nw">
                         <div class="peer peer-greed">
-                          <a class="sidebar-link td-n" href="/#/dashboard">
+                          <a class="sidebar-link td-n" href="/">
                             <div class="peers ai-c fxw-nw">
                               <div class="peer">
                                 <div class="logo">
@@ -50,7 +53,7 @@
                     </div>
                     <ul class="sidebar-menu scrollable pos-r">
                       <li class="nav-item mT-30 actived">
-                        <a class="sidebar-link" href="/#/dashboard">
+                        <a class="sidebar-link" href="/">
                           <span class="icon-holder">
                             <i class="c-blue-500 ti-home"></i>
                           </span>
@@ -120,6 +123,14 @@
                             <i class=""></i>
                           </span>
                           <span class="title">Our game</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class='sidebar-link' href="/#/signup">
+                          <span class="icon-holder">
+                            <i class=""></i>
+                          </span>
+                          <span class="title">Register</span>
                         </a>
                       </li>
                     </ul>
