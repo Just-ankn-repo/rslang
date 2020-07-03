@@ -44,9 +44,8 @@ img {
   @include hide-text;
 }
 
-.container {
+.learn-words-container {
   position: relative;
-
   box-sizing: border-box;
   width: 90%;
   min-width: 320px;
@@ -54,4 +53,7 @@ img {
   margin: 0 auto;
   padding: 0 5px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

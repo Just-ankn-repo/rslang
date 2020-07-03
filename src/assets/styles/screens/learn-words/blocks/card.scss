@@ -1,9 +1,24 @@
 .learn-card {
+  position: relative;
   width: 800px;
   margin: 40px auto;
   padding: 30px 40px;
   box-sizing: border-box;
   box-shadow: 3px 3px 10px 2px #a8a8a899;
+}
+
+.learn-card.closed .answer-indicator {
+  width: 0;
+}
+
+.answer-indicator {
+  position: absolute;
+  background-color: $correct;
+  height: 5px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: width 2s;
 }
 
 .card-main-content {
@@ -27,48 +42,9 @@
   height: 100%;
 }
 
-.learn-word {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px 0;
-}
-
-.word-answer-wrapper {
-  position: relative;
-  display: inline-block;
-  font-size: 50px;
-}
-
-.word-answer {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  background-color: $color-cyan--light;
-  color: rgb(8, 122, 137);
-}
-
-.word-answer-input {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 100%;
-  background-color: transparent;
-  border: none;
-}
-
-.word-answer,
-.word-answer-input {
-  padding: 10px 5px;
-  border-radius: 3px;
-}
-
 .learn-word-info {
   border-top: 2px dashed #92959e5e;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 
 .learn-translate-wrapper {
@@ -111,4 +87,54 @@
   font-weight: unset;
   padding: 5px 0;
   box-shadow: 0px 3px 0px 0px $cyan;
+  transition: .3s;
+}
+
+.learn-word-transcription,
+.word-meaning--translate,
+.word-example--translate {
+  max-height: 100%;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.learn-card.closed .learn-word-transcription,
+.learn-card.closed .word-meaning--translate,
+.learn-card.closed .word-example--translate {
+  max-height: 0;
+}
+
+.learn-card.closed .key-word-in-sentence {
+  font-size: 0;
+  padding: 24px;
+  box-shadow: none;
+  background-color: rgba(0,188,212,.37);
+  vertical-align: middle;
+  border-radius: 10px;
+  background-image: url('../static/images/learn-words/icon-key.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 55%;
+}
+
+.learn-next-card-btn {
+  @include btn-reset;
+  margin-left: 30px;
+  font-size: 0;
+  width: 46px;
+  height: 46px;
+  background-color: transparent;
+  background-image: url('../static/images/learn-words/icon-next-card.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  transition: .2s;
+}
+
+.learn-next-card-btn:hover {
+  opacity: 0.5;
+}
+
+.learn-next-card-btn:focus {
+  outline: none;
 }

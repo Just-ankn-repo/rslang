@@ -9,15 +9,25 @@ export default class Service {
 
   static getSettings() {
     return {
-      wordsLimit: 10,
-      newWordsLimit: 5,
-      cardContent: {
-        wordTranslate: true,
-        textMeaning: true,
-        textExample: true,
-        transcription: true,
-        image: true,
-      },
+      wordsPerDay: 10,
+      optional: {
+        newWordsPerDay: 5,
+        cardContent: {
+          wordTranslate: true,
+          textMeaning: true,
+          textExample: true,
+          transcription: true,
+          image: true,
+        },
+      }
     };
+  }
+
+  static saveCorrectAnswer(wordId) {
+    console.log(wordId);
+  }
+
+  static saveWrongAnswer(wordId) {
+    console.log(wordId);
   }
 }
