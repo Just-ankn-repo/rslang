@@ -8,15 +8,18 @@ export default class WordsModel {
   static getInitialState(settings) {
     return {
       currentWord: 0,
+      isAudioOn: true,
       settings,
     };
   }
 
   getWordsList(words) {
     const wordsList = words.slice(0, this.state.settings.wordsPerDay);
-    wordsList.map((word) => ({
+    const result = wordsList.map((word) => ({
       id: word.id,
       audio: word.audio,
+      audioMeaning: word.audioMeaning,
+      audioExample: word.audioExample,
       image: word.image,
       textExample: word.textExample,
       textExampleTranslate: word.textExampleTranslate,
@@ -25,18 +28,32 @@ export default class WordsModel {
       transcription: word.transcription,
       word: word.word,
       wordTranslate: word.wordTranslate,
-      currentStep: word.optional ? word.optional.step || 0 : 0,
+      // currentStep: word.optional ? word.optional.step || 0 : 0,
+      currentStep: 2,
     }));
 
-    return wordsList;
+    return result;
+  }
+
+  getCurrentWord() {
+    return this.words[this.state.currentWord];
   }
 
   updateStateOnNewCard() {
-    if (this.currentWord >= this.state.settings.wordsPerDay - 1) {
-      this.isCardsOver = true;
-      return
-    }
-
     this.state.currentWord += 1;
+
+    if (this.state.currentWord >= this.state.settings.wordsPerDay) {
+      this.isCardsOver = true;
+      return;
+    }
+    console.log(this.state.currentWord);
+  }
+
+  increaseCurrentCardProgress() {
+    this.getCurrentWord().currentStep += 1;
+  }
+
+  switchSound(shouldEnable) {
+    this.state.isAudioOn = shouldEnable;
   }
 } 

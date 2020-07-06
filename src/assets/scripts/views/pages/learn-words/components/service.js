@@ -16,18 +16,40 @@ export default class Service {
           wordTranslate: true,
           textMeaning: true,
           textExample: true,
+          audioMeaning: true,
+          audioExample: true,
           transcription: true,
           image: true,
+          defineLevelOptions: true,
+          deleteBtn: true,
+          toHardListBtn: true,
+          showAnswerBtn: true,
         },
       }
     };
   }
 
   static saveCorrectAnswer(wordId) {
-    console.log(wordId);
+    console.log(`correct answer on ${wordId}`);
   }
 
   static saveWrongAnswer(wordId) {
-    console.log(wordId);
+    console.log(`wrong answer on ${wordId}`);
+  }
+
+  static setWordDifficulty(difficulty) {
+    console.log(`difficulty set to ${difficulty}`);
+  }
+
+  static markWordAsDifficult(wordId) {
+    console.log(`${wordId} marked as difficult`);
+  }
+
+  static deleteWord(wordId) {
+    console.log(`${wordId} was deleted`);
+  }
+
+  static onShowAnswerBtn(wordId) {
+    console.log(`for ${wordId} solution was shown`);
   }
 }

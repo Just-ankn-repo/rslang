@@ -1,14 +1,15 @@
 .learn-card {
   position: relative;
   width: 800px;
-  margin: 40px auto;
-  padding: 30px 40px;
+  font-size: 20px;
+  // margin: 40px auto;
+  padding: 30px 30px;
   box-sizing: border-box;
   box-shadow: 3px 3px 10px 2px #a8a8a899;
 }
 
 .learn-card.closed .answer-indicator {
-  width: 0;
+  opacity: 0;
 }
 
 .answer-indicator {
@@ -16,28 +17,28 @@
   background-color: $correct;
   height: 5px;
   width: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
-  transition: width 2s;
+  transition: opacity 2s;
+  opacity: 1;
 }
 
 .card-main-content {
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 30px;
 }
 
 .word-img-wrapper {
   margin: 0 45px 15px 0;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
 
 .word-img-wrapper img {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 3px 2px 15px 4px rgba(125, 116, 153, 0.21);
-  border: 10px solid #fff;
+  border: 7px solid #fff;
   width: 100%;
   height: 100%;
 }
@@ -49,7 +50,7 @@
 
 .learn-translate-wrapper {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 0;
 }
 
@@ -136,5 +137,31 @@
 }
 
 .learn-next-card-btn:focus {
+  outline: none;
+}
+
+.learn-card.closed .words-show-answer-btn {
+  display: block;
+}
+
+.words-show-answer-btn {
+  @include btn-reset;
+  display: none;
+  padding: 11px 15px;
+  min-width: 118px;
+  box-shadow: 1px 1px 2px 1px rgba(93,101,116,.28);
+  background-color: transparent;
+  transition: .2s;
+  margin-left: auto;
+  transition: .3s;
+}
+
+.words-show-answer-btn:hover {
+  box-shadow: none;
+  color: $color-white;
+  background-color: $color-dark;
+}
+
+.words-show-answer-btn:focus {
   outline: none;
 }

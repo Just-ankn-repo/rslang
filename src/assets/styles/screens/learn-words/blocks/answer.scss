@@ -21,6 +21,7 @@
   transition: .3s;
   display: flex;
   letter-spacing: 0;
+  text-transform: lowercase;
 }
 
 .word-answer.answer-correct {
@@ -36,7 +37,7 @@
 }
 
 .word-answer.faint {
-  color: rgba(8, 122, 137, 0.5);
+  color: rgba(8, 122, 137, 0.18);
 }
 
 .word-answer-input {
