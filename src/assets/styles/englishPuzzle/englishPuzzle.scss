@@ -1,0 +1,221 @@
+.game-puzzle {
+    background-image: url("../static/images/englishPuzzle/background.svg");
+    background-size: cover;
+}
+
+.canvas-item {
+    margin-left: -6px;
+}
+
+.canvas-item {
+    cursor: pointer;
+    height: 37px;
+}
+
+.game-puzzle__main {
+    height: 370px;
+    background-color: rgba(0, 120, 201, 0.6);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-puzzle__sentenceField {
+    width: calc(100% - 30px);
+    height: 37px;
+    border-radius: 5px;
+    background-color: rgba(255, 49, 13, 0.63);
+}
+
+@media(max-width:900px) {
+    .canvas-item {
+        height: 35px;
+    }
+    .game-puzzle__main {
+        height: 350px;
+    }
+}
+
+@media(max-width:800px) {
+    .canvas-item {
+        height: 30px;
+    }
+    .game-puzzle__main {
+        height: 300px;
+    }
+}
+
+@media(max-width:600px) {
+    .canvas-item {
+        height: 25px;
+    }
+    .game-puzzle__main {
+        height: 250px;
+    }
+}
+
+@media(max-width:500px) {
+    .canvas-item {
+        height: 18px;
+    }
+    .game-puzzle__main {
+        height: 180px;
+    }
+}
+
+@media(max-width:380px) {
+    .canvas-item {
+        height: 15px;
+    }
+    .game-puzzle__main {
+        height: 150px;
+    }
+}
+
+.group-words {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bar {
+    margin-top: 10px;
+    display: flex;
+    background-color: rgba(0, 170, 238, 0.7);
+    border-radius: 5px;
+    width: 310px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.game-puzzle__bars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.game-puzzle__sentence-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-puzzle__button {
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    transition: all 0.5s;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.game-puzzle__button_active {
+    background-color: lightcoral;
+}
+
+.game-puzzle__button_transfer {
+    background-image: url('../static/images/englishPuzzle/icon/speaker-notes-off.png');
+}
+
+.game-puzzle__button_sound {
+    background-image: url('../static/images/englishPuzzle/icon/mute.png');
+}
+
+.game-puzzle__button_sound_auto {
+    background-image: url('../static/images/englishPuzzle/icon/musical-notes-off.png');
+}
+
+.game-puzzle__button_puzzle-img {
+    background-image: url('../static/images/englishPuzzle/icon/gallery-off.png');
+}
+
+.game-puzzle__button_puzzle-sound-play {
+    background-image: url('../static/images/englishPuzzle/icon/room-sound.png');
+}
+
+.game-puzzle__button_puzzle-sound-play {
+    opacity: 0;
+}
+
+.game-puzzle__playground {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-puzzle_text {
+    font-size: 31px;
+    margin: 0;
+    margin-bottom: 13px;
+    color: aqua;
+}
+
+.game-puzzle__heading,
+.game-puzzle__text_white {
+    margin: 0;
+    padding-top: 100px;
+    text-align: center;
+    border: violet;
+}
+
+.game-puzzle__wrapper {
+    opacity: 0;
+    transition: all 1s;
+}
+
+.game-puzzle__heading {
+    font-weight: 800;
+    font-size: 50px;
+    background: linear-gradient(135deg, #7e0dca 60%, #FABE0E 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    border: 3px solid transparent;
+    border-image-slice: 1;
+}
+
+.game-puzzle__startPage {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://raw.githubusercontent.com/Gabriellji/vectors/master/130.svg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: all 1s;
+}
+
+.game-puzzle__puzzle {
+    border-radius: 5px;
+    background-color: rgba(255, 49, 13, 0.63);
+}
+
+.game-puzzle__start {
+    width: 250px;
+    margin-top: 100px;
+    background-color: tomato;
+    font-size: 25px;
+}
+
+.convas__leftactive {
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: greenyellow;
+}
+
+.game-puzzle__buttonbar {
+    height: 50px;
+}
+
+.game-puzzle__button_long {
+    width: 100px;
+}
+
+.game-puzzle__button_hidden {
+    display: none;
+}

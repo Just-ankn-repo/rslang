@@ -1,6 +1,8 @@
-@import 'spec/settings/index';
-@import 'spec/tools/index';
 @import "~bootstrap/scss/bootstrap";
-@import 'spec/index';
+@import 'abstracts/index';
+@import 'layout/index';
 @import 'vendor/index';
-
+@import 'base/index';
+@import 'components/index';
+@import 'screens/index';
+@import 'englishPuzzle/englishPuzzle.scss';
