@@ -1,0 +1,554 @@
+$resolution-mobile-md : 570px;
+$resolution-mobile-sm : 420px;
+$resolution-mobile-ex-sm : 375px;
+
+@include to($breakpoint-lg) {
+  .game-field {
+
+    &__keys {
+
+      span {
+        display: none;
+      }
+    }
+
+  }
+  .guide {
+
+    .info-key {
+      display: none;
+    }
+  }
+
+  kbd {
+    display: none;
+  }
+}
+
+@include to($breakpoint-sm) {
+
+  .statistic {
+
+    &__word{
+
+      .success {
+        width: 30px;
+        height: 30px;
+        background-color: $green;
+        border-radius: 50%;
+        background-image: url('../static/images/sprint/succes.svg');
+        background-size: 20px 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+      }
+
+      .error {
+        width: 30px;
+        height: 30px;
+        background-color: $red;
+        border-radius: 50%;
+        background-image: url('../static/images/sprint/denied.svg');
+        background-size: 10px 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+      }
+
+      span {
+        text-align: center;
+        display: block;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 20px;
+
+        li {
+          display: flex;
+          margin-bottom: 10px;
+          align-items: center;
+
+          span {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+
+
+  .guide {
+
+    ul {
+
+      li {
+
+        span {
+          font-size: 0.9rem;
+        }
+
+        .success {
+          width: 25px;
+          height: 25px;
+          background-size: 10px 10px;
+        }
+
+        .error {
+          width: 25px;
+          height: 25px;
+          background-size: 10px 10px;
+        }
+      }
+    }
+  }
+}
+
+
+@include to($breakpoint-xl) {
+  .game-field {
+
+    &__score {
+
+      p {
+        font-size: 2.5rem;
+      }
+    }
+
+    &__card {
+      height: 500px;
+      max-width: 700px;
+
+      &-stars {
+        height: 100px;
+        margin: 10px 18%;
+
+        .star {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      &-buttons {
+
+        button {
+          margin: 35px 10px;
+          font-size: 1.2rem;
+        }
+      }
+
+      &-word {
+        font-size: 2.5rem;
+
+        &-translation {
+          font-size: 2.2rem;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+}
+
+@include to($breakpoint-md) {
+
+  .game-field {
+
+    &__card {
+      height: 560px;
+
+      &-info {
+
+        &__level {
+          display: flex;
+        }
+
+        &__difficulty {
+          display: flex;
+        }
+      }
+
+      &-stars {
+        height: 140px;
+        margin: 10px 20%;
+      }
+    }
+  }
+
+  .row-wrapper {
+    flex-wrap: wrap-reverse;
+  }
+
+  .time-field {
+    margin-bottom: 60px;
+
+    &__info {
+      display: none;
+    }
+
+    &__timer {
+      width: 120px;
+      height: 120px;
+      right: 0;
+      left: auto;
+      margin-top: 15px;
+      transform: translateX(-25%);
+
+      #time {
+        width: 100px;
+        height: 100px;
+        font-size: 4rem;
+      }
+    }
+  }
+
+  .info-level {
+    display: none;
+  }
+
+  .info-difficulty {
+    display: none;
+  }
+}
+
+@include to($resolution-mobile-md) {
+
+  .game-field {
+
+    &__score {
+
+      p {
+        font-size: 2.5rem;
+      }
+    }
+
+    &__card {
+      height: 560px;
+
+      &-info {
+
+        &__level {
+          display: flex;
+
+          .level-info {
+            font-size: 1.2rem;
+            height: 35px;
+            width: 35px;
+          }
+        }
+
+        &__difficulty {
+          display: flex;
+
+          .difficulty-info {
+            font-size: 1.2rem;
+            height: 35px;
+            width: 35px;
+          }
+        }
+      }
+
+      &-word-translation {
+        padding: 0;
+      }
+
+      &-stars {
+        height: 100px;
+        margin: 10px 18%;
+      }
+
+      &-buttons {
+
+        button {
+          margin: 35px 10px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .time-field {
+    margin-bottom: 80px;
+
+    &__timer {
+      width: 90px;
+      height: 90px;
+      right: 50%;
+      transform: translateX(50%);
+
+      #time {
+        width: 70px;
+        height: 70px;
+        font-size: 2.8rem;
+      }
+    }
+  }
+
+  .start-field {
+
+    &__info {
+
+      button {
+        margin: 0 25%;
+      }
+    }
+  }
+}
+
+@include to($resolution-mobile-sm) {
+
+  * {
+    font-size: 12px;
+  }
+
+  .game-field {
+
+    &__score {
+      height: 70px;
+      margin-top: 10px;
+      p {
+        font-size: 2.5rem;
+      }
+    }
+
+    &__card {
+      height: 410px;
+
+      &-info {
+        height: 90px;
+        &__level {
+          display: flex;
+
+          .level-info {
+            font-size: 1.2rem;
+            height: 30px;
+            width: 30px;
+          }
+        }
+
+        &__difficulty {
+          display: flex;
+
+          .difficulty-info {
+            font-size: 1rem;
+            height: 30px;
+            width: 30px;
+          }
+        }
+
+        .rate {
+
+          &__circle {
+            width: 30px;
+            height: 30px;
+          }
+
+          .active {
+            background-size: 25px 25px;
+          }
+        }
+      }
+
+      &-stars {
+        height: 75px;
+        margin: 10px 20%;
+      }
+
+      &-word {
+
+        &-translation {
+          margin-bottom: 35px;
+        }
+      }
+
+      &-success {
+        width: 40px;
+        height: 40px;
+      }
+
+      &-error {
+        width: 40px;
+        height: 40px;
+      }
+
+
+      &-buttons {
+
+        button {
+          height: 45px;
+          margin: 35px 5px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .time-field {
+
+    &__timer {
+      width: 80px;
+      height: 80px;
+
+      #time {
+        width: 60px;
+        height: 60px;
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .start-field {
+
+    &__title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    &__logo {
+      height: 220px;
+      margin: 0 15% 15px 15%;
+    }
+
+    &__text {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+@include to($resolution-mobile-ex-sm) {
+
+  .statistic {
+
+    &__word{
+
+      .success {
+        width: 25px;
+        height: 25px;
+        background-color: $green;
+        border-radius: 50%;
+        background-image: url('../static/images/sprint/succes.svg');
+        background-size: 15px 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+      }
+
+      .error {
+        width: 25px;
+        height: 25px;
+        background-color: $red;
+        border-radius: 50%;
+        background-image: url('../static/images/sprint/denied.svg');
+        background-size: 10px 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-right: 10px;
+      }
+
+      span {
+        text-align: center;
+        display: block;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 20px;
+
+        li {
+          display: flex;
+          margin-bottom: 10px;
+          align-items: center;
+
+          span {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .game-field {
+
+    &__score {
+      height: 50px;
+      p {
+        font-size: 2.2rem;
+      }
+    }
+
+    &__card {
+      height: 340px;
+
+      &-info {
+        height: 80px;
+
+        .rate {
+
+          &__circle {
+            width: 25px;
+            height: 25px;
+          }
+
+          .active {
+            background-size: 20px 20px;
+          }
+        }
+
+        .speed-info {
+          font-size: 1.35rem;
+        }
+      }
+
+      &-stars {
+        height: 45px;
+        align-items: end;
+      }
+
+      &-word {
+        font-size: 2.5rem;
+
+        &-translation {
+          font-size: 2.2rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      &-success {
+        width: 35px;
+        height: 35px;
+      }
+
+      &-error {
+        width: 35px;
+        height: 35px;
+      }
+
+      &-buttons {
+
+        button {
+          height: 40px;
+          margin: 25px 5px;
+        }
+      }
+    }
+  }
+
+  .time-field {
+
+    &__timer {
+      width: 70px;
+      height: 70px;
+
+      #time {
+        width: 50px;
+        height: 50px;
+        font-size: 2.7rem;
+      }
+    }
+  }
+}
