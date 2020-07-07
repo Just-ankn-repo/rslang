@@ -38,13 +38,17 @@
   margin: 0 15px 0 0;
 }
 
-.dictionary-element__word, .dictionary-element__translation, .dictionary-element__transcription {
+.dictionary-element__word, .dictionary-element__transcription {
   font-size: 1.3rem;
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-  }
   @media (max-width: 414px) {
     font-size: 1rem;
+  }
+}
+
+.dictionary-element__translation {
+  font-size: 1.3rem;
+  @media (max-width: 414px) {
+    font-size: 0.9rem;
   }
 }
 

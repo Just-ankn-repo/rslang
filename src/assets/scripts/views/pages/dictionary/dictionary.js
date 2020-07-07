@@ -24,7 +24,7 @@ const Dictionary = {
                         </div>
                 </div>
 
-                <div class="dictionary-modal">
+                <div class="dictionary-modal none">
                     <object class="dictionary-modal__close-button"></object>
 
                     <div class="dictionary-card">
