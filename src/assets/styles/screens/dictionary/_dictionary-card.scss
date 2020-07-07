@@ -1,0 +1,100 @@
+.dictionary-card {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0 0 0;
+  width: 50%;
+  @media (max-width: 414px) {
+    margin-top: 110px;
+    width: 300px;
+  }
+}
+
+.dictionary-modal__arrows {
+  height: 50px;
+  max-height: 50px;
+  overflow: hidden;
+  margin: 20px 0 0 0;
+}
+
+.dictionary-modal__button {
+  &_left {
+    background-image: url('../static/images/dictionary/next.svg');
+    transform: rotate(180deg);
+    width: 30px;
+    height: 30px;
+    &:hover {
+      width: 35px;
+      height: 35px;
+    }
+    margin: 0 15px;
+  }
+  &_right {
+    background-image: url('../static/images/dictionary/next.svg');
+    width: 30px;
+    height: 30px;
+    &:hover {
+      width: 35px;
+      height: 35px;
+    }
+    margin: 0 15px;
+  }
+}
+
+
+
+.dictionary-card__image {
+  border: 2px solid rgba(0, 0, 0, 0.637);
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.dictionary-card__audio-icon {
+  background: url(https://image.flaticon.com/icons/svg/876/876356.svg);
+  width: 20px;
+  height: 20px;
+  margin: 0 15px 0 0;
+}
+
+.dictionary-card__transcription {
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.507);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dictionary-card__example {
+  width: 80%;
+  @media (max-width: 414px) {
+    width: 270px;
+  }
+}
+
+.dictionary-card__word {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #4373af;
+}
+
+.dictionary-card__translation {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dictionary-card__trash {
+  background-image: url('../static/images/dictionary/trash.svg');
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  @media (max-width: 414px) {
+    width: 20px;
+    height: 20px;
+  }
+}
