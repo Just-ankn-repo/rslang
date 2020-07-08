@@ -25,7 +25,7 @@ export default class Puzzle {
         })
         this.convasElements[number] = temp;
     }
-    deletedrag() { dow }
+
 
     addDomSentence() {
         if (this.translate)
@@ -42,7 +42,7 @@ export default class Puzzle {
     }
 
     async getwordsapi() {
-        const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${this.page}&group=${this.level}`;
+        const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${this.page}&group=${this.level-1}`;
         const res = await fetch(url);
         const data = await res.json();
         this.words = data;
