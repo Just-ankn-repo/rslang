@@ -1,4 +1,5 @@
-import img from '../../../../../static/images/englishPuzzle/fon.jpg'
+import fon from '../../../../../static/images/englishPuzzle/fon.jpg'
+
 const createCanvasElements = async({
     imgflag,
     src,
@@ -36,7 +37,7 @@ const createCanvasElements = async({
         const img1 = new Image();
         const img2 = new Image();
         img1.src = src;
-        img2.src = "img/fon.jpg"
+        img2.src = fon;
         img1.onload = () => {
             const imgWidth = img1.width;
             const imgHeight = img1.height;
