@@ -21,7 +21,8 @@
 }
 
 .game-puzzle__sentenceField {
-    width: calc(100% - 30px);
+    padding-left: 14px;
+    width: calc(100% - 20px);
     height: 37px;
     border-radius: 5px;
     background-color: rgba(255, 49, 13, 0.63);
@@ -164,11 +165,18 @@
     flex-direction: column;
 }
 
-.game-puzzle_text {
-    font-size: 31px;
+.game-puzzle__text {
+    font-size: 25px;
+    font-weight: 700;
+    margin-right: 5px;
     margin: 0;
-    margin-bottom: 13px;
-    color: aqua;
+    text-align: center;
+    margin-bottom: 5px;
+    line-height: 27px;
+}
+
+.game-puzzle__level-bar {
+    justify-content: space-around;
 }
 
 .game-puzzle__heading,
@@ -177,6 +185,11 @@
     padding-top: 100px;
     text-align: center;
     border: violet;
+}
+
+.game-puzzle__select {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .game-puzzle__wrapper {

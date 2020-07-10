@@ -15,7 +15,9 @@ export default class GameMechanics {
         this.elementPlayingField = elementPlayingField;
         this.urlimg = 'https://english-puzzle-data-team61.team61.vercel.app/';
         this.sentencenumber = 0;
-        this.sentetype = 0;
+        this.sentetype = 1;
+        this.answers = [];
+        this.soundauto = false;
     }
 
     async createPuzzle() {

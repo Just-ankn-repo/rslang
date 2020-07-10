@@ -3,6 +3,7 @@ import speakernotes from '../../../../../static/images/englishPuzzle/icon/speake
 import musicalnotes from '../../../../../static/images/englishPuzzle/icon/musical-notes.png'
 import roomsound from '../../../../../static/images/englishPuzzle/icon/room-sound.png'
 import GameMechanics from './game'
+import { controllers } from 'chart.js'
 
 
 function buttonclick(buttonelement, url, urloff) {
@@ -59,20 +60,20 @@ function buttonaddevent() {
 }
 export default async function def() {
     buttonaddevent();
-    const buttonidont = document.querySelector('.game-puzzle__button_idont');
-    let sentence = document.querySelector('.game-puzzle__sentenceField_active');
-    const buttonchek = document.querySelector('.game-puzzle__button_chek');
-
-    const buttoncontinue = document.querySelector('.game-puzzle__button_continue');
-    const buttonimg = document.querySelector('.game-puzzle__button_puzzle-img');
-    const buttontransfer = document.querySelector('.game-puzzle__button_transfer');
-    const buttonsound = document.querySelector('.game-puzzle__button_sound');
     const buttonsoundpaly = document.querySelector('.game-puzzle__button_puzzle-sound-play');
+    const buttonidont = document.querySelector('.game-puzzle__button_idont');
+    const buttonchek = document.querySelector('.game-puzzle__button_chek');
+    const buttoncontinue = document.querySelector('.game-puzzle__button_continue');
+    let sentence = document.querySelector('.game-puzzle__sentenceField_active');
+    const buttonimg = document.querySelector('.game-puzzle__button_puzzle-img');
+    const buttonresults = document.querySelector('.game-puzzle__button_results');
+    const buttontransfer = document.querySelector('.game-puzzle__button_transfer');
     const buttonsoundauto = document.querySelector('.game-puzzle__button_sound_auto');
     const game = new GameMechanics(document.querySelector('.game-puzzle__select_level'), document.querySelector('.game-puzzle__select_page'), document.querySelector('.game-puzzle__main'));
     await game.createPuzzle();
 
-    function calculationwidth() { document.querySelector('.game-puzzle__main').style.width = `${document.querySelector('.group-words').offsetWidth + 35}px`; }
+
+    function calculationwidth() { document.querySelector('.game-puzzle__main').style.width = `${document.querySelector('.group-words').offsetWidth + 40}px`; }
     calculationwidth();
     window.addEventListener(`resize`, calculationwidth, false);
     async function nextlevel() {
@@ -84,10 +85,12 @@ export default async function def() {
         buttoncontinue.classList.add('game-puzzle__button_hidden');
         main.style.backgroundImage = 'none';
         calculationwidth();
+
     }
 
     function clickbuttonidont() {
         removechek();
+
         if (!buttonchek.classList.contains('game-puzzle__button_hidden'))
             buttonchek.classList.add('game-puzzle__button_hidden');
         const groupwords = document.querySelector('.group-words');
@@ -110,6 +113,17 @@ export default async function def() {
         sentence.classList.remove('game-puzzle__sentenceField_active');
     }
 
+    function speak() {
+        const msg = new SpeechSynthesisUtterance(document.querySelector('#sentence').innerHTML);
+        msg.voiceURI = 'native';
+        if (game.puzzle.translate)
+            msg.lang = 'ru-RU';
+        else
+            msg.lang = 'en-EN';
+
+        speechSynthesis.speak(msg);
+    }
+
     function clickbuttoncontinue() {
         const main = document.querySelector('.game-puzzle__main');
         const puzle = document.querySelector('.group-words');
@@ -123,7 +137,9 @@ export default async function def() {
                 game.Level.value = 1
             }
             nextlevel();
+            buttonresults.classList.add('game-puzzle__button_hidden');
         } else if (game.sentencenumber === 10) {
+            buttonresults.classList.remove('game-puzzle__button_hidden');
             window.removeEventListener(`resize`, calculationwidth, false);
             main.innerHTML = '';
             const picture = game.levelimg[game.Level.value - 1][game.Page.value];
@@ -135,17 +151,27 @@ export default async function def() {
             buttonchek.classList.add('game-puzzle__button_hidden');
 
         } else {
+            if (game)
+                game.answers.push(false);
             buttoncontinue.classList.add('game-puzzle__button_hidden');
             game.addsentence();
             buttonidont.classList.remove('game-puzzle__button_hidden');
             calculationwidth();
+            if (game.soundauto)
+                speak();
         }
     }
     buttoncontinue.addEventListener('click', clickbuttoncontinue);
     buttonidont.addEventListener('click', clickbuttonidont);
+    buttontransfer.addEventListener('click', () => {
+        if (game.puzzle.translate)
+            game.puzzle.translate = false;
+        else game.puzzle.translate = true;
+        game.puzzle.addDomSentence();
 
+    });
     buttonchek.addEventListener('click', () => {
-        const sentence = document.querySelector('.game-puzzle__sentenceField_active');
+        sentence = document.querySelector('.game-puzzle__sentenceField_active');
         const words = sentence.children;
         removechek();
         let fail = false;
@@ -157,14 +183,32 @@ export default async function def() {
                 words[number].classList.add('convas__bottom_green');
             } else {
                 words[number].classList.add('convas__bottom_red');
-                fail = true
+                fail = true;
             }
         });
         if (!fail) {
             clickbuttonidont();
+            game.answers[game.sentencenumber] = true;
             clickbuttoncontinue();
+            console.log(game.answers);
+
         }
+    });
+    buttonsoundauto.addEventListener('click', () => {
+        if (buttonsoundauto.classList.contains('game-puzzle__button_active'))
+            game.soundauto = true;
+        else game.soundauto = false;
+
+    })
+    buttonimg.addEventListener('click', () => {
+
+        if (buttonimg.classList.contains('game-puzzle__button_active'))
+            game.sentetype = 0;
+        else game.sentetype = 1;
     });
     game.Level.addEventListener("change", nextlevel);
     game.Page.addEventListener("change", nextlevel);
+    buttonsoundpaly.addEventListener('click', speak);
+
+
 }

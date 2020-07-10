@@ -12,7 +12,7 @@ const Englishpuzzle = {
         <div class="game-puzzle__wrapper">
             <div class="game-puzzle__bars">
                 <div class="game-puzzle__level-bar bar">
-                    <p class="game-puzzle__text">Уровень</p>
+                    <p class="game-puzzle__text">Level</p>
                     <select class="game-puzzle__select game-puzzle__select_level">
                 <option class="game-puzzle__option">1</option>
                 <option class="game-puzzle__option">2</option>
@@ -22,7 +22,7 @@ const Englishpuzzle = {
                 <option class="game-puzzle__option">6</option>
               </select>
               
-                    <p class="game-puzzle__text">Страница</p>
+                    <p class="game-puzzle__text">Page</p>
                     <select class="game-puzzle__select game-puzzle__select_page">
                 <option class="game-puzzle__option">1</option>
                 <option class="game-puzzle__option">2</option>
@@ -45,7 +45,7 @@ const Englishpuzzle = {
                 </div>
             </div>
             <div class="game-puzzle__sentence-bar">
-                <button class="game-puzzle__button game-puzzle__button_puzzle-sound-play"></button>
+                <button class="game-puzzle__button game-puzzle__button_active game-puzzle__button_puzzle-sound-play"></button>
                 <p class="game-puzzle__text" id="sentence"></p>
             </div>
             <div class="game-puzzle__playground">

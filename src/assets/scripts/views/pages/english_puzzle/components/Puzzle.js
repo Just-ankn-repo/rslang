@@ -10,6 +10,7 @@ export default class Puzzle {
         this.numberSentence = 0;
         this.translate = translate;
         this.elementGame = document.querySelector(`${elementGame}`);
+
     }
 
     async getConvasElements(urlImg, flag, number) {
