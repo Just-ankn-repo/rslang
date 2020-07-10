@@ -1,5 +1,5 @@
 import '../styles/index.scss';
-import './views/components/popover';
-import './views/components/sidebar';
+import './views/components/index';
 import './utils';
 import './router';
+import './exampleBackend';

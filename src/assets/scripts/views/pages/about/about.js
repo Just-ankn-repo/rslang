@@ -6,7 +6,8 @@ const About = {
             </section>
         `
         return view
-    },
+    },    
+    
     after_render: async () => {}
         
 }
