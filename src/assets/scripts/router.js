@@ -2,12 +2,13 @@ import pages from './views/pages/index'
 import utils from './utils/router.utils'
 
 const routes = {
-    '/'    : pages.home,
-    '/about'        : pages.about,
-    '/signup'       : pages.signup,
+    '/': pages.home,
+    '/about': pages.about,
+    '/signup': pages.signup,
+    '/english_puzzle': pages.english_puzzle
 };
 
-const router = async () => {
+const router = async() => {
     const content = null || document.getElementById('app_container');
     const request = utils.parseRequestURL();
     const parsedURL = (request.resource ? `/${  request.resource}` : '/') + (request.id ? '/:id' : '') + (request.verb ? `/${  request.verb}` : '');
