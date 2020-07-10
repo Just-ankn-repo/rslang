@@ -13,7 +13,7 @@
 // ---------------------------------------------------------
 
 .sidebar {
-  background-color: $default-white;
+  background-color: $cyan;
   bottom: 0;
   overflow: hidden;
   position: fixed;
@@ -145,7 +145,7 @@
     }
 
     .logo-text {
-      color: $default-grey;
+      color: $default-white;
     }
   }
 
@@ -189,15 +189,15 @@
 
   .sidebar-link {
     &.actived::before {
-      background: $blue;
-      border-radius: 50%;
+      background: $pink;
+      border-radius: 40%;
       content: '';
       display: block;
-      height: 8px;
-      left: -4px;
+      height: 15px;
+      left: -7px;
       position: absolute;
-      top: calc(50% - 4px);
-      width: 8px;
+      top: calc(50% - 5px);
+      width: 15px;
     }
   }
 
@@ -219,7 +219,7 @@
 
       &.open {
         > a {
-          color: $default-dark;
+          color: $default-white;
 
           .icon-holder {
             color: $default-info;
@@ -245,7 +245,7 @@
     }
 
     a {
-      color: $default-text-color;
+      color: $default-white;
       transition: all 0.3s ease;
 
       &:hover,
@@ -282,13 +282,13 @@
               &:hover,
               &:focus {
                 background-color: transparent;
-                color: $default-dark;
+                color: $default-white;
               }
             }
 
             &.actived {
               a {
-                color: $default-dark;
+                color: $pink;
               }
             }
           }

@@ -50,7 +50,8 @@ ul {
 
 a {
   color: $default-info;
-
+  cursor: pointer;
+  
   &:hover,
   &:focus {
     text-decoration: none;

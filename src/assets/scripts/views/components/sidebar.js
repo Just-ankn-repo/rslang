@@ -1,76 +1,34 @@
-import * as $ from 'jquery';
+export default (function sidebar() {
+  const appElement = document.querySelector('.app');
+  const menuButton = document.querySelector('.ti-menu');
+  const links = document.querySelectorAll('.sidebar-link')
+  const sidebarMenu = document.querySelector('.sidebar-menu');
 
-export default (function () {
-  // Sidebar links
-  $('.sidebar .sidebar-menu li a').on('click', function () {
-    const $this = $(this);
-
-    if ($this.parent().hasClass('open')) {
-      $this
-        .parent()
-        .children('.dropdown-menu')
-        .slideUp(200, () => {
-          $this.parent().removeClass('open');
-        });
-    } else {
-      $this
-        .parent()
-        .parent()
-        .children('li.open')
-        .children('.dropdown-menu')
-        .slideUp(200);
-
-      $this
-        .parent()
-        .parent()
-        .children('li.open')
-        .children('a')
-        .removeClass('open');
-
-      $this
-        .parent()
-        .parent()
-        .children('li.open')
-        .removeClass('open');
-
-      $this
-        .parent()
-        .children('.dropdown-menu')
-        .slideDown(200, () => {
-          $this.parent().addClass('open');
-        });
+  const closeSidebar = () => {
+    if (appElement.classList.contains('is-collapsed')) {
+      appElement.classList.remove('is-collapsed');
+      document.body.removeEventListener('click', closeSidebar);
     }
+  }
+
+  sidebarMenu.addEventListener('click', (event) => {
+    if (event.target.parentNode.classList.contains('sidebar-link')) {
+      links.forEach((item) => { item.classList.remove('actived') });
+      event.target.parentNode.classList.add('actived');
+    };
+    if (event.target.parentNode.parentNode.classList.contains('sidebar-link')) {
+      links.forEach((item) => { item.classList.remove('actived') });
+      event.target.parentNode.parentNode.classList.add('actived');
+    };
   });
 
-  // Sidebar Activity Class
-  const sidebarLinks = $('.sidebar').find('.sidebar-link');
-
-  sidebarLinks
-    .each((index, el) => {
-      $(el).removeClass('active');
-    })
-    .filter(function () {
-      const href = $(this).attr('href');
-      const pattern = href[0] === '/' ? href.substr(1) : href;
-      return pattern === (window.location.pathname).substr(1);
-    })
-    .addClass('active');
-
-  // ٍSidebar Toggle
-  $('.sidebar-toggle').on('click', e => {
-    $('.app').toggleClass('is-collapsed');
-    e.preventDefault();
+  menuButton.addEventListener('click', () => {
+    if (!appElement.classList.contains('is-collapsed')) {
+      appElement.classList.add('is-collapsed');
+      document.body.addEventListener('mouseup', closeSidebar);
+    } else {
+      closeSidebar();
+    };
   });
 
-  /**
-   * Wait untill sidebar fully toggled (animated in/out)
-   * then trigger window resize event in order to recalculate
-   * masonry layout widths and gutters.
-   */
-  $('#sidebar-toggle').click(e => {
-    e.preventDefault();
-    setTimeout(() => {
-      window.dispatchEvent(window.EVENT);
-    }, 300);
-  });
 }());
