@@ -5,6 +5,7 @@ const routes = {
     '/'             : pages.home,
     '/about'        : pages.about,
     '/signup'       : pages.signup,
+    '/dictionary'   : pages.dictionary,
     '/speak-it'      : pages.speakit,
     '/english_puzzle': pages.english_puzzle
 };
