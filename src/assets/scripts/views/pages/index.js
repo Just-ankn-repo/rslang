@@ -4,14 +4,14 @@ import signup from './signup/signup'
 import dictionary from './dictionary/dictionary'
 import speakit from './speakit/speakit'
 import home from './home/home'
-import englishpuzzle from './english_puzzle/english_puzzle'
+import englishpuzzle from './englishpuzzle/englishpuzzle'
 
 export default {
-  about,
-  error404,
-  signup,
-  dictionary,
-  speakit,
-  home,
-  englishpuzzle
+    about,
+    error404,
+    signup,
+    dictionary,
+    speakit,
+    home,
+    englishpuzzle
 }

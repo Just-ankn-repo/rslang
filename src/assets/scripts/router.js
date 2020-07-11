@@ -2,12 +2,12 @@ import pages from './views/pages/index'
 import utils from './utils/router.utils'
 
 const routes = {
-    '/'             : pages.home,
-    '/about'        : pages.about,
-    '/signup'       : pages.signup,
-    '/dictionary'   : pages.dictionary,
-    '/speak-it'      : pages.speakit,
-    '/english_puzzle': pages.english_puzzle
+    '/': pages.home,
+    '/about': pages.about,
+    '/signup': pages.signup,
+    '/dictionary': pages.dictionary,
+    '/speak-it': pages.speakit,
+    '/englishpuzzle': pages.englishpuzzle
 };
 
 const router = async() => {
