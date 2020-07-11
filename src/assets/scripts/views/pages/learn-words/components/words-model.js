@@ -30,8 +30,7 @@ export default class WordsModel {
       transcription: word.transcription,
       word: word.word,
       wordTranslate: word.wordTranslate,
-      // currentStep: word.optional ? word.optional.step || 0 : 0,
-      currentStep: 2,
+      currentStep: word.optional ? word.optional.step || 0 : 0,
     }));
 
     return result;
@@ -46,9 +45,7 @@ export default class WordsModel {
 
     if (this.state.currentWord >= Math.min(this.state.settings.wordsPerDay, this.words.length)) {
       this.isCardsOver = true;
-      return;
     }
-    console.log(this.state.currentWord);
   }
 
   increaseCurrentCardProgress() {

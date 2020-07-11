@@ -10,8 +10,6 @@ export default class WordsController {
     this.settings = settings;
     this.model = null;
     this.view = null;
-    console.log(this.words);
-    console.log(this.settings);
     this.init();
   }
 
@@ -26,11 +24,14 @@ export default class WordsController {
     this.view.onUserAnswer = (wordId, isCorrect, isGuessedFromFirstAttempt) => {
       if (isCorrect) {
         Service.saveCorrectAnswer(wordId);
+
         if (isGuessedFromFirstAttempt) {
           this.statistic.increaseCorrectAnswersCounter();
         }
+
         this.model.increaseCurrentCardProgress();
         this.model.updateStateOnNewCard();
+
         if (this.model.isCardsOver) {
           this.view.onCardsOver();
         }
@@ -51,6 +52,7 @@ export default class WordsController {
     this.view.onUserDeleteWord = (wordId) => {
       Service.deleteWord(wordId);
       this.model.updateStateOnNewCard();
+
       if (this.model.isCardsOver) {
         this.view.onCardsOver();
       }
@@ -60,6 +62,7 @@ export default class WordsController {
       Service.onShowAnswerBtn(wordId);
       this.statistic.resetCorrectStreak();
       this.model.updateStateOnNewCard();
+
       if (this.model.isCardsOver) {
         this.view.onCardsOver();
       }

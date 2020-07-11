@@ -52,6 +52,7 @@ export default class SettingsPopup {
   getSettingsElem(settings = this.settings) {
     const template = this.constructor.getTemplate(settings);
     const settingsPopup = document.createElement('div');
+
     settingsPopup.classList.add('learn-settings-popup');
     settingsPopup.innerHTML = template;
     return settingsPopup;
@@ -63,9 +64,11 @@ export default class SettingsPopup {
 
   bind() {
     const settingsForm = document.querySelector('.content-settings-form');
+
     settingsForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const userSettings = {};
+
       [...document.querySelectorAll('.checkbox-content-settings')]
         .forEach((input) => {
           userSettings[input.name] = input.checked;
@@ -79,8 +82,10 @@ export default class SettingsPopup {
       const checkedSublistAmount = [...subOptionsList].reduce((acc, input) => input.checked
         ? acc + 1
         : acc, 0);
+
       return !checkedSublistAmount;
     }
+
     [...subOptionsList].forEach((input) => {
       input.addEventListener('input', ({target}) => {
         if (isNothingSelected()) {
@@ -101,6 +106,7 @@ export default class SettingsPopup {
 
   show(target) {
     this.settingsElem = document.querySelector('.word-groups-settings');
+
     if (this.settingsElem.classList.contains('settings-opened')
       && this.constructor.isSettingsBtnClicked(target)
       || target.classList.contains('card-settings-btn-cancel')) {

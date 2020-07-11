@@ -23,6 +23,7 @@ export default class Player {
       meaning: this.constructor.isMeaningShouldBePlayed(settings) && `${constants.DATA_URL}${currentData.audioMeaning}`,
       example: this.constructor.isExampleShouldBePlayed(settings) && `${constants.DATA_URL}${currentData.audioExample}`,
     };
+
     this.currentAudioSrcList = Object.values(currentAudioData)
       .filter((item) => item !== false);
   }
@@ -39,6 +40,7 @@ export default class Player {
     if (!this.isAudioOn) {
       return;
     }
+
     this.playerElem.pause();
     this.playerElem.removeEventListener('ended', this.onAudioEnd, { once: true });
   }
@@ -47,6 +49,7 @@ export default class Player {
     if (!this.isAudioOn) {
       return;
     }
+
     this.currentIndex = 0;
 
     // this.playerElem.addEventListener('ended', () => {

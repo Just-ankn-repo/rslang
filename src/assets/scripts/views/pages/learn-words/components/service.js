@@ -9,9 +9,9 @@ export default class Service {
 
   static getSettings() {
     return {
-      wordsPerDay: 10,
+      wordsPerDay: 50,
       optional: {
-        newWordsPerDay: 5,
+        newWordsPerDay: 30,
         cardContent: {
           image: true,
           wordTranslate: true,

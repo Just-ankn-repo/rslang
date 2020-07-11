@@ -16,6 +16,7 @@ export default class WordsView {
 
   init() {
     const appContainer = document.querySelector('#app_container');
+
     appContainer.innerHTML = `
       <section class='learn-words-container'>
         <div class='word-card-wrapper'></div>
@@ -63,6 +64,7 @@ export default class WordsView {
       this.currentCardElem.querySelector('.word-answer-input').disabled = true;
     } else if (onUpdate && !isOpened) {
       const prevValue = this.answerInput.value;
+
       this.currentCardElem.querySelector('.word-answer-input').value = prevValue;
     }
 
@@ -226,6 +228,7 @@ export default class WordsView {
       this.isFirstAttempt = false;
       this.animateOnWrongAnswer();
     }
+
     this.renderWordProgress();
   }
 
@@ -248,6 +251,7 @@ export default class WordsView {
 
   renderWordProgress() {
     const progressStepList = document.querySelector('.learn-word-progress');
+
     progressStepList.innerHTML = `
         ${new Array(this.currentCardData.currentStep).fill()
           .map(() => `<li class='repetitions-times repetitions-times-current'></li>`)
@@ -261,6 +265,7 @@ export default class WordsView {
     if (!isShowAnswerClicked) {
       this.onUserAnswer(this.currentCardData.id, true, this.isFirstAttempt);
     }
+
     if (
       !this.state.settings.optional.cardContent.defineLevelOptions
       && !this.state.isAudioOn
@@ -278,6 +283,7 @@ export default class WordsView {
     this.showAgain(this.state.currentWord);
     setTimeout(() => {
       const wordAnswer = document.querySelector('.word-answer');
+
       this.answerInput.addEventListener('input', () => {
         wordAnswer.classList.remove('faint');
       }, { once: true });
@@ -286,6 +292,7 @@ export default class WordsView {
       [...document.querySelectorAll('.answer-letter')]
         .forEach((item) => {
           const letter = item;
+
           letter.className = 'answer-letter';
         });
       this.answerInput.focus();
@@ -326,16 +333,19 @@ export default class WordsView {
 
   showNextCard() {
     this.player.pause();
+
     if (this.isCardsOver) {
       this.onCardsSetCompleted();
       return;
     }
+
     this.renderCard();
     this.addCardListeners();
   }
 
   updateCurrentCard() {
     const isOpened = !this.currentCardElem.classList.contains('closed');
+
     this.renderCard(true, isOpened);
     this.addCardListeners();
   }
@@ -343,10 +353,12 @@ export default class WordsView {
   addCardListeners() {
     if (this.state.settings.optional.cardContent.defineLevelOptions) {
       const levelOptionsList = document.querySelector('.define-level-btn-list')
+
       levelOptionsList.addEventListener('click', ({ target }) => {
         if (!target.classList.contains('learned-level-btn')) {
           return;
         }
+
         this.onUserDefineWordLevel(target.innerText.toLowerCase());
         this.showAgain(this.state.currentWord - 1);
         this.showNextCard();
@@ -376,6 +388,7 @@ export default class WordsView {
     });
 
     const showAnswerBtn = document.querySelector('.words-show-answer-btn');
+
     if (showAnswerBtn) {
       showAnswerBtn.addEventListener('click', () => {
         this.onShowAnswerBtn(this.currentCardData.id);
@@ -408,19 +421,23 @@ export default class WordsView {
     this.currentCardElem.classList.remove('closed');
     this.answerInput.disabled = true;
     const progressBar = document.querySelector('.learn-word-bar-wrap');
+
     progressBar.innerHTML = this.getProgressBarTemplate();
     this.player.playCurrent();
   }
 
   showAgain(currentIndex) {
     const lastIndex = Math.min(this.words.length, this.state.settings.wordsPerDay) - 1;
+
     if (
       currentIndex === lastIndex
       || this.words.includes(this.currentCardData, currentIndex + 1)
       ) {
       return;
     }
+
     const newIndex = this.constructor.getRandomNumber(currentIndex + 1, lastIndex);
+
     this.words.splice(newIndex, 0, this.currentCardData);
   }
 
@@ -449,6 +466,7 @@ export default class WordsView {
     }
 
     const answerLetters = document.querySelectorAll('.answer-letter');
+
     [...answerLetters].forEach((letter, index) => {
       if (solvedLetterIndexList.includes(index)) {
         letter.classList.add('letter-correct');
@@ -465,6 +483,7 @@ export default class WordsView {
 
   static getAnswerResult(userAnswer, rightAnswer, errorsAmount) {
     let result;
+
     if (
       errorsAmount === 0
       && userAnswer.length === rightAnswer.length
@@ -475,6 +494,7 @@ export default class WordsView {
     } else {
       result = 'manyErrors';
     }
+
     return result;
   }
 
@@ -482,6 +502,7 @@ export default class WordsView {
     const solvedLetterIndexList = [];
 
     let lastSolvedLetterIndex = -1;
+
     for (let i = 0; i < userLettersList.length; i += 1) {
       // const solvedLetterIndex = rightLettersList.findIndex((rightLetterItem) => {
       //   return rightLetterItem === userLettersList[i];
@@ -493,7 +514,6 @@ export default class WordsView {
         solvedLetterIndexList.push(solvedLetterIndex);
       }
     }
-    console.log(solvedLetterIndexList);
     return solvedLetterIndexList;
   }
 }

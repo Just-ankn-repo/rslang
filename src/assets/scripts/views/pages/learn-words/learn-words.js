@@ -19,6 +19,7 @@ const LearnWords = {
               </div>
             </section>
         `
+
     return view
   },
   after_render: async () => {
