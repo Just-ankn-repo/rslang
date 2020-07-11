@@ -275,6 +275,7 @@ export default class WordsView {
 
   animateOnWrongAnswer() {
     this.onUserAnswer(this.currentCardData.id, false);
+    this.showAgain(this.state.currentWord);
     setTimeout(() => {
       const wordAnswer = document.querySelector('.word-answer');
       this.answerInput.addEventListener('input', () => {
@@ -347,6 +348,7 @@ export default class WordsView {
           return;
         }
         this.onUserDefineWordLevel(target.innerText.toLowerCase());
+        this.showAgain(this.state.currentWord - 1);
         this.showNextCard();
       });
     }
@@ -408,6 +410,24 @@ export default class WordsView {
     const progressBar = document.querySelector('.learn-word-bar-wrap');
     progressBar.innerHTML = this.getProgressBarTemplate();
     this.player.playCurrent();
+  }
+
+  showAgain(currentIndex) {
+    const lastIndex = Math.min(this.words.length, this.state.settings.wordsPerDay) - 1;
+    if (
+      currentIndex === lastIndex
+      || this.words.includes(this.currentCardData, currentIndex + 1)
+      ) {
+      return;
+    }
+    const newIndex = this.constructor.getRandomNumber(currentIndex + 1, lastIndex);
+    this.words.splice(newIndex, 0, this.currentCardData);
+  }
+
+  static getRandomNumber(min, max) {
+    const rand = min + Math.random() * (max + 1 - min);
+
+    return Math.floor(rand);
   }
 
   checkLetters(userAnswer, rightAnswer) {
