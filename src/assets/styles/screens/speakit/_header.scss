@@ -1,48 +1,44 @@
 .speak-header {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media (max-width: 414px) {
-      flex-direction: column;
-  }
-}
-.levels, .header {
-  padding: 10px 0;
-  @media (max-width: 414px) {
-      justify-content: center;
-      display: flex;
-  }
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 414px) {
+        flex-direction: column;
+    }
 }
 
 .level-number {
-  margin: 0 10px 0 0;
+    margin: 0 10px 0 0;
 }
 
-.level-number, .round-number {
-  color: #00ACEA;
-  font-size: 20px;
+.level-number,
+.round-number {
+    color: #00ACEA;
+    font-size: 20px;
 }
 
-.selected-level, .selected-round {
-  width: 100px;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 20px;
+.selected-level,
+.selected-round {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 20px;
 }
 
-.levels, .score {
-  list-style-type: none;
-  display: flex;
-  cursor: pointer;
+.levels,
+.score {
+    list-style-type: none;
+    display: flex;
+    cursor: pointer;
 }
 
 .star {
-  background: url('../static/images/speakit/star.svg');
-  width: 20px;
-  height: 20px;
-  margin: 0 15px 0 0;
-  @media (max-width: 414px) {
-      margin: 0 5px 0 0;
-  }
+    background: url('../static/images/speakit/star.svg');
+    width: 20px;
+    height: 20px;
+    margin: 0 15px 0 0;
+    @media (max-width: 414px) {
+        margin: 0 5px 0 0;
+    }
 }

@@ -68,7 +68,6 @@ const Englishpuzzle = {
     },
     after_render: async() => {
         Code();
-
     }
 
 }
