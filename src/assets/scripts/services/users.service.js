@@ -2,10 +2,10 @@ import env from '../constants/env.conf';
 import error from '../utils/error.utils';
 
 const userMethods = {
-  registerUser: async (email, password) => {
+  registerUser: async (username, email, password) => {
     let rawResponse;
     let result;
-
+    
     try {
       rawResponse = await fetch(`${env.backendUrl}/users`, {
         method: 'POST',
@@ -13,7 +13,27 @@ const userMethods = {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "email": email, "password": password })
+        body: JSON.stringify({ "name": username, "email": email, "password": password })
+      });
+
+      result = await rawResponse.json();
+      return result;
+    } catch(e) {
+      throw error(rawResponse);
+    }
+  },
+
+  getUserById: async (userId, authToken) => {
+    let rawResponse;
+    let result;
+    try {
+      rawResponse = await fetch(`${env.backendUrl}/users/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`,
+        }
       });
 
       result = await rawResponse.json();
@@ -43,7 +63,27 @@ const userMethods = {
     } catch(e) {
       throw error(rawResponse);
     }
-  }
+  },
+
+  getNewToken: async (userId, refreshToken) => {
+    let rawResponse;
+    let result;
+    try {
+      rawResponse = await fetch(`${env.backendUrl}/users/${userId}/tokens`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${refreshToken}`,
+        }
+      });
+
+      result = await rawResponse.json();
+      return result;
+    } catch(e) {
+      throw error(rawResponse);
+    }
+  },
 }
 
 export default userMethods;

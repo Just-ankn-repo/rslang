@@ -125,3 +125,8 @@ const testBackendMethods = async() => {
   }
 
   // testBackendMethods();
+
+  // (async function() {
+  //   const getUserSettings = await backend.getUserSettings();
+  //   console.log(getUserSettings)
+  // })()

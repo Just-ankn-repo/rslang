@@ -13,6 +13,7 @@ export default class Backend {
   constructor() {
     this.userId = '';
     this.authToken = '';
+    this.refreshToken = '';
     this.init();
   }
 
@@ -26,20 +27,49 @@ export default class Backend {
   }
 
   async signIn(email, password) {
+    try {
       const result = await authorization.getToken(email, password);
       this.userId = result.userId;
       this.authToken = result.token;
+      this.refreshToken = result.refreshToken;
       cookie.setCookie('userId', this.userId);
       cookie.setCookie('authToken', this.authToken);
-      console.log(this.userId, this.authToken)
+      console.log(this.userId, this.authToken, this.refreshToken)
+    } catch(e) {
+      throw new Error (e);
+    }
   }
 
-  async registerUser(email, password) {
+  async getNewToken() {
     try {
-      const result = users.registerUser(email, password)
+      const result = await users.getNewToken(this.userId, this.refreshToken);
+      this.userId = result.userId;
+      this.authToken = result.token;
+      this.refreshToken = result.refreshToken;
+      return result;
+    } catch(e) {
+      throw new Error (e);
+    }
+  }
+
+  async registerUser(username, email, password) {
+    try {
+      const result = users.registerUser(username, email, password)
       return result;
     } catch(e) {
       return e;
+    }
+  }
+
+  async getUserById() {
+    try {
+      const result = await users.getUserById(this.userId, this.authToken);
+      return result;
+    } catch(e) {
+      const result = [401, 403].includes(e.status)
+      ? await sessionExpired(this, 'getUserById')
+      : e;
+      return result;
     }
   }
 

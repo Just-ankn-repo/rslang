@@ -26,6 +26,9 @@ const usersSettings = {
   setUserSettings: async (userId, authToken, data) => {
     let rawResponse;
     let result;
+    const oldSettings = await usersSettings.getUserSetttings(userId, authToken);
+    const newSettings = {...oldSettings, ...data};
+    delete newSettings.id;
 
     try {
       rawResponse = await fetch(`${env.backendUrl}/users/${userId}/settings`, {
@@ -35,7 +38,7 @@ const usersSettings = {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
         },
-        body: JSON.stringify({ "wordsPerDay": data.wordsPerDay, "optional": data.optional })
+        body: JSON.stringify(newSettings)
       });
 
       result = await rawResponse.json();
