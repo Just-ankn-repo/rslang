@@ -2,9 +2,10 @@ import pages from './views/pages/index'
 import utils from './utils/router.utils'
 
 const routes = {
-    '/': pages.home,
-    '/about': pages.about,
-    '/signup': pages.signup,
+    '/'             : pages.home,
+    '/about'        : pages.about,
+    '/signup'       : pages.signup,
+    '/speak-it'      : pages.speakit,
     '/english_puzzle': pages.english_puzzle
 };
 
