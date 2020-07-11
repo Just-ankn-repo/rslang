@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no">
-        <title>RSLang</title>
-        <link rel="shortcut icon" type="image/png" href="">
-    </head>
-    <body class="app">
-        <header>
-          <div id='loader'>
-            <div class="spinner"></div>
-          </div>
 
-          <!-- <dialog id="favDialog">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no">
+    <title>RSLang</title>
+    <link rel="shortcut icon" type="image/png" href="">
+</head>
+
+<body class="app">
+    <header>
+        <div id='loader'>
+            <div class="spinner"></div>
+        </div>
+
+        <!-- <dialog id="favDialog">
             <form method="dialog">
               <section>
                 <p><label for="favAnimal">Please Authorize:</label>
@@ -24,103 +26,103 @@
               </menu>
             </form>
           </dialog> -->
-          <div>
+        <div>
             <div class="sidebar">
-              <div class="sidebar-inner">
-                <div class="sidebar-logo">
-                  <div class="peers ai-c fxw-nw">
-                    <div class="peer peer-greed">
-                      <a class="sidebar-link td-n" href="/#/">
+                <div class="sidebar-inner">
+                    <div class="sidebar-logo">
                         <div class="peers ai-c fxw-nw">
-                          <div class="peer">
-                            <div class="logo">
-                              <img src="assets/static/images/logo.png" alt="">
+                            <div class="peer peer-greed">
+                                <a class="sidebar-link td-n" href="/#/">
+                                    <div class="peers ai-c fxw-nw">
+                                        <div class="peer">
+                                            <div class="logo">
+                                                <img src="assets/static/images/logo.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="peer peer-greed">
+                                            <h5 class="logo-text">RS Lang</h5>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                          </div>
-                          <div class="peer peer-greed">
-                            <h5 class="logo-text">RS Lang</h5>
-                          </div>
+                            <div class="peer">
+                                <div class="mobile-toggle sidebar-toggle">
+                                    <a class="td-n">
+                                        <i class="ti-arrow-circle-left"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                      </a>
                     </div>
-                    <div class="peer">
-                      <div class="mobile-toggle sidebar-toggle">
-                        <a class="td-n">
-                          <i class="ti-arrow-circle-left"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ul class="sidebar-menu scrollable pos-r">
-                  <li class="nav-item">
-                    <a class="sidebar-link actived" href="/#/">
-                      <span class="icon-holder">
+                    <ul class="sidebar-menu scrollable pos-r">
+                        <li class="nav-item">
+                            <a class="sidebar-link actived" href="/#/">
+                                <span class="icon-holder">
                         <img src="assets/static/images/home.png" alt="">
                       </span>
-                      <span class="title">Home</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/learn-words">
-                      <span class="icon-holder">
+                                <span class="title">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/learn-words">
+                                <span class="icon-holder">
                         <img src="assets/static/images/learn_words.png" alt="">
                       </span>
-                      <span class="title">Learn Words</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/dictionary">
-                      <span class="icon-holder">
+                                <span class="title">Learn Words</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/dictionary">
+                                <span class="icon-holder">
                         <img src="assets/static/images/dictionary.png" alt="">
                       </span>
-                      <span class="title">Dictionary</span>
-                    </a>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/speak-it">
-                      <span class="icon-holder">
+                                <span class="title">Dictionary</span>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/speak-it">
+                                <span class="icon-holder">
                         <img src="assets/static/images/speakit.png" alt="">
                       </span>
-                      <span class="title">Speak it</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/english-puzzle">
-                      <span class="icon-holder">
+                                <span class="title">Speak it</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/english_puzzle">
+                                <span class="icon-holder">
                         <img src="assets/static/images/puzzle.png" alt="">
                       </span>
-                      <span class="title">English Puzzle</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/savannah">
-                      <span class="icon-holder">
+                                <span class="title">English Puzzle</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/savannah">
+                                <span class="icon-holder">
                         <img src="assets/static/images/savannah.png" alt="">
                       </span>
-                      <span class="title">Savannah</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/audiochallenge">
-                      <span class="icon-holder">
+                                <span class="title">Savannah</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/audiochallenge">
+                                <span class="icon-holder">
                         <img src="assets/static/images/audiochallenge.png" alt="">
                       </span>
-                      <span class="title">Audiochallenge</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/sprint">
-                      <span class="icon-holder">
+                                <span class="title">Audiochallenge</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/sprint">
+                                <span class="icon-holder">
                         <img src="assets/static/images/sprint.png" alt="">
                       </span>
-                      <span class="title">Sprint</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class='sidebar-link' href="/#/our-game">
-                      <span class="icon-holder">
+                                <span class="title">Sprint</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='sidebar-link' href="/#/our-game">
+                                <span class="icon-holder">
                         <img src="assets/static/images/our_game.png" alt="">
                       </span>
                       <span class="title">Our game</span>
@@ -137,55 +139,57 @@
                 </ul>
               </div>
             </div>
-      
+        </div>
+
             <div class="page-container">
-              <div class="header navbar">
-                <div class="header-container">
-                  <ul class="nav-left">
-                    <li>
-                      <a id='sidebar-toggle' class="sidebar-toggle">
-                        <i class="ti-menu"></i>
-                      </a>
-                    </li>
-                  </ul>
-                  <ul class="nav-right">
-                    <li class="notifications dropdown">
-                      <span class="counter bgc-red" id="notify-counter">0</span>
-                      <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
-                        <i class="ti-bell"></i>
-                      </a>          
-                      <ul class="dropdown-menu" id="notifications"></ul>
-                    </li>
-                    <li>
-                      <a href="/#/signup" class="login-register__button">
-                        <span>Login/Register</span>
-                      </a>
-                    </li>
-                    <li class="dropdown inactive" id="authorized-user" style="display:none;">
-                      <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c" data-toggle="dropdown">
-                        <div class="peer">
-                          <span class="fsz-sm c-grey-900" id="user-name"></span>
-                        </div>
-                      </a>
-                      <ul class="dropdown-menu fsz-sm">
-                        <li>
-                          <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                            <i class="ti-power-off mR-10"></i>
-                            <span>Logout</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                <div class="header navbar">
+                    <div class="header-container">
+                        <ul class="nav-left">
+                            <li>
+                                <a id='sidebar-toggle' class="sidebar-toggle">
+                                    <i class="ti-menu"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="notifications dropdown">
+                                <span class="counter bgc-red" id="notify-counter">0</span>
+                                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                </a>
+                                <ul class="dropdown-menu" id="notifications"></ul>
+                            </li>
+                            <li>
+                                <a href="/#/signup" class="login-register__button">
+                                    <span>Login/Register</span>
+                                </a>
+                            </li>
+                            <li class="dropdown inactive" id="authorized-user" style="display:none;">
+                                <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c" data-toggle="dropdown">
+                                    <div class="peer">
+                                        <span class="fsz-sm c-grey-900" id="user-name"></span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu fsz-sm">
+                                    <li>
+                                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                            <i class="ti-power-off mR-10"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </header>
-        <main class='main-content'>
-            <section id='mainContent'>
-                <div class="full-container" id="app_container"></div>
-            </section>
-        </main>
-    </body>
+        </div>
+    </header>
+    <main class='main-content'>
+        <section id='mainContent'>
+            <div class="full-container" id="app_container"></div>
+        </section>
+    </main>
+</body>
+
 </html>
