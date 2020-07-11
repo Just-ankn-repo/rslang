@@ -1,9 +1,9 @@
 const WORDS_LIST_URL = 'https://afternoon-falls-25894.herokuapp.com/words';
 
 export default class Service {
-  static getWords(langLevel = 0, round = 0) {
+  static getWords(group = 0, page = 1) {
 
-    return fetch(`${WORDS_LIST_URL}?page=${round}&group=${langLevel}`)
+    return fetch(`${WORDS_LIST_URL}?page=${group}&group=${page}`)
       .then((response) => response.json());
   }
 
@@ -13,13 +13,13 @@ export default class Service {
       optional: {
         newWordsPerDay: 5,
         cardContent: {
+          image: true,
           wordTranslate: true,
           textMeaning: true,
           textExample: true,
           audioMeaning: true,
           audioExample: true,
           transcription: true,
-          image: true,
           defineLevelOptions: true,
           deleteBtn: true,
           toHardListBtn: true,
@@ -51,5 +51,9 @@ export default class Service {
 
   static onShowAnswerBtn(wordId) {
     console.log(`for ${wordId} solution was shown`);
+  }
+
+  static onContentSettingsChange(userSettings) {
+    console.log(`content settings set to ${userSettings}`);
   }
 }

@@ -14,7 +14,9 @@ export default class WordsModel {
   }
 
   getWordsList(words) {
-    const wordsList = words.slice(0, this.state.settings.wordsPerDay);
+    const wordsList = this.state.settings.wordsPerDay < words.length
+      ? words.slice(0, this.state.settings.wordsPerDay)
+      : words;
     const result = wordsList.map((word) => ({
       id: word.id,
       audio: word.audio,
@@ -42,7 +44,7 @@ export default class WordsModel {
   updateStateOnNewCard() {
     this.state.currentWord += 1;
 
-    if (this.state.currentWord >= this.state.settings.wordsPerDay) {
+    if (this.state.currentWord >= Math.min(this.state.settings.wordsPerDay, this.words.length)) {
       this.isCardsOver = true;
       return;
     }
@@ -55,5 +57,9 @@ export default class WordsModel {
 
   switchSound(shouldEnable) {
     this.state.isAudioOn = shouldEnable;
+  }
+
+  updateCardContentSettings(userSettings) {
+    this.state.settings.optional.cardContent = userSettings;
   }
 } 

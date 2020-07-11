@@ -1,11 +1,26 @@
+.word-card-wrapper {
+  width: 90%;
+    @media (min-width: $breakpoint-sm) {
+      width: unset;
+    }
+}
+
 .learn-card {
   position: relative;
-  width: 800px;
+  box-sizing: border-box;
+  width: 97%;
   font-size: 20px;
-  // margin: 40px auto;
-  padding: 30px 30px;
+  padding: 5px;
   box-sizing: border-box;
   box-shadow: 3px 3px 10px 2px #a8a8a899;
+    @media (min-width: $breakpoint-sm) {
+      padding: 10px;
+      width: 624px;
+      padding: 30px;
+    }
+    @media (min-width: $breakpoint-lg) {
+      width: 800px;
+    }
 }
 
 .learn-card.closed .answer-indicator {
@@ -26,12 +41,17 @@
 .card-main-content {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .word-img-wrapper {
-  margin: 0 45px 15px 0;
+  margin: 30px 0;
+  margin-right: 15px;
   width: 200px;
   height: 200px;
+    @media (min-width: $breakpoint-sm) {
+      margin: 0 45px 15px 0;
+    }
 }
 
 .word-img-wrapper img {
@@ -50,15 +70,19 @@
 
 .learn-translate-wrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   margin-bottom: 0;
 }
 
 .learn-word-translate {
   margin-right: 15px;
-  font-size: 27px;
+  font-size: 21px;
   text-transform: uppercase;
   font-weight: bold;
+    @media (min-width: $tablet) {
+      font-size: 27px;
+    }
 }
 
 .learn-word-transcription {
@@ -67,8 +91,12 @@
 
 .learn-word-translate,
 .learn-word-transcription {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+    @media (min-width: $breakpoint-sm) {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
 }
 
 .word-content-item {
@@ -107,7 +135,7 @@
 
 .learn-card.closed .key-word-in-sentence {
   font-size: 0;
-  padding: 24px;
+  padding: 15px;
   box-shadow: none;
   background-color: rgba(0,188,212,.37);
   vertical-align: middle;
@@ -116,20 +144,31 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 55%;
+    @media (min-width: $breakpoint-sm) {
+      padding: 24px;
+    }
 }
 
 .learn-next-card-btn {
   @include btn-reset;
-  margin-left: 30px;
+  margin-left: 0;
   font-size: 0;
-  width: 46px;
-  height: 46px;
+  width: 20px;
+  height: 20px;
   background-color: transparent;
   background-image: url('../static/images/learn-words/icon-next-card.svg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 90%;
   transition: .2s;
+    @media (min-width: $breakpoint-sm) {
+      width: 46px;
+      height: 46px;
+      margin-left: 10px;
+    }
+    @media (min-width: $breakpoint-lg) {
+      margin-left: 30px;
+    }
 }
 
 .learn-next-card-btn:hover {
@@ -152,8 +191,11 @@
   box-shadow: 1px 1px 2px 1px rgba(93,101,116,.28);
   background-color: transparent;
   transition: .2s;
-  margin-left: auto;
+  margin-left: 0;
   transition: .3s;
+    @media (min-width: $breakpoint-sm) {
+      margin-left: auto;
+    }
 }
 
 .words-show-answer-btn:hover {

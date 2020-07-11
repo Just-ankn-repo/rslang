@@ -1,26 +1,36 @@
 .words-main-page {
   width: 70%;
-  width: 680px;
+  width: 90%;
   margin: 38px auto;
   display: flex;
   justify-content: flex-end;
-  background-image: url('../static/images/learn-words/words-main-bg.svg');
-  background-repeat: no-repeat;
-  background-position: center left;
-  background-size: 30%;
+    @media (min-width: $breakpoint-sm) {
+      width: 680px;
+      background-image: url('../static/images/learn-words/words-main-bg.svg');
+      background-repeat: no-repeat;
+      background-position: center left;
+      background-size: 30%;
+    }
 }
 
 .words-main-content {
   background-color: #F4F6FA;
-  width: 70%;
-  padding: 40px 40px;
+  width: 100%;
+  padding: 20px;
+    @media (min-width: $breakpoint-sm) {
+      width: 70%;
+      padding: 40px;
+    }
 }
 
 .words-main-title {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 26px;
   margin-bottom: 20px;
   margin-right: 0;
+    @media (min-width: $breakpoint-sm) {
+      font-size: 30px;
+    }
 }
 
 .words-main-descr {
@@ -32,17 +42,20 @@
 .words-main-btn {
   @include btn-reset;
   margin-top: 38px;
-  padding: 15px 20px;
   width: 180px;
   border-radius: 0;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 18px;
+  text-transform: capitalize;
+  font-size: 22px;
   letter-spacing: 1px;
   transition: .2s;
   box-shadow: none;
-  background-color: $color-dark;
-  color: $color-white;
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 15px 15px;
+}
+
+.words-main-btn:focus {
+  outline: none;
 }
 
 .words-main-btn:hover {

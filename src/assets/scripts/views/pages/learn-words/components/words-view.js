@@ -1,5 +1,6 @@
 import constants from './constants';
 import Player from './player';
+import SettingsPopup from './settings-popup';
 
 export default class WordsView {
   constructor(words, state) {
@@ -9,6 +10,7 @@ export default class WordsView {
     this.currentCardData = null;
     this.currentCardElem = null;
     this.player = new Player(this.state.isAudioOn);
+    this.settingsPopup = new SettingsPopup(this.state.settings);
     this.init();
   }
 
@@ -39,31 +41,35 @@ export default class WordsView {
         this.showNextCard();
       }
     }
-
-    // document.querySelector('.learn-word-sound').addEventListener('click', ({target}) => {
-    //   if (target.classList.contains('learn-sound-off')) {
-    //     target.classList.remove('learn-sound-off');
-    //     this.onSoundSwitch(true);
-    //   } else {
-    //     target.classList.add('learn-sound-off')
-    //     // target.classList.remove('active');
-    //     this.player.pause();
-    //     this.onSoundSwitch(false);
-    //   }
-    // });
   }
 
-  renderCard() {
-    this.currentCardData = this.words[this.state.currentWord];
+  renderCard(onUpdate, isOpened) {
+    this.currentCardData = onUpdate && isOpened
+      ? this.words[this.state.currentWord - 1]
+      : this.words[this.state.currentWord];
+
+    if (!onUpdate && !isOpened) {
+      this.isFirstAttempt = true;
+    }
+
     const template = this.getCardTemplate(this.currentCardData);
 
     this.currentCardElem = document.createElement('div');
     this.currentCardElem.classList.add('learn-card', 'closed');
     this.currentCardElem.innerHTML = template;
+
+    if (onUpdate && isOpened) {
+      this.currentCardElem.classList.remove('closed');
+      this.currentCardElem.querySelector('.word-answer-input').disabled = true;
+    } else if (onUpdate && !isOpened) {
+      const prevValue = this.answerInput.value;
+      this.currentCardElem.querySelector('.word-answer-input').value = prevValue;
+    }
+
     this.constructor.hideWordInSentences(this.currentCardElem);
     this.root.innerHTML = `
       <div class="learn-word-bar-wrap">
-        ${this.getProgressBarTemplate()}
+        ${this.getProgressBarTemplate(true)}
       </div>`;
     this.root.append(this.currentCardElem);
 
@@ -71,19 +77,20 @@ export default class WordsView {
     this.answerInput = document.querySelector('.word-answer-input');
     this.answerInput.focus();
     this.player.updateAudioList(this.state, this.currentCardData);
+    this.settingsPopup.init(this.state.settings.optional.cardContent);
   }
 
-  getProgressBarTemplate() {
+  getProgressBarTemplate(withoutAnimate) {
     return `
       <div class='progress-bar-value progress-bar-start'>0</div>
-      <div class="learn-word-bar-fill${this.isCardOpened()
+      <div class="learn-word-bar-fill${this.isCardOpened() && !withoutAnimate
         ? ' bar-fill-animate'
-        : ''}" style='width: ${this.constructor.getBarWidth(this.state.currentWord, this.state.settings.wordsPerDay)}%'>
+        : ''}" style='width: ${this.constructor.getBarWidth(this.state.currentWord, Math.min(this.state.settings.wordsPerDay, this.words.length))}%'>
         ${this.state.currentWord !== 0
           ? `<div class='progress-bar-fill-value progress-bar-value'>${this.state.currentWord}</div>`
           : ''}
       </div>
-      <div class='progress-bar-value progress-bar-end'>${this.state.settings.wordsPerDay}</div>`;
+      <div class='progress-bar-value progress-bar-end'>${Math.min(this.state.settings.wordsPerDay, this.words.length)}</div>`;
   }
 
   isCardOpened() {
@@ -94,23 +101,21 @@ export default class WordsView {
     return `
       <div class='answer-indicator'></div>
       <div class='learn-card-header'>
-      <div class='card-header-left-col'>
-        <ul class='learn-word-progress'>
-        </ul>
-        <button class='learn-word-sound${this.state.isAudioOn
-          ? ''
-          : ' learn-sound-off'}'></button>
-      </div>
+        <div class='card-header-left-col'>
+          <ul class='learn-word-progress'>
+          </ul>
+          <button class='learn-word-sound${this.state.isAudioOn
+            ? ''
+            : ' learn-sound-off'}'></button>
+        </div>
         <ul class='word-groups-btn-list'>
           ${this.state.settings.optional.cardContent.deleteBtn
             ? `<li class='word-groups-btn word-groups-delete' data-group='delete'>
-                <span>Delete word</span>
                 <span class='word-group-hint'>Delete word</span>
               </li>`
             : ''}
           ${this.state.settings.optional.cardContent.toHardListBtn
             ? `<li class='word-groups-btn word-groups-hard' data-group='hard'>
-                <span>Mark word as difficult</span>
                 <span class='word-group-hint'>
                   Mark word as difficult
                 </span>
@@ -119,6 +124,9 @@ export default class WordsView {
                 </span>
               </li>`
             : ''}
+          <li class='word-groups-btn word-groups-settings' data-group='settings'>
+            <span class='word-group-hint'>Settings</span>
+          </li>
         </ul>
       </div>
       <div class='card-main-content'>
@@ -141,7 +149,6 @@ export default class WordsView {
           </div>
         </div>
       </div>
-      
       ${this.state.settings.optional.cardContent.defineLevelOptions
         ? `<ul class='define-level-btn-list'>
             ${constants.WORD_LEVELS
@@ -177,7 +184,7 @@ export default class WordsView {
               </div>
             </li>`
           : ''}
-          ${this.state.settings.optional.cardContent.wordTranslate
+          ${this.state.settings.optional.cardContent.textExample
           ? `<li class='word-content-item'>
               <div class='word-example'>
                 ${cardData.textExample}
@@ -205,7 +212,6 @@ export default class WordsView {
   nextCardBtnHandler() {
     if (!this.currentCardElem.classList.contains('closed')) {
       this.onUserDefineWordLevel();
-      // this.onUserAnswer(this.currentCardData.id, true);
       this.showNextCard();
       return;
     }
@@ -217,6 +223,7 @@ export default class WordsView {
     if (answerResult === 'answerCorrect') {
       this.animateOnCorrectAnswer();
     } else {
+      this.isFirstAttempt = false;
       this.animateOnWrongAnswer();
     }
     this.renderWordProgress();
@@ -232,7 +239,6 @@ export default class WordsView {
 
     if (!isCardClosed()) {
       this.onUserDefineWordLevel();
-      // this.onUserAnswer(this.currentCardData.id, true);
       this.showNextCard();
       return;
     }
@@ -253,7 +259,7 @@ export default class WordsView {
 
   animateOnCorrectAnswer(isShowAnswerClicked) {
     if (!isShowAnswerClicked) {
-      this.onUserAnswer(this.currentCardData.id, true);
+      this.onUserAnswer(this.currentCardData.id, true, this.isFirstAttempt);
     }
     if (
       !this.state.settings.optional.cardContent.defineLevelOptions
@@ -309,6 +315,10 @@ export default class WordsView {
     throw new Error('method should be overriden', this);
   }
 
+  onCardsSetCompleted() {
+    throw new Error('method should be overriden', this);
+  }
+
   onCardsOver() {
     this.isCardsOver = true;
   }
@@ -316,10 +326,16 @@ export default class WordsView {
   showNextCard() {
     this.player.pause();
     if (this.isCardsOver) {
-      alert('cards limit was reached');
+      this.onCardsSetCompleted();
       return;
     }
     this.renderCard();
+    this.addCardListeners();
+  }
+
+  updateCurrentCard() {
+    const isOpened = !this.currentCardElem.classList.contains('closed');
+    this.renderCard(true, isOpened);
     this.addCardListeners();
   }
 
@@ -357,13 +373,16 @@ export default class WordsView {
       }
     });
 
-    document.querySelector('.words-show-answer-btn').addEventListener('click', () => {
-      this.onShowAnswerBtn(this.currentCardData.id);
-      this.answerInput.value = '';
-      document.querySelector('.word-answer').classList.remove('faint');
-      this.animateOnCorrectAnswer(true);
-      this.renderWordProgress();
-    });
+    const showAnswerBtn = document.querySelector('.words-show-answer-btn');
+    if (showAnswerBtn) {
+      showAnswerBtn.addEventListener('click', () => {
+        this.onShowAnswerBtn(this.currentCardData.id);
+        this.answerInput.value = '';
+        document.querySelector('.word-answer').classList.remove('faint');
+        this.animateOnCorrectAnswer(true);
+        this.renderWordProgress();
+      });
+    }
 
     document.querySelector('.learn-word-sound').addEventListener('click', ({target}) => {
       if (target.classList.contains('learn-sound-off')) {
@@ -371,14 +390,16 @@ export default class WordsView {
         this.player.isAudioOn = true;
         this.onSoundSwitch(true);
       } else {
-        target.classList.add('learn-sound-off')
-        // target.classList.remove('active');
+        target.classList.add('learn-sound-off');
         this.player.pause();
         this.player.isAudioOn = false;
         this.onSoundSwitch(false);
       }
     });
 
+    document.querySelector('.word-groups-settings').addEventListener('click', ({target}) => {
+      this.settingsPopup.show(target);
+    });
   }
 
   openCard() {
@@ -390,7 +411,6 @@ export default class WordsView {
   }
 
   checkLetters(userAnswer, rightAnswer) {
-    // const rightLettersList = rightAnswer.split('');
     const userLettersList = userAnswer.split('');
     const solvedLetterIndexList = this.constructor.findCorrectLetters(userLettersList, rightAnswer);
     const rightAnswerWrap = document.querySelector('.word-answer');
@@ -407,16 +427,6 @@ export default class WordsView {
       default:
         rightAnswerWrap.classList.add('many-errors');
     }
-    // if (
-    //     errorsAmount === 0
-    //     && userAnswer.length === rightAnswer.length
-    //   ) {
-    //     rightAnswerWrap.classList.add('answer-correct');
-    // } else if (errorsAmount + (userAnswer.length - rightAnswer.length) <= 2) {
-    //   rightAnswerWrap.classList.add('medium-errors');
-    // } else {
-    //   rightAnswerWrap.classList.add('many-errors');
-    // }
 
     const answerLetters = document.querySelectorAll('.answer-letter');
     [...answerLetters].forEach((letter, index) => {
