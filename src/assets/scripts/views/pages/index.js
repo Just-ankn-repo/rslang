@@ -6,6 +6,7 @@ import dictionary from './dictionary/dictionary';
 import speakit from './speakit/speakit';
 import home from './home/home';
 import englishpuzzle from './englishpuzzle/englishpuzzle';
+import savannah from './savannah/savannah';
 
 export default {
     about,
@@ -16,4 +17,5 @@ export default {
     home,
     englishpuzzle,
     sprint,
+    savannah,
 }

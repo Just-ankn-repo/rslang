@@ -9,6 +9,7 @@ const routes = {
     '/speak-it': pages.speakit,
     '/englishpuzzle': pages.englishpuzzle,
     '/sprint'       : pages.sprint,
+    '/savannah'     : pages.savannah,
 };
 
 const router = async() => {

@@ -1,0 +1,206 @@
+.settings-popup {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  top: calc(100% + 15px);
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-41%);
+  min-width: 300px;
+  max-width: 95%;
+  margin: 0;
+  padding: 15px;
+  color: $color-dark;
+  background: #e5e5e5;
+  border-radius: 4px;
+  transition: all 0.3s;
+  box-shadow: 2px 3px 9px 0px #0000003b;
+    @media (min-width: $breakpoint-sm) {
+      transform: translateX(-50%);
+      left: 50%;
+    }
+}
+
+.settings-popup:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 123px;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-bottom-color: #e5e5e5;
+    @media (min-width: $breakpoint-sm) {
+      left: 50%;
+    }
+}
+
+.settings-popup.active {
+  pointer-events: auto;
+  top: calc(100% + 7px);
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.5s;
+    @media (min-width: $breakpoint-sm) {
+      top: calc(100% + 15px);
+    }
+}
+
+.lang-level-shorthand {
+  margin-right: 10px;
+}
+
+.lang-level-name {
+  text-transform: capitalize;
+  font-weight: 200;
+}
+
+.level-label-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: .2s;
+}
+
+.level-label-wrap:hover {
+  background-image: linear-gradient(45deg, #e9e9e9 0%, #ffffffc2 50%, #e9e9e9 100%);
+}
+
+.lang-level-radio-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 15px;
+  box-shadow: 0px 10px 1px -9px #fff;
+  padding-bottom: 15px;
+}
+
+.lang-level-label {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transition: all .2s ease-in-out;
+  margin: 0 10px 0 0;
+  background-color: $color-dark;
+}
+
+.lang-level-label:before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0.8vw 0 rgba(0,0,0,.117647), 0 0.8vw 0.8vw 0 rgba(0,0,0,.239216);
+}
+
+.lang-level-label:hover:before {
+  box-shadow: rgba(0, 0, 0, 0.0784314) 0 0 1vw 0, rgba(0, 0, 0, 0.239216) 0 1vw 1vw 0;
+}
+
+.lang-level-label:after {
+  content: "";
+  position: absolute;
+  width: 10vw;
+  height: 10vw;
+  background: rgba(255, 255, 255, .5);
+  border-radius: 50%;
+  transform: scale(0);
+}
+
+.radio:checked + .lang-level-label:after {
+  background: transparent;
+  transition: all .5s;
+  transform: scale(1);
+}
+
+.radio-lang-level + .level-label-wrap .lang-level-label {
+  background: $color-dark;
+  animation-delay: 0s;
+}
+
+.radio-lang-level + .level-label-wrap .lang-level-label:before {
+  transform: translate(-50%, -50%) scale(0);
+  transition: all .4s;
+}
+
+.radio-lang-level:checked + .level-label-wrap .lang-level-label:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.radio-lang-level:checked + .level-label-wrap {
+  background-image: linear-gradient(45deg, #e9e9e9 0%, #ffffffc2 50%, #e9e9e9 100%);
+}
+
+.settings-lang-level-item input {
+  display: none;
+}
+
+.settings-tip {
+  display: block;
+  font-size: 16px;
+  color: gray;
+  font-weight: 300;
+}
+
+.round-input {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #0000000d;
+}
+
+.settings-btn-wrap {
+  position: relative;
+  display: flex;
+  transition: .2s;
+  margin-right: 7px;
+    @media (min-width: $breakpoint-sm) {
+      margin-right: 30px;
+    }
+}
+
+.level-settings-btn:hover {
+  opacity: 0.8;
+    @media (min-width: $breakpoint-sm) {
+      opacity: 1;
+    }
+}
+
+.level-settings-btn:focus {
+  box-shadow: 2px 2px 6px 0px #00000045;
+}
+
+.settings-popup-btn-wrap {
+  display: flex;
+  margin: 20px 0;
+}
+
+.save-settings-btn {
+  background-color: #262626;
+  margin-right: 15px;
+  color: #fff;
+  border: 1px solid #767676;
+  min-width: 90px;
+  transition: .2s;
+  min-width: 90px;
+}
+
+.cancel-settings-btn {
+  background-color: $color-white;
+  border: 1px solid $color-white;
+  box-shadow: 1px 1px 3px 1px #00000021;
+  color: $color-dark;
+  min-width: 90px;
+}
+
+.save-settings-btn:hover,
+.cancel-settings-btn:hover {
+  border: 1px solid $color-dark;
+  background-color: transparent;
+  box-shadow: none;
+}

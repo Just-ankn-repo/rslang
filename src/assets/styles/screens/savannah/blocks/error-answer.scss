@@ -1,0 +1,52 @@
+.error-warning {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 20%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+svg.error circle.solid {
+  stroke: #ddd;
+}
+
+svg.error circle.animation {
+  transition: stroke-dashoffset 200ms linear 260ms, stroke-dasharray 200ms linear 260ms;
+  stroke: $wrong;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 2;
+}
+
+svg.error.toggle circle.animation {
+  transition: stroke-dashoffset 200ms linear 0ms, stroke-dasharray 200ms linear 0ms;
+  stroke-dasharray: 200, 0;
+  stroke-dashoffset: 0;
+}
+
+svg.error line {
+  stroke: $wrong;
+}
+
+svg.error line {
+  stroke-dashoffset: -50px;
+  stroke-dasharray: 50px;
+}
+
+svg.error line.left {
+  transition: stroke-dashoffset 120ms linear 0ms;
+}
+
+svg.error line.right {
+  transition: stroke-dashoffset 120ms linear 160ms;
+}
+
+svg.error.toggle line.left {
+  transition: stroke-dashoffset 120ms linear 260ms;
+  stroke-dashoffset: 0;
+}
+
+svg.error.toggle line.right {
+  transition: stroke-dashoffset 120ms linear 440ms;
+  stroke-dashoffset: 0;
+}
