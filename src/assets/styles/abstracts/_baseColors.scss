@@ -35,3 +35,25 @@ $border-color         : #e6ecf5;
 $collapsed-size       : 70px;
 $header-height        : 65px;
 $offscreen-size       : 280px;
+
+// ---------------------------------------------------------
+// @Header Color
+// ---------------------------------------------------------
+$color-menu: #80CBC4;
+$header-color: #00695C;
+$hover-menu: #2C5E52;
+
+$black: #000000;
+$white: #ffffff;
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300,700);
+$open-sans: 'Open Sans', Helvetica, arial, sans-serif;
+$raleway: 'Raleway', 'Open Sans', sans-serif;
+
+$ease-in-out-cubic: cubic-bezier(0.645,  0.045, 0.355, 1.000);
+$cubic-transition: 0.55s $ease-in-out-cubic;
+
+$bar-length: 28px;
+$bar-thickness: 4px;
+$nav-item-delay: 0.05s;
+$nav-width: 4.4rem;
