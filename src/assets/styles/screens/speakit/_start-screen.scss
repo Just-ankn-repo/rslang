@@ -1,0 +1,29 @@
+.start-screen {
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  justify-content: center;
+  background: url('../static/images/speakit/bg1.png');
+}
+
+.start-button {
+  color: white;
+  font-weight: lighter;
+  margin: 20px 0 0 0;
+  padding: 10px 25px;
+  background-color: rgb(69, 226, 140);
+  border-radius: 10px;
+  border: 0.5px solid rgb(255, 255, 255);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.534);
+  font-size: 2rem;
+}
+
+.start-screen__text, .start-screen__name {
+  color: white;
+  font-weight: lighter;
+}

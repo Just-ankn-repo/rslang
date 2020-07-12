@@ -1,0 +1,20 @@
+$responsive: true;
+
+.no-after::after   { display: none !important; }
+.no-before::before { display: none !important; }
+
+.ai-c    { align-items: center; }
+
+@if ($responsive == true) {
+  @include generateResponsive() {
+    .ai-c\@#{$breakpointAlias}    { align-items: center; }
+  }
+}
+
+.fxw-nw  { flex-wrap: nowrap; }
+
+@if ($responsive == true) {
+  @include generateResponsive() {
+    .fxw-nw\@#{$breakpointAlias}  { flex-wrap: nowrap; }
+  }
+}
