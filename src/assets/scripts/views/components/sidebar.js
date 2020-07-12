@@ -53,5 +53,7 @@ export default (function sidebar() {
       event.target.parentNode.parentNode.classList.add('actived');
     };
   });
-  console.log(document.location.hash.split('').splice(2).join(''))
+  const currentLocation = document.location.hash.split('').splice(2).join('')
+  links.forEach((item) => { item.classList.remove('actived') });
+  document.getElementById(`${currentLocation}`).classList.add('actived')
 }());

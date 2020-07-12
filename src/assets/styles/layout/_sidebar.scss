@@ -149,7 +149,7 @@
     overflow: hidden;
     
     a {
-        display: inline-block;
+        // display: inline-block;
         padding: 5px;
         color: $white;
         text-decoration: none;
@@ -169,7 +169,7 @@
     }
   
     .icon-holder {
-      padding-left: 1rem;
+      padding: 0 1rem;
       @media (max-width: 414px) {
         display: none;
       }
@@ -186,6 +186,10 @@
   }
 
   .sidebar-link {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
     &.actived {
       color: $hover-menu;
     }
