@@ -1,0 +1,207 @@
+.learn-card-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-header-left-col {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  min-width: 100%;
+    @media (min-width: $breakpoint-sm) {
+      min-width: unset;
+    }
+}
+
+.word-groups-btn-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-left: 0;
+    @media (min-width: $breakpoint-sm) {
+      margin-left: auto;
+    }
+}
+
+.word-groups-btn {
+  font-size: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 7px;
+  background-color: #ff980020;
+  margin-left: 0;
+  background-image: url('../static/images/learn-words/icon-to-hard.svg');
+  background-repeat: no-repeat;
+  background-size: 46%;
+  background-position: center center;
+  cursor: pointer;
+  position: relative;
+    @media (min-width: $breakpoint-sm) {
+      margin-left: 10px;
+    }
+}
+
+.word-groups-btn + .word-groups-btn {
+  margin-left: 10px;
+}
+
+.word-group-hint,
+.word-group-added {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  width: 180px;
+  text-align: center;
+  padding: 10px;
+  transform: translateX(-50%);
+  font-size: 16px;
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,.18);
+  background-color: #dcdbdf87;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%,5px);
+  transition: transform .3s, opacity .3s;
+  display: block;
+}
+
+.word-groups-btn:hover .word-group-hint,
+.word-groups-hard.marked:hover .word-group-added {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.word-groups-btn:hover .word-group-hint {
+  transform: translate(-18%);
+    @media (min-width: $breakpoint-sm) {
+      transform: translate(-50%, 0);
+    }
+}
+
+.word-groups-btn.settings-opened:hover .word-group-hint {
+  opacity: 0;
+}
+
+.word-groups-hard.marked:hover .word-group-hint {
+  display: none;
+}
+
+.word-group-hint::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 30px;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: #dcdbdf87;
+    @media (min-width: $breakpoint-sm) {
+      left: 50%;
+    }
+}
+
+.disable-hint .word-group-added {
+  visibility: hidden;
+}
+
+.word-groups-delete {
+  background-color: #e4135120;
+  background-image: url('../static/images/learn-words/icon-delete.svg');
+}
+
+.word-groups-settings {
+  background-color: #c7e2fa;
+  background-image: url('../static/images/learn-words/icon-settings.svg');
+  position: relative;
+}
+
+.word-groups-hard.marked {
+  background-image: url('../static/images/learn-words/icon-added-to-hard.svg');
+  animation-name: flip;
+  animation-duration: 1s;
+}
+
+.learn-card.fold-card {
+  animation-name: fold;
+  animation-duration: 1s;
+}
+
+.learn-word-sound {
+  @include btn-reset;
+  background-image: url('../static/images/learn-words/icon-sound-on.svg');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  opacity: 0.7;
+  transition: .2s;
+}
+
+.learn-sound-off {
+  background-image: url('../static/images/learn-words/icon-sound-off.svg');
+}
+
+.learn-word-sound:hover {
+  opacity: 1;
+}
+
+.learn-word-sound:focus {
+  outline: none;
+}
+
+@keyframes flip {
+  from {
+    -webkit-transform: perspective(400px) rotateY(-360deg) scale3d(1, 1, 1);
+    transform: perspective(400px) rotateY(-360deg) scale3d(1, 1, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  50% {
+    -webkit-transform: perspective(400px) rotateY(-180deg) scale3d(1.2, 1.2, 1.2);
+    transform: perspective(400px) rotateY(-180deg) scale3d(1.2, 1.2, 1.2);
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  to {
+    -webkit-transform: perspective(400px) rotateY(0deg) scale3d(1, 1, 1);
+    transform: perspective(400px) rotateY(0deg) scale3d(1, 1, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    animation-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  }
+}
+
+@keyframes fold {
+  0% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    -webkit-transform: scale3d(1, 0.4, 1);
+    transform: scale3d(1, 0.4, 1);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    -webkit-transform: scale3d(0.4, 0.4, 1);
+    transform: scale3d(0.4, 0.4, 1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -webkit-transform: scale3d(0.2, 0.2, 0.2);
+    transform: scale3d(0.2, 0.2, 0.2);
+  }
+}

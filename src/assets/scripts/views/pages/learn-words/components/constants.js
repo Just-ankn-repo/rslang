@@ -1,0 +1,21 @@
+export default {
+  TIMES_TO_SHOW: 5,
+  DATA_URL: 'https://raw.githubusercontent.com/irinateln0va/rslang-data/master/',
+  LETTER_MEDIUM_AMOUNT: 2,
+  WORD_LEVELS: ['again', 'hard', 'good', 'easy'],
+  WORD_DEFAULT_LEVEL: 'good',
+  REPETITIONS_AMOUNT: 5,
+  CONTENT_LABEL: {
+    image: 'display the picture',
+    wordTranslate: 'display translate',
+    textMeaning: 'display the meaning explanation',
+    textExample: 'display the example with the word',
+    audioMeaning: 'sound the meaning',
+    audioExample: 'sound the example',
+    transcription: 'display the transcription',
+    defineLevelOptions: 'display word level adjustments',
+    deleteBtn: 'display delete button',
+    toHardListBtn: 'display button marking the word as difficult',
+    showAnswerBtn: 'display button showing the answer',
+  },
+};

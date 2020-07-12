@@ -1,0 +1,59 @@
+// svg.success circle.solid {
+//   stroke: #ddd;
+// }
+
+// svg.success circle.animation {
+//   transition: stroke-dashoffset 200ms linear 260ms, stroke-dasharray 200ms linear 260ms;
+//   stroke: rgb(0, 216, 151);;
+//   stroke-dasharray: 1, 200;
+//   stroke-dashoffset: 2;
+// }
+
+// svg.success.toggle circle.animation {
+//   transition: stroke-dashoffset 200ms linear 0ms, stroke-dasharray 200ms linear 0ms;
+//   stroke-dasharray: 200, 0;
+//   stroke-dashoffset: 0;
+// }
+
+// svg.success path {
+//   stroke: rgb(0, 216, 151);;
+//   transition: stroke-dashoffset 160ms linear 0ms;
+//   stroke-dashoffset: -50px;
+//   stroke-dasharray: 50px;
+// }
+
+// svg.success.toggle path {
+//   transition: stroke-dashoffset 200ms linear 260ms;
+//   stroke-dashoffset: 0;
+// }
+
+svg.success circle.solid {
+  stroke: #ddd;
+}
+
+svg.success circle.animation {
+  transition: stroke-dashoffset 460ms linear 260ms, stroke-dasharray 460ms linear 260ms, 160ms linear 200ms;
+  stroke: $correct;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 2;
+  fill: transparent;
+}
+
+svg.toggle.success  circle.animation {
+  transition: stroke-dashoffset 200ms linear 0ms, stroke-dasharray 200ms linear 0ms, fill 200ms linear 260ms;
+  stroke-dasharray: 200, 0;
+  stroke-dashoffset: 0;
+  fill: $correct;
+}
+
+svg.success path {
+  stroke: #fff;
+  transition: stroke-dashoffset 160ms linear 0ms;
+  stroke-dashoffset: -50px;
+  stroke-dasharray: 50px;
+}
+
+svg.toggle.success  path {
+  transition: stroke-dashoffset 200ms linear 460ms;
+  stroke-dashoffset: 0;
+}

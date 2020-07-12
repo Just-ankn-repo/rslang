@@ -7,7 +7,10 @@ const routes = {
     '/signup': pages.signup,
     '/dictionary': pages.dictionary,
     '/speak-it': pages.speakit,
-    '/englishpuzzle': pages.englishpuzzle
+    '/englishpuzzle': pages.englishpuzzle,
+    '/sprint'       : pages.sprint,
+    '/learn-words'  : pages.learnWords,
+    '/savannah'     : pages.savannah,
 };
 
 const router = async() => {
