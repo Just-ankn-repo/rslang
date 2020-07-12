@@ -1,0 +1,70 @@
+
+.dictionary-element {
+  background-color: white;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dictionary-element__layout {
+  &_first, &_second {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.dictionary-element__checkbox, 
+.dictionary-element__image, 
+.dictionary-element__word,
+.dictionary-element__translation {
+  margin: 0 15px 0 0;
+}
+
+.dictionary-element__checkbox, .dictionary-element__layout_second, .audio-icon {
+  @media (max-width: 414px) {
+    display: none;
+  }
+}
+
+.audio-icon {
+  background: url(https://image.flaticon.com/icons/svg/876/876356.svg);
+  width: 20px;
+  height: 20px;
+  margin: 0 15px 0 0;
+}
+
+.dictionary-element__word, .dictionary-element__transcription {
+  font-size: 1.3rem;
+  @media (max-width: 414px) {
+    font-size: 1rem;
+  }
+}
+
+.dictionary-element__translation {
+  font-size: 1.3rem;
+  @media (max-width: 414px) {
+    font-size: 0.9rem;
+  }
+}
+
+.dictionary-element__word {
+  font-weight: 600;
+  color: rgb(0, 139, 58);
+}
+
+.dictionary-element__image {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 5px 0 black;
+}
+
+.dictionary-element__trash {
+  background-image: url('../static/images/dictionary/trash.svg');
+  width: 30px;
+  height: 30px;
+}
