@@ -1,0 +1,91 @@
+.learn-word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+    @media (min-width: $breakpoint-sm) {
+      margin: 30px 0;
+    }
+}
+
+
+.word-answer-wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+    @media (min-width: $breakpoint-sm) {
+      font-size: 50px;
+    }
+}
+
+.word-answer {
+  background-color: $color-cyan--light;
+  color: rgb(8, 122, 137);
+  transition: .3s;
+  display: flex;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.word-answer.answer-correct {
+  background-color: #00d89742;
+}
+
+.word-answer.medium-errors {
+  background-color:#ff98003d;
+}
+
+.word-answer.many-errors {
+  background-color: #e4135145;
+}
+
+.word-answer.faint {
+  color: rgba(8, 122, 137, 0.18);
+}
+
+.word-answer-input {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  background-color: transparent;
+  border: none;
+  color: #222222;
+}
+
+.word-answer,
+.word-answer-input {
+  padding: 10px 5px;
+  border-radius: 3px;
+}
+
+.learn-card.closed .answer-letter {
+  color: transparent;
+  transition: .2s;
+}
+
+.word-answer.faint .answer-letter {
+  color: inherit;
+}
+
+.answer-letter {
+  font-size: 30px;
+    @media (min-width: $breakpoint-sm) {
+      font-size: 50px;
+    }
+}
+
+.learn-card .answer-letter.letter-correct {
+  color: $correct;
+}
+
+.learn-card .answer-letter.medium-errors {
+  color: $orange
+}
+
+.learn-card .answer-letter.many-errors {
+  color: $wrong;
+}

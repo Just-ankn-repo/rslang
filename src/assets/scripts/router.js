@@ -9,6 +9,7 @@ const routes = {
     '/speak-it': pages.speakit,
     '/englishpuzzle': pages.englishpuzzle,
     '/sprint'       : pages.sprint,
+    '/learn-words'  : pages.learnWords,
     '/savannah'     : pages.savannah,
 };
 
