@@ -54,6 +54,11 @@ export default (function sidebar() {
     };
   });
   const currentLocation = document.location.hash.split('').splice(2).join('')
-  links.forEach((item) => { item.classList.remove('actived') });
-  document.getElementById(`${currentLocation}`).classList.add('actived')
+  if(currentLocation === '') {
+    links.forEach((item) => { item.classList.remove('actived') });
+    document.getElementById('home').classList.add('actived')
+  } else {
+    links.forEach((item) => { item.classList.remove('actived') });
+    document.getElementById(`${currentLocation}`).classList.add('actived')
+  }
 }());
