@@ -5,6 +5,7 @@ import dictionary from './dictionary/dictionary'
 import speakit from './speakit/speakit'
 import home from './home/home'
 import englishpuzzle from './englishpuzzle/englishpuzzle'
+import englishquiz from './english-quiz/english-quiz'
 
 export default {
     about,
@@ -13,5 +14,6 @@ export default {
     dictionary,
     speakit,
     home,
-    englishpuzzle
+    englishpuzzle,
+    englishquiz
 }

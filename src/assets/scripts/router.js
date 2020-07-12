@@ -7,7 +7,8 @@ const routes = {
     '/signup': pages.signup,
     '/dictionary': pages.dictionary,
     '/speak-it': pages.speakit,
-    '/englishpuzzle': pages.englishpuzzle
+    '/english-puzzle': pages.englishpuzzle,
+    '/english-quiz': pages.englishquiz
 };
 
 const router = async() => {

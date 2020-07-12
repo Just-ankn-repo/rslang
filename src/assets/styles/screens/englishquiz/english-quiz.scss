@@ -1,0 +1,56 @@
+.game-quiz__startPage {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://raw.githubusercontent.com/Gabriellji/vectors/master/160.svg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    transition: all 1s;
+}
+
+.game-quiz__heading {
+    font-weight: 800;
+    font-size: 50px;
+    background: linear-gradient(135deg, #7e0dca 60%, #22fa0e 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    border: 3px solid transparent;
+    border-image-slice: 1;
+}
+
+.game-quiz__heading,
+.game-quiz__text_white {
+    padding-top: 100px;
+    border: violet;
+}
+
+.game-quiz__text {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+    margin-right: 5px;
+    text-align: center;
+    margin-bottom: 5px;
+    line-height: 27px;
+}
+
+.game-quiz__button {
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    transition: all 0.5s;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.game-quiz__button_start {
+    width: 250px;
+    margin-top: 100px;
+    background-color: turquoise;
+    font-size: 25px;
+}
