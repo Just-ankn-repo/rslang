@@ -9,12 +9,12 @@ export default function getWords(page, group) {
       words.splice(0, words.length, ...data)
       success.splice(0, success.length)
       const div = generateContainer(data);
-      document.getElementById('content').innerHTML = '';
-      document.getElementById('content').append(div);
+      document.getElementById('content-container').innerHTML = '';
+      document.getElementById('content-container').append(div);
 
       document.querySelector('.translation').innerHTML = '';
       document.querySelector('.image').setAttribute('src', 'https://image.freepik.com/free-vector/creative_23-2147886551.jpg')
       document.querySelector('.speak-button').classList.remove('recording');
-      document.querySelector('.score').innerHTML = '';
+      document.querySelector('.speakit-score').innerHTML = '';
     });
 };

@@ -14,7 +14,7 @@ const SpeakIt = {
 				</div>  
 			</div>
 
-			<main class="speak-it" id="speak-it">
+			<main class="speak-it" id="speak-it" style="font-size: 14px">
 				<div class="wrapper main-wrapper">
 
 					<div class="speak-header">
@@ -32,7 +32,7 @@ const SpeakIt = {
 							</form>
 								
 							</div>
-							<div class="score"></div>
+							<div class="speakit-score"></div>
 					</div>
 
 					<div class="selected">
@@ -40,7 +40,7 @@ const SpeakIt = {
 						<p class="translation"></p>
           </div>
 
-					<div id="content"></div>
+					<div id="content-container"></div>
 
 					<div class="tools">
 						<div class="buttons-control">
@@ -85,7 +85,6 @@ const SpeakIt = {
         .map((result) => result[0])
         .map((result) => result.transcript)
 				.join('').toLowerCase();
-			console.log(transcript)
 			document.querySelector('.translation').innerHTML = transcript;
 			game.checkWord(transcript)
 			return words;
@@ -98,7 +97,7 @@ const SpeakIt = {
 
 		document.querySelector('.start-button').addEventListener('click', () => {
       document.querySelector('.start-screen').classList.add('none');
-      document.querySelector('.speak-it').classList.remove('none');
+			document.querySelector('.speak-it').classList.remove('none');
 		});
 		document.querySelector('.speak-button').addEventListener('click', () => {
 			game.removePointEvent()
@@ -117,6 +116,9 @@ const SpeakIt = {
 			document.querySelector('.speak-it').classList.remove('none');
 		})
 		document.querySelector('.restart-button').addEventListener('click', () => {
+			recognition.removeEventListener('end', recognition.start);
+			recognition.stop();
+			getWords(page, group)
 			game.clearStatistic()
 			game.newGame()
 		})
