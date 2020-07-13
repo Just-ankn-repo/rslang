@@ -11,12 +11,16 @@
 .level-number {
     margin: 0 10px 0 0;
 }
-
-.level-number,
-.round-number {
-    color: #00ACEA;
-    font-size: 20px;
+.levels {
+    .level-number,
+    .round-number {
+        box-shadow: none;
+        padding: 0;
+        color: #00ACEA;
+        font-size: 20px;
+    }
 }
+
 
 .selected-level,
 .selected-round {
@@ -27,7 +31,7 @@
 }
 
 .levels,
-.score {
+.speakit-score {
     list-style-type: none;
     display: flex;
     cursor: pointer;
