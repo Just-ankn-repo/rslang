@@ -13,9 +13,12 @@
     }
     &.is-active {
       z-index: 1001;
-      width: 30%;
+      width: 300px;
       @media (max-width: 768px) {
-        width: 60%;
+        width: 250px;
+      }
+      @media (max-width: 414px) {
+        width: 200px;
       }
     }
   }
@@ -149,19 +152,14 @@
     overflow: hidden;
     
     a {
-        // display: inline-block;
         padding: 5px;
         color: $white;
         text-decoration: none;
-        font-size: 1.5rem;
         font-weight: 300;
         opacity: 0;
         transform: translateY(100%);
         transition: 0.5s $ease-in-out-cubic;
         will-change: transform, opacity;
-        @media (max-width: 414px) {
-          font-size: 1.2rem;
-        }
   
         &:hover {
             color: $hover-menu;
@@ -192,5 +190,11 @@
     flex-direction: row;
     &.actived {
       color: $hover-menu;
+    }
+    & .title {
+      font-size: 22px;
+      @media (max-width: 414px) {
+        font-size: 19px;
+      }
     }
   }
