@@ -1,0 +1,222 @@
+.game-quiz__startPage {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://raw.githubusercontent.com/Gabriellji/vectors/master/160.svg');
+    background-size: cover;
+    width: 100vw;
+    height: 90vh;
+    z-index: 100;
+    transition: all 1s;
+}
+
+.game-quiz__heading {
+    font-weight: 800;
+    font-size: 50px;
+    background: linear-gradient(135deg, #7e0dca 60%, #22fa0e 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    border: 3px solid transparent;
+    border-image-slice: 1;
+}
+
+.game-quiz__heading,
+.game-quiz__text_white {
+    padding-top: 100px;
+    border: violet;
+}
+
+.game-quiz__text {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+    margin-right: 5px;
+    text-align: center;
+    margin-bottom: 5px;
+    line-height: 27px;
+}
+
+.game-quiz__button {
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    transition: all 0.5s;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.game-quiz__button_start {
+    width: 250px;
+    margin-top: 100px;
+    background-color: turquoise;
+    font-size: 25px;
+}
+
+.game-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://raw.githubusercontent.com/Gabriellji/vectors/master/101.svg');
+    background-size: cover;
+    min-height: 90vh;
+    justify-content: space-around;
+}
+
+.game-quiz__main_text {
+    font-weight: 800;
+    font-size: 90px;
+    background: linear-gradient(135deg, #7e0dca 60%, #0efa2d 40%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-quiz__card {
+    height: 70px;
+    width: 100px;
+    background-color: #4a86e8;
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border: 4px double black;
+    cursor: pointer;
+}
+
+.game-quiz__card_normal {
+    height: 100px;
+    width: 150px;
+}
+
+.game-quiz__card_big {
+    height: 150px;
+    width: 220px;
+}
+
+.game-quiz__main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-quiz__card_img {
+    background-size: cover;
+}
+
+.game-quiz__card_word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-quiz__header {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-quiz__text {
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    word-break: break-word;
+    text-align: center;
+    line-height: 25px;
+    margin: 0;
+    margin-right: 5px;
+}
+
+.game-quiz__panel {
+    margin-top: 10px;
+    display: flex;
+    background-color: #4a86e8;
+    border-radius: 5px;
+    min-width: 310px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}
+
+.game-quiz__panel_hiden {
+    display: none;
+}
+
+@keyframes swing {
+    15% {
+        border: 4px solid red;
+        transform: translateX(9px);
+    }
+    30% {
+        transform: translateX(-9px);
+    }
+    40% {
+        transform: translateX(6px);
+    }
+    50% {
+        transform: translateX(-6px);
+    }
+    65% {
+        transform: translateX(3px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes swing2 {
+    0% {
+        border: 4px solid greenyellow;
+        background-color: greenyellow;
+    }
+    25% {
+        transform: rotate(1turn);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    75% {}
+    90% {}
+}
+
+.game-quiz__card_false {
+    animation: swing 1s ease;
+    border: 4px double black;
+}
+
+.game-quiz__card_true {
+    animation: swing2 3s;
+}
+
+.game-quiz__button {
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+    margin: 5px;
+    transition: all 0.5s;
+    background-size: contain;
+    cursor: pointer;
+    background-color: lightsalmon;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.game-quiz__button_hiden {
+    display: none;
+}
+
+.game-quiz__button_help {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/archive/6/6c/20150418235517%21Help-browser-red.svg/120px-Help-browser-red.svg.png');
+}
+
+.game-quiz__card_help {
+    border: 4px solid orange;
+}
+
+.game-quiz__card_active {
+    border: 4px solid greenyellow;
+}
