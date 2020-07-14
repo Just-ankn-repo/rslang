@@ -8,6 +8,7 @@ import home from './home/home';
 import englishpuzzle from './englishpuzzle/englishpuzzle';
 import learnWords from './learn-words/learn-words'
 import savannah from './savannah/savannah';
+import englishquiz from './english-quiz/english-quiz'
 
 export default {
     about,
@@ -17,6 +18,7 @@ export default {
     speakit,
     home,
     englishpuzzle,
+    englishquiz,
     sprint,
     learnWords,
     savannah,

@@ -5,7 +5,7 @@ import Card from "./Card";
 export default class Game {
   constructor() {
     this.gameStarted = false;
-    this.starContainer = document.querySelector('.score');
+    this.starContainer = document.querySelector('.speakit-score');
     this.wordsForGame = words;
     this.items = document.querySelectorAll('.item')
     this.guessed = document.querySelector('.guessed-container');
@@ -22,19 +22,22 @@ export default class Game {
     this.transcript = transcript;
 			words.forEach((item) => {
 				if (item.word.toLowerCase().includes(transcript)) {
-				const guessedWord = words.findIndex(elem => elem.word === transcript)
+				const guessedWord = words.findIndex(elem => elem.word.toLowerCase() === transcript)
 				success.push(item);
         words.splice(guessedWord, 1)
 				document.querySelector('.image').setAttribute('src', `https://raw.githubusercontent.com/ValeriaKorzhenevskaya/rslang-data/master/${item.image}`)
-				document.querySelector('.score').innerHTML += `<object class="star"></object>`;
-				document.querySelector(`#${transcript}`).classList.add('guessed');
+				document.querySelector('.speakit-score').innerHTML += `<object class="star"></object>`;
+        document.querySelector(`#${transcript}`).classList.add('guessed');
 			} 
-			})
+      })
+      if (success.length === 10) {
+        this.endGame();
+      }
   }
 
   newGame() {
     this.gameStarted = false;
-    document.querySelector('.score').innerHTML = '';
+    document.querySelector('.speakit-score').innerHTML = '';
 
     document.querySelectorAll('.item').forEach((item) => {
       if (item.classList.contains('guessed')) {
