@@ -3,64 +3,76 @@ import backend from '../../../backend';
 const Register = {
     render: async () => {
         return /* html */ `
-            <div class='signup-container'>
-                <div class="login-register-switch">
-                    <div class="login-switch active">Login</div>
-                    <div class="register-switch">Register</div>
+
+        <div class="signup-container">
+            <input id="signin" type="radio" name="tab" checked="checked" />
+            <input id="register" type="radio" name="tab" />
+        <div class="signup-pages">
+            <div class="page">
+            <form class="login-register-form login-form">
+                <div class="input">
+                    <div class="title">
+                        <object class="signup-icons_mail"></object> EMAIL
+                    </div>
+                    <input id="email_login_input" class="text" type="email" placeholder="Email"required/>
                 </div>
 
-                <form class="login-register-form login-form">
-                    <div class="login-register-form__field">
-                        <input class="input" id="email_login_input" type="email" placeholder="Email" required>
+                <div class="input">
+                    <div class="title">
+                      <object class="signup-icons_lock"></object> PASSWORD
                     </div>
-                    <div class="login-register-form__field">
-                        <input class="input" id="password_login_input" type="password" placeholder="Password" autocomplete="off" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
-                    </div>
-                    <div class="login-register-form__field">
-                        <button class="login-button" id="login_submit_btn" type="submit">Login</button>
-                    </div>
-                </form>
-
-                <form class="login-register-form register-form" style="display:none;">
-                    <div class="login-register-form__field">
-                        <input class="input" id="username_register_input" type="text" pattern="^[a-zA-ZА-Яа-я]+$" minlength="3"  placeholder="Username" required>
-                    </div>
-                    <div class="login-register-form__field">
-                        <input class="input" id="email_register_input" type="email" placeholder="Email" required>
-                    </div>
-                    <div class="login-register-form__field">
-                        <input class="input" id="password_register_input" type="password" placeholder="Password" autocomplete="off" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
-                    </div>
-                    <div class="login-register-form__field">
-                        <button class="register-button" id="register_submit_btn" type="submit">Register</button>
-                    </div>
-                </form>
+                    <input id="password_login_input" class="text" type="password" required placeholder="Password" 
+                    autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, 
+                    and at least 8 or more characters"/>
+                </div>
+                <div class="input">
+                  <input type="submit" value="ENTER" />
+                </div>
+            </form>
             </div>
+            <div class="page signup">
+            <form class="login-register-form register-form">
+                <div class="input">
+                    <div class="title">
+                      <object class="signup-icons_person"></object> NAME
+                    </div>
+                    <input id="username_register_input" class="text" type="text" pattern="^[a-zA-ZА-Яа-я]+$" minlength="3"  placeholder="Username"  required/>
+                </div>
+                <div class="input">
+                    <div class="title">
+                      <object class="signup-icons_mail"></object> EMAIL
+                    </div>
+                    <input id="email_register_input" class="text" type="email" placeholder="Email"required/>
+                </div>
+                <div class="input">
+                  <div class="title">
+                    <object class="signup-icons_lock"></object> PASSWORD
+                  </div>
+                  <input id="password_register_input" class="text" type="password" placeholder="" required placeholder="Password" autocomplete="off" 
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one  number and one uppercase and lowercase letter, 
+                  and at least 8 or more characters"/>
+                </div>
+                <div class="input">
+                  <input type="submit" value="SIGN ME UP!" />
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="signup-tabs">
+          <label class="tab" for="signin">
+            <div class="text">Sign In</div>
+          </label>
+          <label class="tab" for="register">
+            <div class="text">Register</div>
+          </label>
+        </div>
+        </div>
         `
     }, 
     
     after_render: async () => {
-        document.querySelector('.login-register-switch').addEventListener("click",  (event) => {
-            const loginSwitcher = document.querySelector('.login-switch');
-            const registerSwitcher = document.querySelector('.register-switch');
-            const loginForm = document.querySelector('.login-form');
-            const registerForm = document.querySelector('.register-form');
-            if (event.target === loginSwitcher) {
-                registerSwitcher.classList.remove('active');
-                registerForm.style = 'display:none;';
-                loginSwitcher.classList.add('active');
-                loginForm.style = 'display:block;';
-            }
-
-            if (event.target === registerSwitcher) {
-                loginSwitcher.classList.remove('active');
-                loginForm.style = 'display:none;';
-                registerSwitcher.classList.add('active');
-                registerForm.style = 'display:block;';
-            }
-        });
 
         document.querySelector('.login-form').addEventListener("submit",  async(event) => {
             const email = document.getElementById('email_login_input');
