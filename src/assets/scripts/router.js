@@ -6,7 +6,8 @@ import Utils from './utils/router.utils'
 const routes = {
     '/dashboard'    : pages.dashboard,
     '/about'        : pages.about,
-    '/signup'       : pages.signup
+    '/signup'       : pages.signup,
+    '/audiochallenge' : pages.audioChallengeGame
 };
 
 
@@ -19,12 +20,12 @@ const router = async () => {
 
     // Parse the URL and if it has an id part, change it with the string ":id"
     const parsedURL = (request.resource ? `/${  request.resource}` : '/') + (request.id ? '/:id' : '') + (request.verb ? `/${  request.verb}` : '')
-    
+
     // Get the page from our hash of supported routes.
     // If the parsed URL is not in our list of supported routes, select the 404 page instead
     const page = routes[parsedURL] ? routes[parsedURL] : pages.error404
     content.innerHTML = await page.render();
-    await page.after_render();  
+    await page.after_render();
 }
 
 // Listen on hash change:
