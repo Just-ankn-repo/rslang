@@ -1,5 +1,6 @@
 import Timer from './timer';
 
+import bec from '../../../backend'
 class Quize {
     constructor(elementgame, elementlevel, elementpage, elementsize, elementcomplexity, elementerrors) {
         this.elementgame = elementgame;
@@ -165,6 +166,7 @@ export default async function Gamestart() {
     const panelgame = document.querySelector('.game-quiz__panel_game');
     const errors = document.querySelector('.game-quiz__text_errors');
     const buttonstart = document.querySelector('.game-quiz__button_start');
+    const buttonresults = document.querySelector('.game-quiz__button_results');
     inputcolor1.addEventListener('change', () => {
         document.querySelectorAll('.game-quiz__card').forEach(card => card.style.backgroundColor = inputcolor1.value);
         document.querySelectorAll('.game-quiz__panel').forEach(card => card.style.backgroundColor = inputcolor1.value);
@@ -223,4 +225,8 @@ export default async function Gamestart() {
 
         document.querySelector('.game-quiz__startPage').style.display = `none`
     });
+    buttonresults.addEventListener('click', () => {
+        console.log(bec.getUserStatistics());
+
+    })
 }
