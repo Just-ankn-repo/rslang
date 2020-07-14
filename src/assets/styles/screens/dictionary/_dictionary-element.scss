@@ -1,7 +1,6 @@
-
 .dictionary-element {
   background-color: white;
-  border: 0.5px solid black;
+  border: .5px solid rgb(172, 172, 172);
   border-radius: 10px;
   margin: 0 0 10px 0;
   padding: 10px;
@@ -46,15 +45,16 @@
 }
 
 .dictionary-element__translation {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  color: #0000007a;
   @media (max-width: 414px) {
     font-size: 0.9rem;
   }
 }
 
 .dictionary-element__word {
-  font-weight: 600;
-  color: rgb(0, 139, 58);
+  font-weight: 400;
+  color: #17a2b8;
 }
 
 .dictionary-element__image {

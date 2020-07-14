@@ -6,15 +6,20 @@ import Control from "./Control";
 const Dictionary = {
   render : async () => {
       const view =  /* html */`
-        <div class="dictionary">
+        <div class="dictionary" style="font-size: 14px;">
             <div class="wrapper">
                 <div class="dictionary-control">
                     <h1 class="dictionary-control__heading">Словарь</h1>
-                    <button class="button learn-button">Изучить новые слова</button>
+                    <button class="learn-button learn-more">
+                        <span class="learn-button_circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">Новые слова</span>
+                    </button>
                 </div>
 
                 <div class="dictionary-tools">
-                        <p>
+                        <p class='dictionary-tools__checkbox_text'>
                             <input class="dictionary-tools__checkbox" id="checkAll" type="checkbox">
                         </p>
                         <input type="text" placeholder="Найти" class="dictionary-tools__search">
@@ -37,10 +42,6 @@ const Dictionary = {
                         <div class="dictionary-card__word"></div>
                         <div class="dictionary-card__translation"></div>
                         <div class="dictionary-card__example"></div>
-                        <div class="dictionary-modal__arrows">
-                            <object class="dictionary-modal__button_left"></object>
-                            <object class="dictionary-modal__button_right"></object>
-                        </div>
                         <object class="dictionary-card__trash"></object>
                     </div>
 
