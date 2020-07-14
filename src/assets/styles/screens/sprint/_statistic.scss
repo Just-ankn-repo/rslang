@@ -1,0 +1,127 @@
+.statistic {
+  position: relative;
+  width: 100%;
+
+  &__button {
+    text-align: center;
+
+    button {
+      margin: 20px;
+      width: 200px;
+      font-size: 2rem;
+      height: 65px;
+    }
+  }
+
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $green;
+  }
+
+  &__score {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 15px auto;
+
+    span {
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: $green;
+    }
+
+    .score {
+      display: flex;
+      width: 120px;
+      height: 120px;
+      font-size: 2.6rem;
+      background-color: $green;
+      margin: 0 auto;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+
+      span {
+        font-size: 2.3rem;
+        color: $white;
+        font-size: 700;
+      }
+    }
+  }
+
+  &__word{
+    border: 2px solid $border-color;
+    margin: 0 20%;
+    padding: 20px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+
+    .title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .success {
+      width: 35px;
+      height: 35px;
+      background-color: $green;
+      border-radius: 50%;
+      background-image: url('../static/images/sprint/succes.svg');
+      background-size: 25px 25px;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: 10px;
+    }
+
+    .error {
+      width: 35px;
+      height: 35px;
+      background-color: $red;
+      border-radius: 50%;
+      background-image: url('../static/images/sprint/denied.svg');
+      background-size: 15px 15px;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-right: 10px;
+    }
+
+    span {
+      text-align: center;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 20px;
+
+      li {
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+
+
+      }
+    }
+
+    .learn {
+
+      span {
+        color: $green;
+      }
+    }
+
+    .mistake {
+
+      span {
+        color: $red;
+      }
+    }
+  }
+}

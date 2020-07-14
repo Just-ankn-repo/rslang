@@ -1,0 +1,94 @@
+.wrapper {
+  max-width: 1197px;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+      padding: 0 41px;
+  }
+  @media (max-width: 414px) {
+      padding: 0 21px;
+  }
+}
+
+input[type=checkbox] {
+  height: 20px;
+  width: 20px;
+}
+
+.dictionary-tools__checkbox {
+  font-size: 1.2rem;
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+  @media (max-width: 414px) {
+    display: none;
+}
+}
+
+.dictionary-control, .dictionary-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 0 0 ;
+  @media (max-width: 414px) {
+    flex-direction: column;
+  }
+}
+
+.dictionary-tools {
+  @media (max-width: 414px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.dictionary-tools__sorting {
+  &_all {
+    background-image: url('../static/images/dictionary/studyAll.svg');
+    width: 30px;
+    height: 30px;
+  }
+  
+  &_new {
+    background-image: url('../static/images/dictionary/studyNew.svg');
+    width: 30px;
+    height: 30px;
+  }
+  &_studying {
+    background-image: url('../static/images/dictionary/studying.svg');
+    width: 30px;
+    height: 30px;
+  }
+  &_studied {
+    background-image: url('../static/images/dictionary/studied.svg');
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.dictionary-container {
+  align-items: center;
+  margin: 20px 0 0 0 ;
+}
+
+.learn-button {
+  padding: 10px 25px;
+  background-color: rgb(69, 226, 140);
+  border-radius: 10px;
+  border: 0.5px solid rgb(255, 255, 255);
+  color: rgb(100, 99, 99);
+  outline: none;
+  &:hover {
+    transition: all .5s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.534);
+  }
+}
+
+.dictionary-tools__search {
+  border: 2px solid rgba(117, 117, 117, 0.397);
+  border-radius: 10px;
+  padding: 10px;
+  width: 70%;
+  outline: none;
+  @media (max-width: 414px) {
+    width: 100%;
+  }
+}

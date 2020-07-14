@@ -1,5 +1,7 @@
-@import "audiochallenge/introPage";
-
+@import 'learn-words/learn-words.scss';
+@import "savannah/savannah.scss";
+@import "./sprint/startPage";
+@import "./sprint/statistic";
 
 .wrapper {
   flex-wrap: wrap;
@@ -80,22 +82,446 @@
 }
 
 .btn-next {
-    border: 2px solid white;
-    padding: 10px;
-    border-radius: 15px;
-    margin: 60px;
-    transition: .3s;
-    span {
-      font-size: 1.8rem;
-      color: white;
-    }
-    &:hover {
-      cursor: pointer;
-      background-color: white;
-      span{
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 60px;
+  transition: .3s;
+  span {
+    font-size: 1.8rem;
+    color: white;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    span{
       background: linear-gradient(to top right,#6573ff,#6f72f7,#7872ef,#8271e7,#8b70df,#956fd7,#9e6fd0,#a86ec8,#b16dc0,#bb6cb8,#c46cb0,#ce6ba8);
       -webkit-text-fill-color: transparent;
       -webkit-background-clip: text;
+    }
+  }
+}
+
+.row-wrapper {
+  flex-wrap: wrap;
+}
+
+.time-field {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  text-align: center;
+
+  &__info {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    transition: 0.3s ease;
+
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $green;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+
+  &__timer {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.pie {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  background-color: $green;
+  border: 2px solid $green;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+
+  .block {
+    position: absolute;
+    background: $white;
+    display: block;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+  }
+
+}
+
+#time {
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  border: 2px solid $green;
+  background-color: $white;
+  font-size: 5.5em;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: $blue;
+  transform: translate(-50%, -50%);
+}
+
+.game-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  &__card {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 650px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    border: 3px solid $white;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    transition: 0.5s ease;
+
+    &-success {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      background-color: $green;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background-image: url('../static/images/sprint/succes.svg');
+      background-size: 30px 30px;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: 0.15s;
+    }
+
+    &-error {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      background-color: $red;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background-image: url('../static/images/sprint/denied.svg');
+      background-size: 25px 25px;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: .15s;
+    }
+
+    &-stars {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 170px;
+      margin: 10px 30%;
+
+      .star {
+        height: 60px;
+        width: 60px;
+        background-image: url('../static/images/sprint/star10.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: 5px;
       }
     }
+
+    &-buttons {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      border-top: 3px dotted $blue;
+      margin: 0 10%;
+
+      button {
+        width: 180px;
+        height: 60px;
+        margin: 45px 30px;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        font-weight: 600;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+        box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+      }
+    }
+
+    &-word {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 500;
+      color: $default-grey;
+      padding: 0 20%;
+
+      &-translation {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 400;
+        color: $default-grey;
+        padding: 0 20%;
+        margin-bottom: 45px;
+      }
+    }
+
+    &-info {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background: $default-warning;;
+      border-radius: 22px 22px 10px 10px;
+
+      &__level {
+        display: none;
+        flex-direction: column;
+        margin-bottom: 25px;
+        width: 100px;
+
+        .level-info {
+          display: block;
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          text-align: center;
+          background: $green;
+          font-size: 1.6rem;
+          padding: 5px;
+          color: $white;
+          margin: 10px;
+        }
+      }
+
+      &__difficulty {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        margin: 10px;
+
+        .difficulty-info {
+          display: block;
+          border-radius: 50%;
+          height: 50px;
+          width: 50px;
+          text-align: center;
+          background: $green;
+          font-size: 1.6rem;
+          padding: 5px;
+          color: $white;
+          overflow: scroll;
+        }
+      }
+
+      .speed-info {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2rem;
+        font-weight: 400;
+        color: $default-white;
+        width: 100%;
+        text-align: center;
+      }
+
+      .rate {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%, -25%);
+
+        &__circle {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          margin: 5px;
+          background-color: $default-grey;
+        }
+
+        .active {
+          background-color: $green;
+          background-image: url('../static/images/sprint/succes.svg');
+          background-size: 30px 30px;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+
+  &__keys {
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    span {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    kbd {
+      width: 50px;
+      height: 50px;
+      background: #eeeeee;
+      font-size: 2.2rem;
+      color: $default-text-color;
+      border: 6px outset #cccccc;
+      margin: 0px 30px;
+      -webkit-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+      box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.75);
+    }
+  }
+
+  &__score {
+    width: 100%;
+    max-width: 900px;
+    height: 100px;
+    position: relative;
+
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $green;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
 }
+
+.speed-10 {
+  background: $default-warning;
+}
+
+.speed-20 {
+  background: $orange;
+}
+
+.speed-40 {
+  background: $blue;
+}
+
+.speed-80 {
+  background: $purple;
+}
+
+.star-1 {
+  background-image: url('../static/images/sprint/star10.svg') !important;
+}
+
+.star-2 {
+  background-image: url('../static/images/sprint/star20.svg') !important;
+}
+
+.star-3 {
+  background-image: url('../static/images/sprint/star40.svg') !important;
+}
+
+.star-4 {
+  background-image: url('../static/images/sprint/star80.svg') !important;
+}
+
+.info-level {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+
+  .level {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+    background: $green;
+    font-size: 1.6rem;
+    padding: 5px;
+    color: $white;
+    margin: 0 auto;
+  }
+
+  span {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $green;
+    margin-bottom: 10px;
+  }
+
+}
+
+.info-difficulty {
+  display: flex;
+  flex-direction: column;
+
+  .difficulty {
+    display: block;
+    border-radius: 20px;
+    text-align: center;
+    background: $green;
+    font-size: 1.6rem;
+    padding: 5px;
+    margin: 0 40px;
+    color: $white;
+  }
+
+  span {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $green;
+    margin-bottom: 10px;
+  }
+
+}
+
+.game-field__keys-left {
+
+  span {
+    color: $red;
+  }
+}
+
+.game-field__keys-right {
+
+  span {
+    color: $green;
+  }
+}
+
+@import "./sprint/responsive";
+@import './dictionary/dictionary';
+@import './speakit/speak-it';
+@import 'signup.scss';
+@import './about us/aboutUs';
+@import './englishPuzzle/englishPuzzle';
+@import'./englishquiz/english-quiz';

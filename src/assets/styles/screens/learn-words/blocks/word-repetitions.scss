@@ -1,0 +1,21 @@
+.learn-word-progress {
+  margin-right: 15px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.repetitions-times {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #92959e63;
+}
+
+.repetitions-times + .repetitions-times {
+  margin-left: 5px;
+}
+
+.repetitions-times-current {
+  background-color: $color-dark;
+}

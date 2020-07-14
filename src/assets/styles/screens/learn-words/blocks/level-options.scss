@@ -1,0 +1,50 @@
+.define-level-btn-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  justify-content: center;
+  overflow: unset;
+  max-height: 100px;
+  transition: max-height 1s;
+}
+
+.learn-card.closed .define-level-btn-list {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.learned-level-btn {
+  @include btn-reset;
+  padding: 4px 11px;
+  min-width: 100px;
+  box-shadow: 1px 1px 2px 1px rgba(93, 101, 116, 0.28);
+  background-color: transparent;
+  text-transform: capitalize;
+  transition: .2s;
+    @media (min-width: $breakpoint-sm) {
+      padding: 4px 15px;
+      min-width: 118px;
+    }
+}
+
+.learned-level-btn.learned-level-good {
+  box-shadow: none;
+  color: $color-white;
+  background-color: $color-dark;
+}
+
+.learned-level-btn + .learned-level-btn {
+  margin-left: 0;
+    @media (min-width: $breakpoint-sm) {
+      margin-left: 15px;
+    }
+}
+
+.learned-level-btn:focus {
+  outline: none;
+}
+
+.learned-level-btn:hover {
+  transform: translateY(-3px);
+}
