@@ -1,0 +1,59 @@
+body {
+  position: relative;
+
+  min-width: 320px;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  font-size: $font-size;
+  font-family: $font-primary;
+  color: $color-dark;
+
+  background-color: $color-white;
+}
+
+a {
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hide-text {
+  @include hide-text;
+}
+
+.learn-words-container {
+  position: relative;
+  box-sizing: border-box;
+  width: 90%;
+  min-width: 320px;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

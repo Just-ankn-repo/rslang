@@ -1,0 +1,49 @@
+.cards-statistic-container {
+  margin-top: 50px;
+  padding: 20px 15px;
+  min-width: 30vw;
+  max-width: 300px;
+  box-shadow: 1px 1px 6px #25263578;
+  width: 95%;
+    @media (min-width: $breakpoint-sm) {
+      padding: 40px 30px;
+      width: 600px;
+      max-width: unset;
+    }
+}
+
+.cards-statistic-title {
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 5px;
+  font-size: 27px;
+    @media (min-width: $breakpoint-sm) {
+      font-size: 40px;
+    }
+}
+
+.statistic-specs-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed#00000017;
+  display: flex;
+  justify-content: space-between;
+    @media (min-width: $breakpoint-md) {
+      padding: 10px 37px;
+    }
+}
+
+.specs-item-value {
+  font-weight: bold;
+  min-width: 65px;
+}
+
+.cards-statistic-instruction {
+  margin-top: 40px;
+  color: #9799a0;
+  font-size: 20px;
+  line-height: 26px;
+  padding: 0 20px;
+  text-align: center;
+  width: 750px;
+}

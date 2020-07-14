@@ -1,0 +1,38 @@
+.game-title {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 5px;
+    @media (min-width: $breakpoint-sm) {
+      margin-top: 23vh;
+      margin-bottom: 0;
+    }
+}
+
+.game-descr {
+  max-width: 90%;
+  margin: 10px auto 30px;
+  text-align: center;
+    @media (min-width: $breakpoint-sm) {
+      max-width: 50%;
+    }
+}
+
+.start-game-btn {
+  @include btn-reset;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 63px;
+  border-radius: 3px;
+  border: 2px solid $color-dark;
+  background-color: transparent;
+  color: $color-dark;
+  transition: .3s;
+}
+
+.start-game-btn:hover {
+  color: $color-white;;
+  background-color: $color-dark;
+  border-color: $color-dark;
+}

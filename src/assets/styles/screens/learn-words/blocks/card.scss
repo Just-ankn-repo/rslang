@@ -1,0 +1,209 @@
+.word-card-wrapper {
+  width: 90%;
+    @media (min-width: $breakpoint-sm) {
+      width: unset;
+    }
+}
+
+.learn-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 97%;
+  font-size: 20px;
+  padding: 5px;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 10px 2px #a8a8a899;
+    @media (min-width: $breakpoint-sm) {
+      padding: 10px;
+      width: 624px;
+      padding: 30px;
+    }
+    @media (min-width: $breakpoint-lg) {
+      width: 800px;
+    }
+}
+
+.learn-card.closed .answer-indicator {
+  opacity: 0;
+}
+
+.answer-indicator {
+  position: absolute;
+  background-color: $correct;
+  height: 5px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  transition: opacity 2s;
+  opacity: 1;
+}
+
+.card-main-content {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.word-img-wrapper {
+  margin: 30px 0;
+  margin-right: 15px;
+  width: 200px;
+  height: 200px;
+    @media (min-width: $breakpoint-sm) {
+      margin: 0 45px 15px 0;
+    }
+}
+
+.word-img-wrapper img {
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 3px 2px 15px 4px rgba(125, 116, 153, 0.21);
+  border: 7px solid #fff;
+  width: 100%;
+  height: 100%;
+}
+
+.learn-word-info {
+  border-top: 2px dashed #92959e5e;
+  padding-top: 20px;
+}
+
+.learn-translate-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+
+.learn-word-translate {
+  margin-right: 15px;
+  font-size: 21px;
+  text-transform: uppercase;
+  font-weight: bold;
+    @media (min-width: $tablet) {
+      font-size: 27px;
+    }
+}
+
+.learn-word-transcription {
+  color: $color-grey;
+}
+
+.learn-word-translate,
+.learn-word-transcription {
+  margin-top: 5px;
+  margin-bottom: 5px;
+    @media (min-width: $breakpoint-sm) {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+}
+
+.word-content-item {
+  margin-bottom: 15px;
+}
+
+.word-meaning {
+  margin-bottom: 10px;
+}
+
+.word-example {
+  margin-bottom: 10px;
+}
+
+.key-word-in-sentence {
+  font-style: unset;
+  font-weight: unset;
+  padding: 5px 0;
+  box-shadow: 0px 3px 0px 0px $cyan;
+  transition: .3s;
+}
+
+.learn-word-transcription,
+.word-meaning--translate,
+.word-example--translate {
+  max-height: 100%;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.learn-card.closed .learn-word-transcription,
+.learn-card.closed .word-meaning--translate,
+.learn-card.closed .word-example--translate {
+  max-height: 0;
+}
+
+.learn-card.closed .key-word-in-sentence {
+  font-size: 0;
+  padding: 15px;
+  box-shadow: none;
+  background-color: rgba(0,188,212,.37);
+  vertical-align: middle;
+  border-radius: 10px;
+  background-image: url('../static/images/learn-words/icon-key.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 55%;
+    @media (min-width: $breakpoint-sm) {
+      padding: 24px;
+    }
+}
+
+.learn-next-card-btn {
+  @include btn-reset;
+  margin-left: 0;
+  font-size: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  background-image: url('../static/images/learn-words/icon-next-card.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  transition: .2s;
+    @media (min-width: $breakpoint-sm) {
+      width: 46px;
+      height: 46px;
+      margin-left: 10px;
+    }
+    @media (min-width: $breakpoint-lg) {
+      margin-left: 30px;
+    }
+}
+
+.learn-next-card-btn:hover {
+  opacity: 0.5;
+}
+
+.learn-next-card-btn:focus {
+  outline: none;
+}
+
+.learn-card.closed .words-show-answer-btn {
+  display: block;
+}
+
+.words-show-answer-btn {
+  @include btn-reset;
+  display: none;
+  padding: 11px 15px;
+  min-width: 118px;
+  box-shadow: 1px 1px 2px 1px rgba(93,101,116,.28);
+  background-color: transparent;
+  transition: .2s;
+  margin-left: 0;
+  transition: .3s;
+    @media (min-width: $breakpoint-sm) {
+      margin-left: auto;
+    }
+}
+
+.words-show-answer-btn:hover {
+  box-shadow: none;
+  color: $color-white;
+  background-color: $color-dark;
+}
+
+.words-show-answer-btn:focus {
+  outline: none;
+}
