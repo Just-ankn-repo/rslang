@@ -4,7 +4,7 @@ import controller from './models/gameController';
 const audioChallengeGame = {
     render: async () => {
         return `
-          <div class="row justify-content-between align-content-center wrapper">
+          <div class="row justify-content-between align-content-center audio-wrapper">
       <div class="col-md-12">
       <div class="intro-field">
       <div class="intro-field__info">
@@ -136,7 +136,7 @@ const audioChallengeGame = {
 
     after_render: async () => {
         document.getElementById('btnStart').addEventListener('click', ()=> {
-            let wrapper =   document.querySelector('.wrapper');
+            let wrapper =   document.querySelector('.audio-wrapper');
             renderLoad(wrapper);
             loadGame(wrapper);
             controller.loadField(wrapper);
