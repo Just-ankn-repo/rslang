@@ -29,7 +29,8 @@ class Card {
     div.innerHTML = template;
 
     const playAudio = (event) => {
-      if (!event.target.classList.contains('dictionary-element__checkbox')) {
+      if (!event.target.classList.contains('dictionary-element__checkbox') 
+      && !event.target.classList.contains('dictionary-element__trash')) {
         this.speech.play();
         this.renderModal();
       }

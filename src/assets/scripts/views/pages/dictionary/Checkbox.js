@@ -7,11 +7,15 @@ export default function checkbox() {
         && allChecked < document.querySelectorAll('.dictionary-element__checkbox').length;
     }
 }
-
-document.getElementById('checkAll').onclick = () => {
-    for(let i=0; i<document.querySelectorAll('.dictionary-element__checkbox').length; i+=1) {
-        document.querySelectorAll('.dictionary-element__checkbox')[i].checked = 
-        !document.querySelectorAll('.dictionary-element__checkbox')[i].checked;
-    }
-}
+    document.getElementById('checkAll').addEventListener('change', () => {
+        document.querySelectorAll('.dictionary-element__checkbox').forEach(box => {
+            const flag = box;
+            if (document.getElementById('checkAll').checked) {
+                flag.checked = true
+            }
+            if (!document.getElementById('checkAll').checked) {
+                flag.checked = false
+            }
+        })
+    })
 }

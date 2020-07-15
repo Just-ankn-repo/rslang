@@ -9,6 +9,10 @@
   }
 }
 
+.dictionary-tools__checkbox_text {
+  margin: 0;
+  align-items: center;
+}
 input[type=checkbox] {
   height: 20px;
   width: 20px;
@@ -69,26 +73,122 @@ input[type=checkbox] {
   margin: 20px 0 0 0 ;
 }
 
-.learn-button {
-  padding: 10px 25px;
-  background-color: rgb(69, 226, 140);
-  border-radius: 10px;
-  border: 0.5px solid rgb(255, 255, 255);
-  color: rgb(100, 99, 99);
-  outline: none;
-  &:hover {
-    transition: all .5s ease-in-out;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.534);
-  }
+// .dictionary-tools__search {
+//   border: 2px solid rgba(117, 117, 117, 0.397);
+//   border-radius: 10px;
+//   padding: 10px;
+//   width: 90%;
+//   outline: none;
+//   // @media (max-width: 414px) {
+//   //   width: 100%;
+//   // }
+// }
+
+// #search-form {
+//   justify-content: space-around;
+//   display: flex;
+//   flex-direction: row;
+//   width: 70%;
+//   outline: none;
+//   @media (max-width: 414px) {
+//     width: 100%;
+//   }
+// }
+
+// .dictionary-tools__submit-btn {
+//   border: none;
+//   background-repeat: no-repeat;
+//   background-image: url('../static/images/dictionary/search.svg');
+//   width: 35px;
+//   height: 35px;
+// }
+
+@mixin transition-button($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
+  transition: $property $duration $ease;
 }
 
-.dictionary-tools__search {
-  border: 2px solid rgba(117, 117, 117, 0.397);
-  border-radius: 10px;
-  padding: 10px;
-  width: 70%;
+.learn-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
   outline: none;
-  @media (max-width: 414px) {
-    width: 100%;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  &:focus {
+    outline: none;
+  }
+  &.learn-more {
+    width: 12rem;
+    height: auto;
+    .learn-button_circle {
+      @include transition-button(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: #00695c;
+      border-radius: 10px;
+      .icon {
+        @include transition-button(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #fff;
+        &.arrow {
+          @include transition-button(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+          left: 0.625rem;
+          width: 1.125rem;
+          height: 0.125rem;
+          background: none;
+          &::before {
+            position: absolute;
+            content: '';
+            top: -0.25rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+    .button-text {
+      @include transition-button(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      color: #00695c;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+  &:hover {
+    .learn-button_circle {
+      width: 100%;
+      .icon {
+        &.arrow {
+        background: #fff;
+        transform: translate(1rem, 0);
+        }
+      }
+    }
+    .button-text {
+      color: #fff;
+    }
   }
 }
