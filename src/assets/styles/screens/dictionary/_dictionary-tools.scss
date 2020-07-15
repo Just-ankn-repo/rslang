@@ -73,16 +73,35 @@ input[type=checkbox] {
   margin: 20px 0 0 0 ;
 }
 
-.dictionary-tools__search {
-  border: 2px solid rgba(117, 117, 117, 0.397);
-  border-radius: 10px;
-  padding: 10px;
-  width: 70%;
-  outline: none;
-  @media (max-width: 414px) {
-    width: 100%;
-  }
-}
+// .dictionary-tools__search {
+//   border: 2px solid rgba(117, 117, 117, 0.397);
+//   border-radius: 10px;
+//   padding: 10px;
+//   width: 90%;
+//   outline: none;
+//   // @media (max-width: 414px) {
+//   //   width: 100%;
+//   // }
+// }
+
+// #search-form {
+//   justify-content: space-around;
+//   display: flex;
+//   flex-direction: row;
+//   width: 70%;
+//   outline: none;
+//   @media (max-width: 414px) {
+//     width: 100%;
+//   }
+// }
+
+// .dictionary-tools__submit-btn {
+//   border: none;
+//   background-repeat: no-repeat;
+//   background-image: url('../static/images/dictionary/search.svg');
+//   width: 35px;
+//   height: 35px;
+// }
 
 @mixin transition-button($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;

@@ -1,7 +1,5 @@
-// import generateContainer from "./Container";
-// import checkbox from "./Checkbox";
-import items from "./Constants";
-import Control from "./Control";
+import backend from "../../../backend";
+import getItems from './Control';
 
 const Dictionary = {
   render : async () => {
@@ -9,12 +7,14 @@ const Dictionary = {
         <div class="dictionary" style="font-size: 14px;">
             <div class="wrapper">
                 <div class="dictionary-control">
-                    <h1 class="dictionary-control__heading">Словарь</h1>
+                    <h1 class="dictionary-control__heading">Dictionary</h1>
                     <button class="learn-button learn-more">
-                        <span class="learn-button_circle" aria-hidden="true">
-                        <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-text">Новые слова</span>
+                        <a href="/#/learn-words">
+                            <span class="learn-button_circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Новые слова</span>
+                        </a>
                     </button>
                 </div>
 
@@ -22,7 +22,6 @@ const Dictionary = {
                         <p class='dictionary-tools__checkbox_text'>
                             <input class="dictionary-tools__checkbox" id="checkAll" type="checkbox">
                         </p>
-                        <input type="text" placeholder="Найти" class="dictionary-tools__search">
                         <div class="dictionary-tools__compact-btn"></div>
                         <div class="dictionary-tools__sorting">
                             <object title="Все слова" class="dictionary-tools__sorting_all"></object>
@@ -58,8 +57,48 @@ const Dictionary = {
   },    
   
   after_render: async () => {
-      const control = new Control;
-      control.getItems(items);
+    const words = await backend.getUsersAggregatedWordsWithFilters({
+        wordsPerPage: 1,
+        filter: {
+          "userWord": {
+            "$exists" : true
+          }
+        }
+    })
+    const wordCount = words[0].totalCount[0].count;
+    const allUsersWords = await backend.getUsersAggregatedWordsWithFilters({
+        wordsPerPage: wordCount,
+        filter: {
+          "userWord": {
+            "$exists" : true
+          }
+        }
+    })
+    const easyWords = await backend.getUsersAggregatedWordsWithFilters({
+        wordsPerPage: wordCount,
+        filter: {"userWord.difficulty":"easy"}
+    })
+    const normalWords = await backend.getUsersAggregatedWordsWithFilters({
+        wordsPerPage: wordCount,
+        filter: {"userWord.difficulty":"normal"}
+    })
+    const hardWords = await backend.getUsersAggregatedWordsWithFilters({
+        wordsPerPage: wordCount,
+        filter: {"userWord.difficulty":"hard"}
+    })
+      getItems(allUsersWords);
+      document.querySelector('.dictionary-tools__sorting_all').addEventListener('click', () => {
+        getItems(allUsersWords);
+      })
+      document.querySelector('.dictionary-tools__sorting_new').addEventListener('click', () => {
+        getItems(easyWords);
+      })
+      document.querySelector('.dictionary-tools__sorting_studying').addEventListener('click', () => {
+        getItems(normalWords);
+      })
+      document.querySelector('.dictionary-tools__sorting_studied').addEventListener('click', () => {
+        getItems(hardWords);
+      })
   }   
 }
 

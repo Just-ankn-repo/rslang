@@ -1,19 +1,9 @@
 import generateContainer from "./Container";
 import checkbox from "./Checkbox";
 
-const { default: items } = require("./Constants")
-
-class Control {
-  constructor() {
-    this.items = items;
-  }
-
-  getItems() {
-    const div = generateContainer(this.items);
+export default function getItems(items) {
+    const div = generateContainer(items);
+    document.getElementById('content').innerHTML = '';
     document.getElementById('content').append(div);
     checkbox()
   }
-  
-}
-
-export default Control;
