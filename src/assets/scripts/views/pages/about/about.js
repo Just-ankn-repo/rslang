@@ -10,7 +10,7 @@ const About = {
 
                 <div class="card">
                   <div class="card__image-holder">
-                    <img class="card__image" src=""/>
+                    <div class="card__image_andrey"></div>
                   </div>
                   <div class="card-title">
                     <a href="#" class="toggle-info btn">
@@ -19,29 +19,23 @@ const About = {
                     </a>
                     <h2>
                         Андрей</br>Кнышенко
-                        <small>Seeking to obtain a position with a company 
-                            that has a vision and rewards hard work, strong 
-                            ethics and is open to out-of-the-box thinking.
-                        </small>
+                        <small>Team Lead</small>
                     </h2>
                   </div>
                   <div class="card-flap flap1">
                     <div class="card-description">
-                      This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
-                    </div>
-                    <div class="card-flap flap2">
-                      <div class="card-actions">
-                        <div class="social-btn_skype"><a href="#"></a></div>
-                        <div class="social-btn_discord"><a href="#"></a></div>
-                        <div class="social-btn_github"><a href="#"></a></div>
-                      </div>
+                    Project structure</br>
+                    Routing for SPA</br>
+                    Authorization</br>
+                    Backend integration</br>
+                    Team communication.
                     </div>
                   </div>
                 </div>
 
                 <div class="card">
                 <div class="card__image-holder">
-                  <img class="card__image" src=""/>
+                  <div class="card__image_sergei"></div>
                 </div>
                 <div class="card-title">
                   <a href="#" class="toggle-info btn">
@@ -50,30 +44,22 @@ const About = {
                   </a>
                   <h2>
                       Сергей</br>Трусило
-                      <small>Seeking to obtain a position with a company 
-                          that has a vision and rewards hard work, strong 
-                          ethics and is open to out-of-the-box thinking.
-                      </small>
+                      <small>Software engineer</small>
                   </h2>
                 </div>
                 <div class="card-flap flap1">
                   <div class="card-description">
-                    This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                    English puzzle game</br>
+                    English Quiz game
                   </div>
                   <div class="card-flap flap2">
-                    <div class="card-actions">
-                      <div class="social-btn_telegram"><a href="#"></a></div>
-                      <div class="social-btn_vk"><a href="#"></a></div>
-                      <div class="social-btn_discord"><a href="#"></a></div>
-                      <div class="social-btn_github"><a href="#"></a></div>
-                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="card">
               <div class="card__image-holder">
-                <img class="card__image" src=""/>
+                <div class="card__image_denis"></div>
               </div>
               <div class="card-title">
                 <a href="#" class="toggle-info btn">
@@ -82,30 +68,22 @@ const About = {
                 </a>
                 <h2>
                     Денис</br>Короткевич
-                    <small>Seeking to obtain a position with a company 
-                        that has a vision and rewards hard work, strong 
-                        ethics and is open to out-of-the-box thinking.
-                    </small>
+                    <small>Software engineer</small>
                 </h2>
               </div>
               <div class="card-flap flap1">
                 <div class="card-description">
-                  This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                  Audiochallange game</br>
+                  Sprint game
                 </div>
                 <div class="card-flap flap2">
-                  <div class="card-actions">
-                    <div class="social-btn_telegram"><a href="#"></a></div>
-                    <div class="social-btn_vk"><a href="#"></a></div>
-                    <div class="social-btn_discord"><a href="#"></a></div>
-                    <div class="social-btn_github"><a href="#"></a></div>
-                  </div>
                 </div>
               </div>
             </div>
 
             <div class="card">
             <div class="card__image-holder">
-              <img class="card__image" src=""/>
+              <div class="card__image_irina"></div>
             </div>
             <div class="card-title">
               <a href="#" class="toggle-info btn">
@@ -114,30 +92,22 @@ const About = {
               </a>
               <h2>
               Ирина</br>Тельнова
-                  <small>Seeking to obtain a position with a company 
-                      that has a vision and rewards hard work, strong 
-                      ethics and is open to out-of-the-box thinking.
-                  </small>
+                  <small>Software engineer</small>
               </h2>
             </div>
             <div class="card-flap flap1">
               <div class="card-description">
-                This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                Learning card</br>
+                Savannah game
               </div>
               <div class="card-flap flap2">
-                <div class="card-actions">
-                  <div class="social-btn_telegram"><a href="#"></a></div>
-                  <div class="social-btn_vk"><a href="#"></a></div>
-                  <div class="social-btn_discord"><a href="#"></a></div>
-                  <div class="social-btn_github"><a href="#"></a></div>
-                </div>
               </div>
             </div>
           </div>
 
           <div class="card">
           <div class="card__image-holder">
-            <img class="card__image" src=""/>
+            <div class="card__image_valeria"></div>
           </div>
           <div class="card-title">
             <a href="#" class="toggle-info btn">
@@ -146,23 +116,18 @@ const About = {
             </a>
             <h2>
                 Валерия</br>Корженевская
-                <small>Seeking to obtain a position with a company 
-                    that has a vision and rewards hard work, strong 
-                    ethics and is open to out-of-the-box thinking.
-                </small>
+                <small>Software engineer</small>
             </h2>
           </div>
           <div class="card-flap flap1">
             <div class="card-description">
-              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+            SpeakIt game</br>
+            About us page</br>
+            Dictionary page</br>
+            Design for navigation</br>
+            Design for sign up
             </div>
             <div class="card-flap flap2">
-              <div class="card-actions">
-                <div class="social-btn_telegram"><a href="#"></a></div>
-                <div class="social-btn_vk"><a href="#"></a></div>
-                <div class="social-btn_discord"><a href="#"></a></div>
-                <div class="social-btn_github"><a href="#"></a></div>
-              </div>
             </div>
           </div>
         </div>
@@ -206,7 +171,6 @@ const About = {
 
             zindex += 1;
           }
-          
         });
       });
     }      

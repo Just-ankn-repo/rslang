@@ -31,7 +31,7 @@ a.btn:active {
 }
 
 div.cards {
-    margin: 80px auto;
+    margin: 20px auto;
     max-width: 960px;
     text-align: center;
 }
@@ -213,4 +213,30 @@ div.card.show {
     margin-right: 10px;
     width: 30px;
     height: 30px;
+}
+
+.card__image_andrey {
+    background-image: url('../static/images/photos/andrey.jpg');
+    width: 300px;
+    height: 225px;
+}
+.card__image_sergei {
+    background-image: url('../static/images/photos/sergei.jpg');
+    width: 300px;
+    height: 225px;
+}
+.card__image_denis {
+    background-image: url('../static/images/photos/denis.jpg');
+    width: 300px;
+    height: 225px;
+}
+.card__image_irina {
+    background-image: url('../static/images/photos/irina.jpg');
+    width: 300px;
+    height: 225px;
+}
+.card__image_valeria {
+    background-image: url('../static/images/photos/valeria.jpg');
+    width: 300px;
+    height: 225px;
 }
