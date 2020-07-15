@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1,user-scalable=no">
@@ -13,159 +14,159 @@
             <div class="spinner"></div>
         </div>
 
-        <!-- <dialog id="favDialog">
+        <dialog id="favDialog">
             <form method="dialog">
-              <section>
-                <p><label for="favAnimal">Please Authorize:</label>
-                  <input type="text" placeholder="Email" class="input-large" id="signin-email" required="">
-                  <input type="password" placeholder="Password" id="signin-password" class="input-large" required="">
-              </section>
-              <menu>
-                <button type="submit">Login</button>
-              </menu>
+                <section>
+                    <p><label for="favAnimal">Please Authorize:</label>
+                        <input type="text" placeholder="Email" class="input-large" id="signin-email" required="">
+                        <input type="password" placeholder="Password" id="signin-password" class="input-large" required="">
+                </section>
+                <menu>
+                    <button type="submit">Login</button>
+                </menu>
             </form>
-          </dialog> -->
+        </dialog>
         <div class="header" id="header">
             <div class="header__inner">
-              <div class="header__logo">
-                  <img src="assets/static/images/logo.png">
-              </div>
-              <div class="header__burger">
-                <a href="#" class="nav__trigger modile">
-                  <div class="bars"></div>
-                </a>
-              </div>
-              <div class="header__profile">
-                <ul class="nav-right">
-                    <li class="notifications dropdown" id="dropdown">
-                        <span class="counter bgc-red" id="notify-counter">0</span>
-                        <!-- <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                <div class="header__logo">
+                    <img src="assets/static/images/logo.png">
+                </div>
+                <div class="header__burger">
+                    <a href="#" class="nav__trigger modile">
+                        <div class="bars"></div>
+                    </a>
+                </div>
+                <div class="header__profile">
+                    <ul class="nav-right">
+                        <li class="notifications dropdown" id="dropdown">
+                            <span class="counter bgc-red" id="notify-counter">0</span>
+                            <!-- <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
                             <!-- <i class="ti-bell"></i> -->
-                        <!-- </a> --> 
-                        <ul class="dropdown-menu" id="notifications"></ul>
-                    </li>
-                    <li>
-                        <a href="/#/signup" id="signup" class="login-register__button">
-                            <span>Login/Register</span>
-                        </a>
-                    </li>
-                    <li class="dropdown inactive" id="authorized-user" style="display:none;">
-                        <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c" data-toggle="dropdown">
-                            <div class="peer">
-                                <span class="fsz-sm c-grey-900" id="user-name"></span>
-                            </div>
-                        </a>
-                        <ul class="dropdown-menu fsz-sm">
-                            <li>
-                                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                                    <i class="ti-power-off mR-10"></i>
-                                    <span>Logout</span>
+                            <!-- </a> -->
+                            <ul class="dropdown-menu" id="notifications"></ul>
+                        </li>
+                        <li>
+                            <a href="/#/signup" id="signup" class="login-register__button">
+                                <span>Login/Register</span>
+                            </a>
+                        </li>
+                        <li class="dropdown inactive" id="authorized-user" style="display:none;">
+                            <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c" data-toggle="dropdown">
+                                <div class="peer">
+                                    <span class="fsz-sm c-grey-900" id="user-name"></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu fsz-sm">
+                                <li>
+                                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                        <i class="ti-power-off mR-10"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="wrapper" class="wrapper">
+            <div class="nav">
+                <a href="#" class="nav__trigger">
+                    <div class="bars"></div>
+                </a>
+
+                <div class="nav__content">
+                    <nav class="nav__list">
+                        <ul class="sidebar-menu">
+                            <li class="nav__item">
+                                <a class="sidebar-link actived" id="home" href="/#/">
+                                    <span class="icon-holder">
+                                <img src="assets/static/images/menuIcons/homePage.svg" alt="">
+                            </span>
+                                    <span class="title">Home</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="learn-words" href="/#/learn-words">
+                                    <span class="icon-holder">
+                                <img src="assets/static/images/menuIcons/learnWords.svg" alt="">
+                            </span>
+                                    <span class="title">Learn Words</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="dictionary" href="/#/dictionary">
+                                    <span class="icon-holder">
+                                <img src="assets/static/images/menuIcons/dictionary.svg" alt="">
+                            </span>
+                                    <span class="title">Dictionary</span>
+                                </a>
+                            </li>
+                            <li role="separator" class="nav__divider"></li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="speak-it" href="/#/speak-it">
+                                    <span class="icon-holder">
+                                <img src="assets/static/images/menuIcons/speakIt.svg" alt="">
+                            </span>
+                                    <span class="title">Speak it</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="english-puzzle" href="/#/english-puzzle">
+                                    <span class="icon-holder">
+                        <img src="assets/static/images/menuIcons/puzzle.svg" alt="">
+                      </span>
+                                    <span class="title">English Puzzle</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="savannah" href="/#/savannah">
+                                    <span class="icon-holder">
+                            <img src="assets/static/images/menuIcons/savannah.svg" alt="">
+                            </span>
+                                    <span class="title">Savannah</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="audiochallenge" href="/#/audiochallenge">
+                                    <span class="icon-holder">
+                            <img src="assets/static/images/menuIcons/audoichallange.svg" alt="">
+                            </span>
+                                    <span class="title">Audiochallenge</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="sprint" href="/#/sprint">
+                                    <span class="icon-holder">
+                            <img src="assets/static/images/menuIcons/sprint.svg" alt="">
+                            </span>
+                                    <span class="title">Sprint</span>
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="english-quiz" href="/#/english-quiz">
+                                    <span class="icon-holder">
+                                    <img src="assets/static/images/menuIcons/ourGame.svg" alt="">
+                                </span>
+                                    <span class="title">English Quiz</span>
+                                </a>
+                            </li>
+                            <li role="separator" class="nav__divider"></li>
+                            <li class="nav__item">
+                                <a class='sidebar-link' id="about" href="/#/about">
+                                    <span class="icon-holder">
+                                    <img src="assets/static/images/menuIcons/aboutUs.svg" alt="">
+                                </span>
+                                    <span class="title">About Us</span>
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-              </div>
+                    </nav>
+                </div>
             </div>
-        </div>
-  
-        <div id="wrapper" class="wrapper">
-            <div class="nav">
-            <a href="#" class="nav__trigger">
-                <div class="bars"></div>
-            </a>
-            
-            <div class="nav__content">
-                <nav class="nav__list">
-                    <ul class="sidebar-menu">
-                        <li class="nav__item">
-                        <a class="sidebar-link actived" id="home" href="/#/">
-                            <span class="icon-holder">
-                                <img src="assets/static/images/menuIcons/homePage.svg" alt="">
-                            </span>
-                            <span class="title">Home</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="learn-words" href="/#/learn-words">
-                            <span class="icon-holder">
-                                <img src="assets/static/images/menuIcons/learnWords.svg" alt="">
-                            </span>
-                            <span class="title">Learn Words</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="dictionary" href="/#/dictionary">
-                            <span class="icon-holder">
-                                <img src="assets/static/images/menuIcons/dictionary.svg" alt="">
-                            </span>
-                            <span class="title">Dictionary</span>
-                        </a>
-                        </li>
-                        <li role="separator" class="nav__divider"></li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="speak-it" href="/#/speak-it">
-                            <span class="icon-holder">
-                                <img src="assets/static/images/menuIcons/speakIt.svg" alt="">
-                            </span>
-                            <span class="title">Speak it</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                            <a class='sidebar-link' id="english-puzzle" href="/#/english-puzzle">
-                                <span class="icon-holder">
-                        <img src="assets/static/images/menuIcons/puzzle.svg" alt="">
-                      </span>
-                                <span class="title">English Puzzle</span>
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="savannah" href="/#/savannah">
-                            <span class="icon-holder">
-                            <img src="assets/static/images/menuIcons/savannah.svg" alt="">
-                            </span>
-                            <span class="title">Savannah</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="audiochallenge" href="/#/audiochallenge">
-                            <span class="icon-holder">
-                            <img src="assets/static/images/menuIcons/audoichallange.svg" alt="">
-                            </span>
-                            <span class="title">Audiochallenge</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                        <a class='sidebar-link' id="sprint" href="/#/sprint">
-                            <span class="icon-holder">
-                            <img src="assets/static/images/menuIcons/sprint.svg" alt="">
-                            </span>
-                            <span class="title">Sprint</span>
-                        </a>
-                        </li>
-                        <li class="nav__item">
-                            <a class='sidebar-link' id="english-quiz" href="/#/english-quiz">
-                                <span class="icon-holder">
-                                    <img src="assets/static/images/menuIcons/ourGame.svg" alt="">
-                                </span>
-                                <span class="title">English Quiz</span>
-                            </a>
-                        </li>
-                        <li role="separator" class="nav__divider"></li>
-                        <li class="nav__item">
-                            <a class='sidebar-link' id="about" href="/#/about">
-                                <span class="icon-holder">
-                                    <img src="assets/static/images/menuIcons/aboutUs.svg" alt="">
-                                </span>
-                                <span class="title">About Us</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>    
-        </div>
 
-        <!-- <div class="page-container">
+            <!-- <div class="page-container">
             <div class="header navbar">
                 <div class="header-container">
                     <ul class="nav-left">
@@ -207,7 +208,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- </div> -->
+            <!-- </div> -->
     </header>
     <main class='main-content'>
         <section id='mainContent'>
