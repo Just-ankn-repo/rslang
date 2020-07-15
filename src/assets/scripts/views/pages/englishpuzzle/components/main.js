@@ -3,14 +3,17 @@ import speakernotes from '../../../../../static/images/englishPuzzle/icon/speake
 import musicalnotes from '../../../../../static/images/englishPuzzle/icon/musical-notes.png'
 import roomsound from '../../../../../static/images/englishPuzzle/icon/room-sound.png'
 import GameMechanics from './game'
-import { controllers } from 'chart.js'
+import Results from './Results'
+
 
 
 function buttonclick(buttonelement, url, urloff) {
     if (buttonelement.target.classList.contains('game-puzzle__button_active')) {
+        // eslint-disable-next-line no-param-reassign
         buttonelement.target.style.backgroundImage = `url('${urloff}')`;
         buttonelement.target.classList.remove('game-puzzle__button_active');
     } else {
+        // eslint-disable-next-line no-param-reassign
         buttonelement.target.style.backgroundImage = `url('${url}')`;
         buttonelement.target.classList.add('game-puzzle__button_active');
     }
@@ -18,6 +21,7 @@ function buttonclick(buttonelement, url, urloff) {
 const sortListById = (list) => {
     const listElements = [...list.children]
     const listElementssort = listElements.sort((a, b) => parseInt((a.classList[2]).replace(/\D+/g, ""), 10) - parseInt((b.classList[2]).replace(/\D+/g, ""), 10));
+    // eslint-disable-next-line no-param-reassign
     list.innerHTML = '';
     list.append(...listElementssort);
 
@@ -52,6 +56,9 @@ function buttonaddevent() {
     buttonstart.addEventListener('click', () => {
         document.querySelector('.game-puzzle__startPage').style.opacity = 0;
         document.querySelector('.game-puzzle__wrapper').style.opacity = 1;
+        document.querySelector('.game-puzzle__wrapper').style.display = 'block';
+        // eslint-disable-next-line no-undef
+
         setTimeout(() => { document.querySelector('.game-puzzle__startPage').style.display = `none` }, 500);
     });
 
@@ -70,11 +77,13 @@ export default async function def() {
     const buttontransfer = document.querySelector('.game-puzzle__button_transfer');
     const buttonsoundauto = document.querySelector('.game-puzzle__button_sound_auto');
     const game = new GameMechanics(document.querySelector('.game-puzzle__select_level'), document.querySelector('.game-puzzle__select_page'), document.querySelector('.game-puzzle__main'));
+    let results = new Results();
     await game.createPuzzle();
+    const buttonstart = document.querySelector('.game-puzzle__start');
 
-
-    function calculationwidth() { document.querySelector('.game-puzzle__main').style.width = `${document.querySelector('.group-words').offsetWidth + 40}px`; }
+    function calculationwidth() { if (document.querySelector('.game-puzzle__main')) document.querySelector('.game-puzzle__main').style.width = `${document.querySelector('.group-words').offsetWidth + 40}px`; }
     calculationwidth();
+    buttonstart.addEventListener('click', () => { calculationwidth(); });
     window.addEventListener(`resize`, calculationwidth, false);
     async function nextlevel() {
         window.addEventListener(`resize`, calculationwidth, false);
@@ -104,6 +113,7 @@ export default async function def() {
         groupwords.innerHTML = '';
         sortListById(sentence);
         sentencechild.forEach((word) => {
+            // eslint-disable-next-line no-param-reassign
             word.onmousedown = () => {};
             const clone = word.cloneNode(true);
             groupwords.append(clone);
@@ -127,6 +137,7 @@ export default async function def() {
     function clickbuttoncontinue() {
         const main = document.querySelector('.game-puzzle__main');
         const puzle = document.querySelector('.group-words');
+
         game.sentencenumber += 1;
         if (game.sentencenumber === 11) {
             if (+game.Page.value < 10)
@@ -139,20 +150,25 @@ export default async function def() {
             nextlevel();
             buttonresults.classList.add('game-puzzle__button_hidden');
         } else if (game.sentencenumber === 10) {
+
+            game.answers.push(false);
             buttonresults.classList.remove('game-puzzle__button_hidden');
             window.removeEventListener(`resize`, calculationwidth, false);
             main.innerHTML = '';
             const picture = game.levelimg[game.Level.value - 1][game.Page.value];
             puzle.innerHTML = `${picture.name} ${picture.author} ${picture.year}`;
             document.querySelector('#sentence').innerHTML = '';
-            console.log(picture.cutSrc);
+
             main.style.backgroundImage = `url('${game.urlimg+picture.cutSrc}')`;
             main.style.backgroundSize = 'cover';
             buttonchek.classList.add('game-puzzle__button_hidden');
+            results = new Results(game.elementPlayingField, game.answers, game.Level, game.Page);
+            results.saveresult();
+
+            game.answers = [];
 
         } else {
-            if (game)
-                game.answers.push(false);
+            game.answers.push(false);
             buttoncontinue.classList.add('game-puzzle__button_hidden');
             game.addsentence();
             buttonidont.classList.remove('game-puzzle__button_hidden');
@@ -190,7 +206,6 @@ export default async function def() {
             clickbuttonidont();
             game.answers[game.sentencenumber] = true;
             clickbuttoncontinue();
-            console.log(game.answers);
 
         }
     });
@@ -209,6 +224,9 @@ export default async function def() {
     game.Level.addEventListener("change", nextlevel);
     game.Page.addEventListener("change", nextlevel);
     buttonsoundpaly.addEventListener('click', speak);
-
+    buttonresults.addEventListener('click', () => {
+        results.adddomresults();
+        buttonresults.classList.add('game-puzzle__button_hidden');
+    });
 
 }
