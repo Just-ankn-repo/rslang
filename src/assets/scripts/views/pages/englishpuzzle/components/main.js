@@ -147,6 +147,7 @@ export default async function def() {
                 game.Page.value = 1;
                 game.Level.value = 1
             }
+            buttoncontinue.classList.add('game-puzzle__button_hidden')
             nextlevel();
             buttonresults.classList.add('game-puzzle__button_hidden');
         } else if (game.sentencenumber === 10) {
