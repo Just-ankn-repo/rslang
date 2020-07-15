@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import constants from './constants';
 import authorization from './authorization.service';
 import sessionExpired from '../utils/sessionExpired.utils';
 import cookie from '../utils/cookie.utils';
@@ -32,11 +33,23 @@ export default class Backend {
       this.userId = result.userId;
       this.authToken = result.token;
       this.refreshToken = result.refreshToken;
+
       cookie.setCookie('userId', this.userId);
       cookie.setCookie('authToken', this.authToken);
       console.log(this.userId, this.authToken, this.refreshToken)
     } catch(e) {
       throw new Error (e);
+    }
+
+    const userSettings = await this.getUserSettings();
+    const userStatistics = await this.getUserStatistics();
+
+    if (!userSettings.id) {
+      this.setUserSettings(constants.defaultSettings);
+    }
+
+    if (!userStatistics.id) {
+      this.setUserStatistics(constants.defaultStatistics);
     }
   }
 
@@ -54,22 +67,27 @@ export default class Backend {
 
   async registerUser(username, email, password) {
     try {
-      const result = users.registerUser(username, email, password)
+      const result = users.registerUser(username, email, password);
+
       return result;
     } catch(e) {
       return e;
     }
   }
 
-  async getUserById() {
+  async getUserById(isExpired) {
     try {
       const result = await users.getUserById(this.userId, this.authToken);
       return result;
     } catch(e) {
-      const result = [401, 403].includes(e.status)
-      ? await sessionExpired(this, 'getUserById')
-      : e;
-      return result;
+      if (!isExpired) {
+        const result = [401, 403].includes(e.status)
+        ? await sessionExpired(this, 'getUserById')
+        : e;
+        return result;
+      } 
+      return false;
+      
     }
   }
 
@@ -136,6 +154,7 @@ export default class Backend {
   async getUsersWords() {
     try {
       const result = await usersWords.getUsersWords(this.userId, this.authToken);
+      
       return result;
     } catch(e) {
       const result = [401, 403].includes(e.status)
@@ -160,7 +179,7 @@ export default class Backend {
   async setUsersWords(data) {
     try {
       const result = await usersWords.setUsersWords(this.userId, this.authToken, data);
-      return result;
+       return result;
     } catch(e) {
       const result = [401, 403].includes(e.status)
       ? await sessionExpired(this, 'setUsersWords', data)

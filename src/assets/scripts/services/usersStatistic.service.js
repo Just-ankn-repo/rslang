@@ -26,9 +26,15 @@ const usersStatistics = {
   setUserStatistics: async (userId, authToken, data) => {
     let rawResponse;
     let result;
-    const oldStatistics = await usersStatistics.getUserStatistics(userId, authToken);
-    const newStatistics = {...oldStatistics, ...data};
-    delete newStatistics.id;
+    let newStatistics;
+
+    try {
+      const oldStatistics = await usersStatistics.getUserStatistics(userId, authToken);
+      newStatistics = {...oldStatistics, ...data};
+      delete newStatistics.id;
+    } catch(e) {
+      newStatistics = data;
+    };
 
     try {
       rawResponse = await fetch(`${env.backendUrl}/users/${userId}/statistics`, {

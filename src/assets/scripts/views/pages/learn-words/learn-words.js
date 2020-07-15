@@ -23,9 +23,6 @@ const LearnWords = {
     return view
   },
   after_render: async () => {
-    // user@user.com
-    // userPassword_1312412412
-
     const startBtn = document.querySelector('.words-main-btn');
 
     startBtn.addEventListener('click', () => {
