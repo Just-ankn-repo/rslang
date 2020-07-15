@@ -1,4 +1,5 @@
 import createCanvasElements from './canvas'
+
 export default class Puzzle {
     constructor(level, page, urlImg, elementSentence, elementGame, translate) {
         this.level = level;
@@ -47,7 +48,7 @@ export default class Puzzle {
         const res = await fetch(url);
         const data = await res.json();
         this.words = data;
-        console.log(data);
+
     }
 
     mixConvasElements() {
@@ -56,8 +57,10 @@ export default class Puzzle {
         for (let i = 0; i < convasElementschildren.length; i += 1) {
             const rand1 = 0 + Math.random() * (1000 + 1);
             convasElementschildren[i].style.order = Math.floor(rand1);
+            // eslint-disable-next-line no-use-before-define
             drag(convasElementschildren[i]);
             convasElementschildren2[i].style.order = Math.floor(rand1);
+            // eslint-disable-next-line no-use-before-define
             drag(convasElementschildren2[i]);
         }
     }
@@ -88,7 +91,9 @@ function drag(convas) {
     clone.classList.add('convas__convasclone');
 
     function down() {
+        // eslint-disable-next-line no-restricted-globals
         const shiftX = event.clientX - 8 - convaselement.getBoundingClientRect().left;
+        // eslint-disable-next-line no-restricted-globals
         const shiftY = event.clientY - convaselement.getBoundingClientRect().top;
         const sentencefield = document.querySelector('.game-puzzle__sentenceField_active');
         const poz = sentencefield.getBoundingClientRect();
@@ -97,14 +102,15 @@ function drag(convas) {
         convaselement.style.zIndex = 1000;
         document.body.append(convaselement);
         document.querySelector('.group-words').append(clone);
+        // eslint-disable-next-line no-restricted-globals
         moveAt(event.pageX, event.pageY);
 
         convaselement.style.position = 'absolute';
 
         function moveAt(pageX, pageY) {
 
-            convaselement.style.left = pageX - shiftX + 'px';
-            convaselement.style.top = pageY - shiftY + 'px';
+            convaselement.style.left = `${pageX - shiftX}px`;
+            convaselement.style.top = `${pageY - shiftY}px`;
         }
 
         function onMouseMove(event) {
@@ -115,6 +121,7 @@ function drag(convas) {
                 word.classList.remove('convas__leftactive');
                 const pozishn = word.getBoundingClientRect();
 
+                // eslint-disable-next-line no-restricted-globals
                 if (poz.y + pageYOffset - poz.height < parseInt(convaselement.style.top, 10) && poz.y + pageYOffset + poz.height > parseInt(convaselement.style.top, 10) && poz.left - 30 < parseInt(convaselement.style.left, 10) && poz.left + 30 + poz.width > parseInt(convaselement.style.left, 10)) {
 
                     if (pozishn.left - pozishn.width / 3 < parseInt(convaselement.style.left, 10) && pozishn.left + pozishn.width / 2 > parseInt(convaselement.style.left, 10)) {
@@ -131,6 +138,7 @@ function drag(convas) {
         document.addEventListener('mousemove', onMouseMove);
         convaselement.onmouseup = function() {
 
+            // eslint-disable-next-line no-restricted-globals
             if (poz.y + pageYOffset - poz.height < parseInt(convaselement.style.top, 10) && poz.y + pageYOffset + poz.height > parseInt(convaselement.style.top, 10) && poz.left - 30 < parseInt(convaselement.style.left, 10) && poz.left + 30 + poz.width > parseInt(convaselement.style.left, 10)) {
                 const words = sentencefield.childNodes;
                 if (words.length !== 0 && wordnumberchanged && document.querySelector('.convas__leftactive')) {

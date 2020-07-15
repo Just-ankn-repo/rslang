@@ -3,10 +3,13 @@ import Quize from './Quize';
 const englishquiz = {
     render: async() => {
         const view = /* html */ `
-        <div class="game-quiz">
-           
+    <div class="game-quiz">
+        <div class="game-quiz__startPage">
+        <h2 class="game-quiz__heading">English Quiz</h2>
+        <p class="game-quiz__text game-quiz__text_white">Collect word-picture pairs.<br> Do it fast. Good luck!</p>
+        <button class="game-quiz__button game-quiz__button_start"> Start</button>
+        </div>
         <div class="game-quiz__header">
-
             <div class="game-quiz__panel game-quiz__panel_settings">
                 <p class="game-quiz__text">Level</p>
                 <select class="game-quiz__select game-quiz__select_level">
@@ -63,12 +66,7 @@ const englishquiz = {
             <button class="game-quiz__button game-quiz__button_results game-quiz__button_hiden">Results</button>
             <button class="game-quiz__button game-quiz__button_help game-quiz__button_hiden"></button>
         </div>
-        <div class="game-quiz__startPage">
-        <h2 class="game-quiz__heading">English Quiz</h2>
-        <p class="game-quiz__text game-quiz__text_white">  
-Collect word-picture pairs.<br> Do it fast. Good luck!</p>
-        <button class="game-quiz__button game-quiz__button_start"> Start</button>
-    </div>
+        
     </div>
       `
         return view

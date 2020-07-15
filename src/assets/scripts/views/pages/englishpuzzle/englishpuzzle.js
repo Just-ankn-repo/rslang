@@ -1,4 +1,4 @@
-import Code from './components/code';
+import Code from './components/main';
 
 const Englishpuzzle = {
     render: async() => {
