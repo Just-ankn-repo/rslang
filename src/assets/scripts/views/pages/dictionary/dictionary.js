@@ -41,7 +41,6 @@ const Dictionary = {
                         <div class="dictionary-card__word"></div>
                         <div class="dictionary-card__translation"></div>
                         <div class="dictionary-card__example"></div>
-                        <object class="dictionary-card__trash"></object>
                     </div>
 
                     
@@ -98,6 +97,14 @@ const Dictionary = {
       })
       document.querySelector('.dictionary-tools__sorting_studied').addEventListener('click', () => {
         getItems(hardWords);
+      })
+      document.querySelectorAll('.dictionary-element').forEach(elem => {
+        elem.addEventListener('click', (e) => {
+          if (e.target.classList.contains('dictionary-element__trash')) {
+            elem.classList.add('deleted');
+            elem.parentNode.removeChild(elem);
+          }
+        })
       })
   }   
 }
