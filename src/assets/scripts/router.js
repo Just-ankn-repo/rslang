@@ -12,6 +12,7 @@ const routes = {
     '/sprint': pages.sprint,
     '/learn-words': pages.learnWords,
     '/savannah': pages.savannah,
+    '/audiochallenge' : pages.audioChallengeGame
 };
 
 const router = async() => {

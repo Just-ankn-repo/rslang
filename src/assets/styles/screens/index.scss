@@ -2,6 +2,106 @@
 @import "savannah/savannah.scss";
 @import "./sprint/startPage";
 @import "./sprint/statistic";
+@import "./audiochallenge/introPage";
+
+.audio-wrapper {
+  flex-wrap: wrap;
+  background-image: linear-gradient(to top right, rgb(101, 115, 255), rgb(111, 114, 247), rgb(120, 114, 239), rgb(130, 113, 231), rgb(139, 112, 223), rgb(149, 111, 215), rgb(158, 111, 208), rgb(168, 110, 200), rgb(177, 109, 192), rgb(187, 108, 184), rgb(196, 108, 176), rgb(206, 107, 168));
+}
+
+.game-container {
+  height: 100vh;
+
+  &__close {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    margin: 25px;
+    position: relative;
+    transition: 0.3s;
+    span {
+      position: absolute;
+      font-size: 3rem;
+      color: white;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: white;
+      opacity: 0.9;
+      span {
+        background: linear-gradient(to top right,#6573ff,#6f72f7,#7872ef,#8271e7,#8b70df,#956fd7,#9e6fd0,#a86ec8,#b16dc0,#bb6cb8,#c46cb0,#ce6ba8);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    }
+  }
+
+  &__speaker {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-image: url(../static/images/audiochallenge/voice.svg);
+    background-size: 140px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 3px solid white;
+  }
+
+  &__answers {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 60px;
+    padding: 0;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      margin: 15px 50px;
+
+      .number {
+        display: block;
+        color: $default-grey;
+        font-size: 1.8rem;
+        margin-right: 10px;
+        font-weight: 400;
+        opacity: 0.6;
+      }
+
+      .answer {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.btn-next {
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 60px;
+  transition: .3s;
+  span {
+    font-size: 1.8rem;
+    color: white;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    span{
+      background: linear-gradient(to top right,#6573ff,#6f72f7,#7872ef,#8271e7,#8b70df,#956fd7,#9e6fd0,#a86ec8,#b16dc0,#bb6cb8,#c46cb0,#ce6ba8);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+  }
+}
 
 .row-wrapper {
   flex-wrap: wrap;

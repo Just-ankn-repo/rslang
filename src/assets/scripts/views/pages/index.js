@@ -9,6 +9,7 @@ import englishpuzzle from './englishpuzzle/englishpuzzle';
 import learnWords from './learn-words/learn-words'
 import savannah from './savannah/savannah';
 import englishquiz from './english-quiz/english-quiz'
+import audioChallengeGame from "./audiochallenge/audioChallenge";
 
 export default {
     about,
@@ -22,4 +23,5 @@ export default {
     sprint,
     learnWords,
     savannah,
+    audioChallengeGame
 }
