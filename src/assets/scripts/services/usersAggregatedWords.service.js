@@ -6,11 +6,12 @@ const usersAggregatedWords = {
     let rawResponse;
     let result;
     const wordsPerPage = data.wordsPerPage ? `?wordsPerPage=${data.wordsPerPage}` : '';
+    const page = data.page ? `?page=${data.page}` : '';
     const groupWords = data.group ? `&group=${data.group}` : '';
     const filter = data.filter ? `&filter=${encodeURIComponent(JSON.stringify(data.filter))}` : '';
 
     try {
-      rawResponse = await fetch(`${env.backendUrl}/users/${userId}/aggregatedWords${wordsPerPage}${groupWords}${filter}`, {
+      rawResponse = await fetch(`${env.backendUrl}/users/${userId}/aggregatedWords${wordsPerPage}${page}${groupWords}${filter}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

@@ -28,6 +28,7 @@ const createCanvasElements = async({
         throw new TypeError('"src" argument must be a "string"');
     }
 
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(parseInt(extraWidthValue, 10))) {
         throw new TypeError('"extraWidthValue" argument must be a "number"');
     }
@@ -149,7 +150,7 @@ const createCanvasElements = async({
         };
 
         img1.onerror = err => {
-            console.log(err);
+
             reject(err);
         }
     })
