@@ -1,7 +1,7 @@
 import Timer from './timer';
+import Results from './Results'
 
-import bec from '../../../backend'
-class Quize {
+class Quiz {
     constructor(elementgame, elementlevel, elementpage, elementsize, elementcomplexity, elementerrors) {
         this.elementgame = elementgame;
         this.elementlevel = elementlevel;
@@ -21,6 +21,7 @@ class Quize {
         this.error = 0;
         this.correctly = 0;
         this.timer = new Timer(document.querySelector('.timer'));
+        this.result = '';
 
 
         this.url = 'https://raw.githubusercontent.com/ValeriaKorzhenevskaya/rslang-data/master/';
@@ -44,11 +45,13 @@ class Quize {
                 this.cardchek.classList.add('game-quiz__card_true');
                 const cardtemp = this.cardchek;
                 setTimeout(() => {
+                    // eslint-disable-next-line no-param-reassign
                     card.style.opacity = 0;
                     cardtemp.style.opacity = 0
                 }, 1000);
                 if (this.correctly === this.couplecards.length / 2) {
-                    this.timer.stoptimer();
+                    this.result = new Results(this.elementgame, this.error, this.timer.stoptimer(), this.elementlevel.value, this.page);
+                    this.result.saveresult();
                     this.elementgame.innerHTML = '<p class="game-quiz__main_text"> finished</p>';
                     document.querySelector('.game-quiz__button_continue').classList.remove('game-quiz__button_hiden');
                     document.querySelector('.game-quiz__button_help').classList.add('game-quiz__button_hiden');
@@ -80,7 +83,8 @@ class Quize {
 
     addEventcard() {
         this.couplecards.forEach(card => {
-            card.addEventListener('click', (card) => {
+            // eslint-disable-next-line no-shadow
+            card.addEventListener('click', card => {
                 if (card.target.parentElement.classList.contains('game-quiz__card'))
                     this.cardclick(card.target.parentElement);
                 else this.cardclick(card.target);
@@ -100,8 +104,10 @@ class Quize {
         this.size = this.elementsize.value;
         this.complexity = this.elementcomplexity.value;
         await this.cardAddDom();
-        document.querySelectorAll('.game-quiz__card').forEach(card => card.style.backgroundColor = document.querySelector('.game-quiz__color1').value);
-        document.querySelectorAll('.game-quiz__text').forEach(card => card.style.color = document.querySelector('.game-quiz__color2').value);
+        // eslint-disable-next-line no-param-reassign
+        document.querySelectorAll('.game-quiz__card').forEach(card => { card.style.backgroundColor = document.querySelector('.game-quiz__color1').value });
+        // eslint-disable-next-line no-param-reassign
+        document.querySelectorAll('.game-quiz__text').forEach(card => { card.style.color = document.querySelector('.game-quiz__color2').value });
 
 
 
@@ -168,38 +174,42 @@ export default async function Gamestart() {
     const buttonstart = document.querySelector('.game-quiz__button_start');
     const buttonresults = document.querySelector('.game-quiz__button_results');
     inputcolor1.addEventListener('change', () => {
-        document.querySelectorAll('.game-quiz__card').forEach(card => card.style.backgroundColor = inputcolor1.value);
-        document.querySelectorAll('.game-quiz__panel').forEach(card => card.style.backgroundColor = inputcolor1.value);
+        // eslint-disable-next-line no-param-reassign
+        document.querySelectorAll('.game-quiz__card').forEach(card => { card.style.backgroundColor = inputcolor1.value });
+        // eslint-disable-next-line no-param-reassign
+        document.querySelectorAll('.game-quiz__panel').forEach(card => { card.style.backgroundColor = inputcolor1.value });
     });
     inputcolor2.addEventListener('change', () => {
-        document.querySelectorAll('.game-quiz__text').forEach(card => card.style.color = inputcolor2.value);
+        // eslint-disable-next-line no-param-reassign
+        document.querySelectorAll('.game-quiz__text').forEach(card => { card.style.color = inputcolor2.value });
 
     });
-    let f = new Quize(main, selectlevel, selectpage, selectsize, selectcomplexity, errors);
-    f.addchangeparametersivent();
-    f.cardAddDom();
+    const quiz = new Quiz(main, selectlevel, selectpage, selectsize, selectcomplexity, errors);
+    quiz.addchangeparametersivent();
+    quiz.cardAddDom();
     buttonstartgame.addEventListener('click', () => {
-        f.addEventcard();
-        f.timer.starttimer();
+        quiz.addEventcard();
+        quiz.timer.starttimer();
         document.querySelectorAll('.game-quiz__panel_settings').forEach(el => el.classList.add('game-quiz__panel_hiden'));
         buttonstartgame.classList.add('game-quiz__button_hiden');
         panelgame.classList.remove('game-quiz__panel_hiden');
-        f.correctly = 0;
-        f.error = 0;
+        quiz.correctly = 0;
+        quiz.error = 0;
+        quiz.elementerrors.innerHTML = 'Errors:0'
         buttonhelp.classList.remove('game-quiz__button_hiden');
     });
     buttoncontinue.addEventListener('click', () => {
         document.querySelectorAll('.game-quiz__panel_settings').forEach(el => el.classList.remove('game-quiz__panel_hiden'));
         buttonstartgame.classList.remove('game-quiz__button_hiden');
         panelgame.classList.add('game-quiz__panel_hiden');
-        if (+f.elementpage.value < 10)
-            f.elementpage.value = +f.elementpage.value + 1;
-        else if (+f.elementlevel.value < 6) f.elementlevel.value = +f.elementlevel.value + 1;
+        if (+quiz.elementpage.value < 10)
+            quiz.elementpage.value = +quiz.elementpage.value + 1;
+        else if (+quiz.elementlevel.value < 6) quiz.elementlevel.value = +quiz.elementlevel.value + 1;
         else {
-            f.elementpage.value = 1;
-            f.elementlevel.value = 1
+            quiz.elementpage.value = 1;
+            quiz.elementlevel.value = 1
         }
-        f.changeparameters();
+        quiz.changeparameters();
         buttoncontinue.classList.add('game-quiz__button_hiden');
         document.querySelector('.game-quiz__button_results').classList.add('game-quiz__button_hiden');
     })
@@ -226,7 +236,7 @@ export default async function Gamestart() {
         document.querySelector('.game-quiz__startPage').style.display = `none`
     });
     buttonresults.addEventListener('click', () => {
-        console.log(bec.getUserStatistics());
-
+        quiz.result.adddomresults()
+        buttonresults.classList.add('game-quiz__button_hiden');
     })
 }
