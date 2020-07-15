@@ -1,6 +1,9 @@
 .signup-container{
   height:381px;
   width:350px;
+  @media (max-width: 414px) {
+   width: 280px;
+ }
   margin:40px auto;
   background:#FFF;
   border-radius:2px;
