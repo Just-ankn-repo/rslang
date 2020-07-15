@@ -47,16 +47,28 @@ const usersWords = {
   setUsersWords: async (userId, authToken, data) => {
     let rawResponse;
     let result;
+    let newWordData;
+    const {wordId} = data;
 
     try {
-      rawResponse = await fetch(`${env.backendUrl}/users/${userId}/words/${data.wordId}`, {
+      const oldWordData = await usersWords.getUsersWordsById(userId, authToken, wordId);
+      newWordData = {...oldWordData, ...data};
+      delete newWordData.id;
+    } catch(e) {
+      newWordData = data;
+    };
+
+    delete newWordData.wordId;
+    
+    try {
+      rawResponse = await fetch(`${env.backendUrl}/users/${userId}/words/${wordId}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
         },
-        body: JSON.stringify({ "difficulty": data.difficulty, "optional": data.optional })
+        body: JSON.stringify({ "difficulty": newWordData.difficulty, "optional": newWordData.optional })
       });
 
       result = await rawResponse.json();

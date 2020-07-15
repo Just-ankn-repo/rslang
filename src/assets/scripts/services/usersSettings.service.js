@@ -26,9 +26,15 @@ const usersSettings = {
   setUserSettings: async (userId, authToken, data) => {
     let rawResponse;
     let result;
-    const oldSettings = await usersSettings.getUserSetttings(userId, authToken);
-    const newSettings = {...oldSettings, ...data};
-    delete newSettings.id;
+    let newSettings;
+
+    try {
+      const oldSettings = await usersSettings.getUserSettings(userId, authToken);
+      newSettings = {...oldSettings, ...data};
+      delete newSettings.id;
+    } catch(e) {
+      newSettings = data;
+    };
 
     try {
       rawResponse = await fetch(`${env.backendUrl}/users/${userId}/settings`, {
@@ -38,14 +44,14 @@ const usersSettings = {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
         },
-        body: JSON.stringify(newSettings)
+        body: JSON.stringify(newSettings),
       });
 
       result = await rawResponse.json();
       return result;
     } catch(e) {
       throw error(rawResponse);
-    }
+    };
   }
 }
 

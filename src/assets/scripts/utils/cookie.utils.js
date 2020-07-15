@@ -7,8 +7,12 @@ const cookie = {
   },
 
   setCookie: (name, value) => {
-    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
-  }
+    document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; max-age=14400`;
+  },
+
+  deleteCookie: (name) => {
+    document.cookie = `${encodeURIComponent(name)}=; max-age=0`;
+  },
 }
 
 export default cookie;
