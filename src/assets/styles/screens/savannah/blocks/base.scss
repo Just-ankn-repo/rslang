@@ -1,0 +1,16 @@
+.container.savannah-container {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 320px;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 5px;
+  overflow-x: hidden;
+  font-weight: bold;
+  font-size: $font-size;
+  font-family: Arial;
+  color: $color-dark;
+  background-color: $color-white;
+  width: 1300px;
+}
